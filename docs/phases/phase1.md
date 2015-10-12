@@ -1,20 +1,22 @@
-# Phase 1: User Authentication, Note Model and JSON API
+# Phase 1: User Authentication, Harvest Model and JSON API (2 Days)
 
 ## Rails
 ### Models
 * User
-* Note
+* Harvest
 
 ### Controllers
-* UsersController (create, new)
+* UsersController (create, new, update, show, index)
+  - Question to TAs: should this be an Api Controller?
 * SessionsController (create, new, destroy)
 * Api::NotesController (create, destroy, index, show, update)
 
 ### Views
-* users/new.html.erb
+* users/index.json.jbuilder
+* users/show.json.jbuilder
 * session/new.html.erb
-* notes/index.json.jbuilder
-* notes/show.json.jbuilder
+* harvests/index.json.jbuilder
+* harvests/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)

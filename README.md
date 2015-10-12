@@ -1,24 +1,25 @@
-# FresherNote
+# Harvst
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+[Heroku link][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: https://harvst.herokuapp.com/
 
 ## Minimum Viable Product
 
-FresherNote is a web application inspired by Evernote built using Ruby on Rails
-and React.js. FresherNote allows users to:
+Harvst is a web application inspired by WWOOF USA and Falling Fruit built using Ruby on Rails
+and React.js. Harvst allows users to:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
 - [ ] Create an account
 - [ ] Log in / Log out
-- [ ] Create, read, edit, and delete notes
-- [ ] Organize notes within Notebooks
-- [ ] Tag notes with multiple tags and search notes by tag
-- [ ] Search through notes for blocks of text
-- [ ] Apply complex styling to notes while editing
-- [ ] Set reminders on notes
+- [ ] Create a profile
+- [ ] Add public and private harvests
+- [ ] Share their harvests publicly or with specific users
+- [ ] Receive notifications about shared harvests
+- [ ] Search for harvests in their area
+- [ ] Message other users
+- [ ] Review harvests
 
 ## Design Docs
 * [View Wireframes][view]
@@ -29,66 +30,59 @@ and React.js. FresherNote allows users to:
 
 ## Implementation Timeline
 
-### Phase 1: User Authentication, Note Model and JSON API (1.5 days)
+### Phase 1: User Model and Authentication, Harvest Model and JSON API (2 days)
 
 In Phase 1, I will begin by implementing user signup and authentication (using
 BCrypt). There will be a basic landing page after signup that will contain the
 container for the application's root React component. Before building out the
-front end, I will begin by setting up a full JSON API for Notes.
+front end, I will begin by setting up a full JSON API for Harvests and Users.
 
 [Details][phase-one]
 
-### Phase 2: Flux Architecture and Note CRUD (2.5 days)
+### Phase 2: Flux Architecture and Harvest CRUD (2 days)
 
 Phase 2 is focused on setting up Flux, the React Router, and the React view
 structure for the main application. After the basic Flux architecture has been
-set up, a Note store will be implemented and a set of actions corresponding to
-the needed CRUD functionality created. Once this is done, I will create React
-views for the Notes `Index`, `IndexItem` and `Form`. At the end of Phase 2,
-Notes can be created, read, edited and destroyed in the browser. Notes should
-save to the database when the form loses focus or is left idle after editing.
-Lastly, while constructing the views I will start using basic bootstrap for
-styling.
+set up, Harvest stores will be implemented and a set of actions corresponding
+to the needed CRUD functionality created. Once this is done, I will create React
+views for the Harvest `Index`, `IndexItem` and `Form`. The Google Maps API will
+be integrated into the Harvest Index view. At the end of Phase 2, Harvests can
+be created, viewed, edited and destroyed in the browser. Lastly, while constructing
+the views I will start using basic bootstrap for styling.
 
 [Details][phase-two]
 
-### Phase 3: Notebooks and Tags (2 days)
+### Phase 3: Flux Architecture for User Profiles (1 day)
 
-Phase 3 adds organization to the Notes. Notes belong to a Notebook, which has
-its own `Index` view. Create JSON API for Notebooks. Notes can also now be
-tagged with multiple tags. Users can bring up notes in a separate `SearchIndex`
-view by searching for their tags. Once the tag search is implemented, I will
-extend this to a fuzzy search through every Note's content.
+Phase 3 will create Flux architecture for viewing and editing user profiles. A user's
+public harvests will be viewable on their profile. Users will also be searchable by
+name. I will create React views for the Users `Index`, `Profiles`, `Form`, and 'Search'.
 
 [Details][phase-three]
 
-### Phase 4: Allow Complex Styling in Notes (1 day)
+### Phase 4: Harvest Shares and Messages (1.5 days)
 
-Using quill.js, allow for complex styling of notes. 
+Phase 4 allows users to share private Harvests with other users. Users can view an
+index of harvests shared with them. Users can also message other users regarding their harvests.
 
 [Details][phase-four]
 
-### Phase 5: Reminders and Garbage Collection (1 day)
+### Phase 5: Notifications (1.5 day)
 
-Phase 5 introduces two new features. First, users can set reminders on notes
-which will at the time they are set for prompt the user to review and edit the
-given note. In addition, I will implement a feature that asks users to review
-notes once they reach a certain age and ask whether they should be kept,
-archived, or deleted.
+Users will receive a notifications when they are messaged, shared harvests, or reviewed.
+Notifications are destroyed after a user has viewed them.
 
 [Details][phase-five]
 
-### Phase 6: Styling Cleanup and Seeding (1 day)
+### Phase 6: Styling Cleanup and Seeding (2 day)
 
 Bootstrap will have been used to keep things organized up until now, but in
-Phase 6 I will add styling flourishes and make modals out of some elements (like
-the NotebookForm).
+Phase 6 I will add styling flourishes.
 
 ### Bonus Features (TBD)
 - [ ] Prettify transitions
-- [ ] Use javascript library for cleaner tag selection
-- [ ] Changelogs for Notes
-- [ ] Pagination / infinite scroll for Notes Index
+- [ ] User mailer
+- [ ] Pagination for Harvest Index
 - [ ] Multiple sessions
 
 [phase-one]: ./docs/phases/phase1.md

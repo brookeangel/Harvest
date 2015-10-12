@@ -6,21 +6,32 @@
 ## New Session
 ![new-session]
 
-## NotesIndex / NoteIndexItem / NoteForm
-![notes]
+## HarvestsIndex / HarvestsIndexItem
+![harvst-index]
 
-## NotebooksIndex / NotebookIndexItem
-![notebooks]
+## SharedHarvests
+![shared-harvests]
 
-## NoteBookForm
-![notebook-form]
+## HarvestForm
+![harvst-form]
+
+## UserProfile
+![profile-up]
+![profile-down]
+
+## Notifications
+![notification-dropdown]
 
 ## Component Heirarchy
 ![component-heirarchy]
 
-[new-user]: ./wireframes/new_user.png
-[new-session]: ./wireframes/new_session.png
-[notes]: ./wireframes/root_notes.png
-[notebooks]: ./wireframes/root_notebooks.png
+[new-user]: ./wireframes/harvst_signup.png
+[new-session]: ./wireframes/harvst_login.png
+[harvst-index]: ./wireframes/harvst_index.png
+[shared-harvests]: ./wireframes/harvst_shared_harvests.png
+[harvst-form]: ./wireframes/harvst_new_harvest_form.png
+[profile-up]: ./wireframes/user_profile_scrolled_up.png
+[profile-down]: ./wireframes/user_profile_scrolled_down.png
 [notebook-form]: ./wireframes/notebook_form.png
-[component-heirarchy]: ./wireframes/component_heirarchy.png
+[notification-dropdown]: ./wireframes/notification_dropdown.png
+[component-heirarchy]: ./wireframes/component_hierarchy.png

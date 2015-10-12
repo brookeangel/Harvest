@@ -1,4 +1,4 @@
-# Phase 2: Flux Architecture and Note CRUD (2 days)
+# Phase 2: Flux Architecture and Harvest CRUD (2 days)
 
 ## Rails
 ### Models
@@ -9,25 +9,31 @@
 
 ## Flux
 ### Views (React Components)
-* NotesIndex
-  - NotesIndexItem
-* NoteForm
+* App (root)
+* Navbar
+* HarvestSideBar
+* HarvestsIndex
+  - HarvestsIndexItem
+  - Harvest Detail View
+* HarvestForm
 
 ### Stores
-* Note
+* Harvest
 
 ### Actions
-* ApiActions.receiveAllNotes
-* ApiActions.receiveSingleNote
-* ApiActions.deleteNote
+* ApiActions.receiveAllHarvests
+* ApiActions.receiveSingleHarvest
+* ApiActions.deleteHarvest
 
 ### ApiUtil
-* ApiUtil.fetchAllNotes
-* ApiUtil.fetchSingleNote
-* ApiUtil.createNote
-* ApiUtil.editNote
-* ApiUtil.destroyNote
+* ApiUtil.fetchAllHarvests
+* ApiUtil.fetchSingleHarvest
+* ApiUtil.createHarvest
+* ApiUtil.editHarvest
+* ApiUtil.destroyHarvest
 
 ## Gems/Libraries
 * Flux Dispatcher
+* React Router
+* Google Maps API
 * Twitter Bootstrap

@@ -1,51 +1,51 @@
 # Schema Information
 
-## notes
+## users
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+username    | string    | not null, indexed
+email       | string    | not null
+pwd_digest  | string    | not null
+session_tkn | string    | not null
+type        | string    | not null, included in [individual, organization]
+description | text      |
+website     | string    |
+prof_img    | file      |
+
+## harvests
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+user_id     | integer   | not null, foreign key (references users), indexed
+title       | string    | not null
+description | string    | not null
+address     | string    | not null
+privacy     | string    | not null, included in [private, public]
+start_date  | datetime  |
+end_date    | datetime  |
+image       | file      |
+
+## shares
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+harvest_id  | integer   | not null, foreign key (references harvests), indexed
+shared_id   | integer   | not null, foreign key (references users), indexed
+
+## notifications
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+user_id     | integer   | not null, foreign key (references users)
+type        | string    | not null, polymorphic attribute
+type_id     | integer   | not null, foreign key (references shares or messages)
+
+## messages
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 title       | string    | not null
 body        | text      | not null
-author_id   | integer   | not null, foreign key (references users), indexed
-notebook_id | integer   | not null, foreign key (references notebooks), indexed
-archived    | boolean   | not null, default: false
-
-## notebooks
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users), indexed
-title       | string    | not null
-description | string    | 
-
-## reminders
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-user_id     | integer   | not null, foreign key (references users), indexed
-note_id     | string    | not null, foreign key (references notes), indexed
-date        | datetime  | not null
-type        | string    | not null
-prev_id     | integer   | foreign key (references reminders), indexed
-
-## tags
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-name        | string    | not null
-
-## taggings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-name        | string    | not null
-note_id     | integer   | not null, foreign key (references notes), indexed, unique [tag_id]
-tag_id      | integer   | not null, foreign key (references tags), indexed
-
-## users
-column name     | data type | details
-----------------|-----------|-----------------------
-id              | integer   | not null, primary key
-username        | string    | not null, indexed, unique
-password_digest | string    | not null
-session_token   | string    | not null, indexed, unique
+sender_id   | integer   | not null, foreign key (references users), indexed
+receiver_id | integer   | not null, foreign key (references users), indexed
