@@ -6,15 +6,16 @@
 * Harvest
 
 ### Controllers
-* UsersController (create, new, update, show, index)
-  - Question to TAs: should this be an Api Controller?
+* UsersController (create, new)
 * SessionsController (create, new, destroy)
-* Api::NotesController (create, destroy, index, show, update)
+* Api::UsersController (update, show, index)
+* Api::HarvestsController (create, destroy, index, show, update)
 
 ### Views
 * users/index.json.jbuilder
 * users/show.json.jbuilder
 * session/new.html.erb
+* users/new.html.erb
 * harvests/index.json.jbuilder
 * harvests/show.json.jbuilder
 
