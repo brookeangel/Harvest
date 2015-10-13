@@ -18,7 +18,6 @@ and React.js. Harvst allows users to:
 - [ ] Share their harvests publicly or with specific users
 - [ ] Receive notifications about shared harvests
 - [ ] Search for harvests in their area
-- [ ] Message other users
 - [ ] Review harvests
 
 ## Design Docs
@@ -60,10 +59,10 @@ name. I will create React views for the Users `Index`, `Profiles`, `Form`, and '
 
 [Details][phase-three]
 
-### Phase 4: Harvest Shares and Messages (1.5 days)
+### Phase 4: Harvest Shares and Reviews (1.5 days)
 
 Phase 4 allows users to share private Harvests with other users. Users can view an
-index of harvests shared with them. Users can also message other users regarding their harvests.
+index of harvests shared with them. Users can also review users' harvests.
 
 [Details][phase-four]
 
@@ -81,9 +80,9 @@ Phase 6 I will add styling flourishes.
 
 ### Bonus Features (TBD)
 - [ ] Prettify transitions
-- [ ] User mailer
 - [ ] Pagination for Harvest Index
 - [ ] Multiple sessions
+- [ ] User mailer
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
