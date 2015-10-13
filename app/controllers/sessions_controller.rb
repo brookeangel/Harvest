@@ -21,12 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @user = current_user
-
-    if current_user
-      logout!(@user)
-    else
-      redirect_to :new_session_url
-    end
+    logout!(current_user) if logged_in?
+    render json: {}
   end
 end

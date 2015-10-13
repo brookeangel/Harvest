@@ -9,62 +9,67 @@
     name="authenticity_token"
     value="<%= form_authenticity_token %>" >
 
+  <div class="form-group">
   <input
     type="text"
     name="user[username]"
     id="user_username"
+    class="form-control"
     placeholder="username"
     value="<%= @user.username %>">
+  </div>
 
-  <br><br>
-
+  <div class="form-group">
   <input type="text"
     name="user[email]"
     id="user_email"
+    class="form-control"
     placeholder="email"
     value="<%= @user.email %>">
+  </div>
 
-  <br><br>
-
+  <div class="form-group">
   <input type="password"
     name="user[password]"
     class="form-control"
     placeholder="password"
+    class="form-control"
     id="user_password">
+  </div>
 
-  <br><br>
-
+  <div class="form-group">
   <input type="password"
     name="user[password_confirmation]"
     class="form-control"
     placeholder="confirm password"
     id="user_password">
-
-  <br><br>
+  </div>
 
   <label>Affiliation:</label>
 
-  <br><br>
+  <div class="radio">
+    <label>
+      <input
+        type="radio"
+        name="user[affiliation]"
+        id="user_affiliation"
+        value="individual"
+        <%= "checked" if  @user.affiliation == "individual" %>>
+      Individual
+    </label>
+  </div>
 
-  <input
-    type="radio"
-    name="user[affiliation]"
-    id="user_affiliation"
-    value="individual"
-    <%= "checked" if  @user.affiliation == "individual" %>>
-  <label for="user_affiliation_individual">Individual </label>
-
-  <br>
-
-  <input
-    type="radio"
-    name="user[affiliation]"
-    id="user_affiliation"
-    value="organization"
-    <%= "checked" if  @user.affiliation == "organization" %>>
-  <label for="user_affiliation_organization">Organization </label>
-
-  <br><br>
+  <div class="radio">
+    <label>
+      <input
+        type="radio"
+        name="user[affiliation]"
+        id="user_affiliation"
+        value="organization"
+        <%= "checked" if  @user.affiliation == "individual" %>>
+      Organization
+    </label>
+  </div>
 
 
   <button type="submit" class="btn btn-default">Create Account</button>

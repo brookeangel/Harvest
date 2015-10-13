@@ -9,17 +9,23 @@
     name="authenticity_token"
     value="<%= form_authenticity_token %>" >
 
+  <div class="form-group">
   <input
     type="text"
     name="user[username]"
     id="user_username"
+    class="form-control"
     placeholder="username">
+  </div>
 
+  <div class="form-group">
   <input type="password"
     name="user[password]"
     class="form-control"
     id="user_password"
+    class="form-control"
     placeholder="password">
+  </div>
 
   <br><br>
 
