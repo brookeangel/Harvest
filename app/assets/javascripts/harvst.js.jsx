@@ -1,17 +1,14 @@
 $(function() {
-  var root = document.getElementById('splash-content');
+  var root = document.getElementById('content');
   var Route = ReactRouter.Route;
   var Router = ReactRouter.Router;
   var IndexRoute = ReactRouter.IndexRoute;
 
-  var Splash = React.createClass({
+  var App = React.createClass({
     render: function() {
       return(
         <div>
           <Navbar />
-          <div>
-
-          </div>
         </div>
       )
     }
@@ -24,5 +21,5 @@ $(function() {
 
   if (root) {
     React.render(<Router>{routes}</Router>, root)
-  };
+  }
 });

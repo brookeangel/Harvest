@@ -1,13 +1,13 @@
 (function(root) {
 
   root.Navbar = React.createClass({
-    _handleClick: function() {},
 
     _handleLogout: function() {
       root.SessionsActions.logOut();
     },
 
     render: function() {
+
       return(
         <nav className="navbar navbar-default navbar-fixed-top">
           <div className="container-fluid">
@@ -60,6 +60,7 @@
 
           </div>
         </nav>
+
       )
     }
   });
