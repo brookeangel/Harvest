@@ -3,7 +3,7 @@
 ## Rails
 ### Models
 * Shares
-* Messages
+* Reviews
 
 ### Controllers
 * Api::SharesController (create, show, index)
@@ -11,31 +11,30 @@
 
 ### Views
 * shares/index.json.jbuilder
-* messages/index.json.jbuilder
-* messages/message.json.jbuilder (partial)
+* reviews/index.json.jbuilder
+* reviews/message.json.jbuilder (partial)
 
 ## Flux
 ### Views (React Components)
-* MessagesIndex
-  - MessagesIndexItem
-* MessagesForm
+* ReviewsIndex
+  - ReviewsIndexItem
+* ReviewsForm
 
 ### Stores
 * Shares
-* Messages
+* Reviews
 
 ### Actions
-* ApiActions.receiveAllMessages
-* ApiActions.receiveSingleMessage
-* ApiActions.deleteMessages
+* ApiActions.receiveAllReviews
+* ApiActions.receiveSingleReview
+* ApiActions.deleteReview
 * ApiActions.receiveAllShares
 
 ### ApiUtil
 * ApiUtil.fetchAllShares
 * ApiUtil.createShare
-* ApiUtil.fetchAllMessages
-* ApiUtil.fetchSingleMessage
-* ApiUtil.createMessage
-* ApiUtil.destroyMessage
+* ApiUtil.fetchAllReviews
+* ApiUtil.createReview
+* ApiUtil.destroyReview
 
 ## Gems/Libraries
