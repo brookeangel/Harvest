@@ -1,0 +1,71 @@
+<h1>Join Harvest</h1>
+
+<%= render "shared/errors" %>
+
+<form action=<%= users_url %> method="POST">
+
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>" >
+
+  <input
+    type="text"
+    name="user[username]"
+    id="user_username"
+    placeholder="username"
+    value="<%= @user.username %>">
+
+  <br><br>
+
+  <input type="text"
+    name="user[email]"
+    id="user_email"
+    placeholder="email"
+    value="<%= @user.email %>">
+
+  <br><br>
+
+  <input type="password"
+    name="user[password]"
+    class="form-control"
+    placeholder="password"
+    id="user_password">
+
+  <br><br>
+
+  <input type="password"
+    name="user[password_confirmation]"
+    class="form-control"
+    placeholder="confirm password"
+    id="user_password">
+
+  <br><br>
+
+  <label>Affiliation:</label>
+
+  <br><br>
+
+  <input
+    type="radio"
+    name="user[affiliation]"
+    id="user_affiliation"
+    value="individual"
+    <%= "checked" if  @user.affiliation == "individual" %>>
+  <label for="user_affiliation_individual">Individual </label>
+
+  <br>
+
+  <input
+    type="radio"
+    name="user[affiliation]"
+    id="user_affiliation"
+    value="organization"
+    <%= "checked" if  @user.affiliation == "organization" %>>
+  <label for="user_affiliation_organization">Organization </label>
+
+  <br><br>
+
+
+  <button type="submit" class="btn btn-default">Create Account</button>
+  </form>

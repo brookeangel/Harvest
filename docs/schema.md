@@ -8,12 +8,12 @@ username    | string    | not null, indexed
 email       | string    | not null
 pwd_digest  | string    | not null
 session_tkn | string    | not null
-type        | string    | not null, included in [individual, organization]
+affiliation | string    | not null, included in [individual, organization]
 description | text      |
 website     | string    |
 prof_img_url| string    |
 
-## harvests
+## harvsts
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
@@ -24,7 +24,8 @@ address     | string    | not null
 privacy     | string    | not null, included in [private, public]
 start_date  | datetime  |
 end_date    | datetime  |
-image       | file      |
+image_url   | string    |
+contact     | string    |
 
 ## shares
 column name | data type | details
