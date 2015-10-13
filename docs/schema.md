@@ -11,7 +11,7 @@ session_tkn | string    | not null
 type        | string    | not null, included in [individual, organization]
 description | text      |
 website     | string    |
-prof_img    | file      |
+prof_img_url| string    |
 
 ## harvests
 column name | data type | details
