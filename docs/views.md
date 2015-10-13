@@ -33,5 +33,5 @@
 [profile-up]: ./wireframes/user_profile_scrolled_up.png
 [profile-down]: ./wireframes/user_profile_scrolled_down.png
 [notebook-form]: ./wireframes/notebook_form.png
-[notification-dropdown]: ./wireframes/notification_dropdown.png
-[component-heirarchy]: ./wireframes/component_hierarchy.png
+[notification-dropdown]: ./wireframes/harvst_index_notification_dropdown.png
+[component-heirarchy]: ./wireframes/componenthierarchy.png
