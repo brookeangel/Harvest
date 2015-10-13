@@ -1,6 +1,8 @@
 <h1>Sign In!</h1>
 
-<form action="<%= session_url %>" method="POST">
+<%= render "shared/errors" %>
+
+<form action=<%= session_url %> method="POST">
 
   <input
     type="hidden"
@@ -11,14 +13,13 @@
     type="text"
     name="user[username]"
     id="user_username"
-    placeholder="username"
-    value="<%= @user.username %>">
+    placeholder="username">
 
   <input type="password"
     name="user[password]"
     class="form-control"
-    placeholder="password"
-    id="user_password">
+    id="user_password"
+    placeholder="password">
 
   <br><br>
 
