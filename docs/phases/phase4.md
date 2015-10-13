@@ -12,7 +12,7 @@
 ### Views
 * shares/index.json.jbuilder
 * reviews/index.json.jbuilder
-* reviews/message.json.jbuilder (partial)
+* reviews/review.json.jbuilder (partial)
 
 ## Flux
 ### Views (React Components)
