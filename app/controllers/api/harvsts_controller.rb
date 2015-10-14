@@ -21,7 +21,9 @@ class Api::HarvstsController < ApplicationController
   end
 
   def index
-    @harvsts = Harvst.public_harvsts.include("users")
+    @harvsts = Harvst.public_harvsts
+                      .joins(:user)
+                      .select('harvsts.*, users.id, users.username')
   end
 
   def show

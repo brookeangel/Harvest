@@ -23,6 +23,6 @@ class Harvst < ActiveRecord::Base
   belongs_to :user
 
   def self.public_harvsts
-    self.find_by_privacy("public")
+    self.where("privacy = 'public'")
   end
 end

@@ -1,17 +1,17 @@
 (function(root) {
 
   root.ApiActions = {
-    receiveAll: function(harvests) {
+    receiveAll: function(harvsts) {
       AppDispatcher.dispatch({
-        actionType: HarvestConstants.HARVESTS_RECEIVED,
-        harvests: harvests
+        actionType: HarvstConstants.HARVSTS_RECEIVED,
+        harvsts: harvsts
       })
     },
 
-    receiveOne: function(harvest) {
+    receiveOne: function(harvst) {
       AppDispatcher.dispatch({
-        actionType: HarvestConstants.HARVEST_RECEIVED,
-        harvest: harvest
+        actionType: HarvstConstants.HARVST_RECEIVED,
+        harvst: harvst
       })
     }
   }

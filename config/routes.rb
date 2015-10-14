@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:update, :index, :show]
+    resources :harvsts, only: [:create, :update, :show, :index, :destroy]
   end
 
   get "/", to: 'static_pages#root'

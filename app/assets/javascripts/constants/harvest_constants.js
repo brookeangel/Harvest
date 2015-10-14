@@ -1,4 +1,0 @@
-window.HarvestConstants = {
-  HARVESTS_RECEIVED: 'HARVESTS_RECEIVED',
-  BIKE_RECEIVED: 'BIKE_RECEIVED'
-}

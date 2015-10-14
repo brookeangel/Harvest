@@ -9,6 +9,7 @@ $(function() {
       return(
         <div>
           <Navbar />
+          {this.props.children}
         </div>
       )
     }
@@ -16,6 +17,7 @@ $(function() {
 
   var routes = (
     <Route path='/' component={App}>
+      <IndexRoute component={Search} />
     </Route>
   );
 

@@ -5,3 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+harvst = Harvst.create({
+  user_id: 1,
+  title: "So many carrots",
+  description: "Lovely orange carrots for days and days",
+  address: "12517 Maestro Ct, San Diego, CA, 92130",
+  privacy: "public",
+  contact: "6190-846-0167"
+  })

@@ -1,10 +1,8 @@
 window.ApiUtil = {
-  fetchHarvests: function(privacyInfo) {
-    var params = privacyInfo;
+  fetchHarvsts: function() {
     $.ajax({
-      url: '/api/harvests',
+      url: '/api/harvsts',
       type: 'get',
-      data: params,
       dataType: 'json',
       success: function(result) {
         ApiActions.receiveAll(result);
@@ -12,9 +10,9 @@ window.ApiUtil = {
     })
   },
 
-  fetchHarvest: function(privacyInfo) {
+  fetchHarvst: function(privacyInfo) {
     $.ajax({
-      url: '/api/harvests',
+      url: '/api/harvsts',
       type: 'get',
       data: params,
       dataType: 'json',

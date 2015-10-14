@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
   before_action :assure_correct_user, only: [:update]
 
   def index
-    @user = User.all
+    @users = User.all
   end
 
   def show

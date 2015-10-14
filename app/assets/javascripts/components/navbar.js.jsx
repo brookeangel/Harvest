@@ -3,7 +3,7 @@
   root.Navbar = React.createClass({
 
     _handleLogout: function() {
-      root.SessionsActions.logOut();
+      root.SessionUtil.logOut();
     },
 
     render: function() {
