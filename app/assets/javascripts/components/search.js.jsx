@@ -19,9 +19,9 @@
 
     render: function() {
       return(
-        <div>
-          <HarvstIndex />
+        <div className="row">
           <Map onClick={this._handleMapClick}/>
+          <HarvstIndex />
         </div>
       )
     }

@@ -18,6 +18,11 @@
  @import "bootstrap";
 
  #map {
-   width: 500px;
-   height: 500px;
+   width: 750px;
+   height: 700px;
+   border-right: 1px solid gray;
+ }
+
+ .harvst {
+   border-top: 1px solid gray;
  }
