@@ -1,4 +1,4 @@
-json.extract!(@harvst, :title, :address, :description,
+json.extract!(@harvst, :title, :lat, :lng, :description,
   :privacy, :start_date, :end_date, :image_url, :contact)
 
 json.user do

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151013173133) do
+ActiveRecord::Schema.define(version: 20151014043243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20151013173133) do
     t.integer  "user_id",     null: false
     t.string   "title",       null: false
     t.text     "description", null: false
-    t.string   "address",     null: false
     t.string   "privacy",     null: false
     t.date     "start_date"
     t.date     "end_date"
@@ -28,6 +27,8 @@ ActiveRecord::Schema.define(version: 20151013173133) do
     t.string   "contact",     null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.float    "lat"
+    t.float    "lng"
   end
 
   add_index "harvsts", ["user_id"], name: "index_harvsts_on_user_id", using: :btree

@@ -67,7 +67,6 @@
     _adjustMarkers: function() {
       var harvsts = HarvstStore.all();
       var that = this;
-
       harvsts.map(function(harvst) {
         if (typeof that.markers[harvst.id] === 'undefined') {
           var marker = new google.maps.Marker({
@@ -75,19 +74,19 @@
             map: that.map,
             title: harvst.title
           });
-          marker.addListener('click', that._handleMarkerClick.bind(that, harvst.id));
+          // marker.addListener('click', that._handleMarkerClick.bind(that, harvst.id));
           that.markers[harvst.id] = marker;
         }
       });
-      //
-      // var bikeids = bikes.map(function(bike) {return String(bike.id);});
-      //
-      // Object.keys(this.markers).map(function(markerBikeId) {
-      //   if (bikeids.indexOf(markerBikeId) === -1) {
-      //     that.markers[markerBikeId].setMap(null);
-      //     delete that.markers[markerBikeId];
-      //   }
-      // });
+
+      var harvstids = harvsts.map(function(harvst) {return String(harvst.id);});
+
+      Object.keys(this.markers).map(function(markerHarvstId) {
+        if (harvstids.indexOf(markerHarvstId) === -1) {
+          that.markers[markerHarvstId].setMap(null);
+          delete that.markers[markerHarvstId];
+        }
+      });
     },
 
     render: function() {

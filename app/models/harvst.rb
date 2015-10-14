@@ -17,7 +17,7 @@
 #
 
 class Harvst < ActiveRecord::Base
-  validates :title, :description, :address, :privacy, :contact, null: false
+  validates :title, :lat, :lng, :description, :privacy, :contact, null: false
   validates :privacy, inclusion: { in: ["public", "private"] }
 
   belongs_to :user

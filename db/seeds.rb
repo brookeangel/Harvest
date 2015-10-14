@@ -6,11 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+SF_COORDS = [
+  [37, -122],
+  [37.78, -122.21],
+  [37.45, -122]
+]
+
 harvst = Harvst.create({
   user_id: 1,
   title: "So many carrots",
   description: "Lovely orange carrots for days and days",
-  address: "12517 Maestro Ct, San Diego, CA, 92130",
+  lat: 37,
+  lng: -122,
   privacy: "public",
   contact: "6190-846-0167"
   })
