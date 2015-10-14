@@ -19,6 +19,7 @@ $(function() {
     <Route path='/' component={App}>
       <IndexRoute component={Search} />
       <Route path="show/:id" component={ShowHarvst} />
+      <Route path="harvsts/new" component={HarvstForm} />
     </Route>
   );
 

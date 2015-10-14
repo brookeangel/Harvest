@@ -14,14 +14,13 @@
       }.bind(this));
     },
 
-    handleMapClick: function(e) {
-      debugger;
+    _handleMapClick: function(e) {
       var location = {
         lat: e.latLng.lat(),
         lng: e.latLng.lng()
       };
 
-      this.props.history.pushState(null, "/bikes/new", location);
+      this.props.history.pushState(null, "/harvsts/new", location);
     },
 
     render: function() {

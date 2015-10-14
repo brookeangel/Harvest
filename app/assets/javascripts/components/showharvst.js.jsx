@@ -20,7 +20,7 @@
       var showMap;
 
       if (this.state.harvst) {
-        showMap = <ShowMap harvst={this.state.harvst} />;
+        showMap = <ShowMap lat={this.state.harvst.lat} lng={this.state.harvst.lng} />;
       } else {
         showMap = <div id="map"></div>;
       }

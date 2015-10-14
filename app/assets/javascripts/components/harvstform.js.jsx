@@ -5,7 +5,13 @@
     blankAttrs: {
       lat: "",
       lng: "",
-      description: '',
+      title: "",
+      description: "",
+      address: "",
+      privacy: "",
+      end_date: "",
+      image_url: "",
+      contact: ""
     },
 
     mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
@@ -14,7 +20,7 @@
       return this.blankAttrs;
     },
 
-    componentDidMount: function() {
+    componentWillMount: function() {
       this.setState({
         lat: this.props.location.query.lat,
         lng: this.props.location.query.lng,
@@ -30,7 +36,6 @@
       }.bind(this))
       this.setState(this.blankAttrs);
 
-      //create this action
       ApiUtil.createHarvst(harvst, function() {
         this.history.pushState("", "");
       }.bind(this));
@@ -38,29 +43,41 @@
     },
 
     render: function() {
-      var location = this.props.location.query;
       return(
-        <div class="new-corgi-form">
-          <h1>Add Harvest</h1>
-          <form className="newHarvst" onSubmit={this._handleSubmit}>
-            <label htmlFor="harvst_lat">Latitude:</label>
-            <input
-              type="text"
-              id="harvst_lat"
-              valueLink={this.linkState("lat")} />
+        <div className="row">
+          <ShowMap lat={this.state.lat} lng={this.state.lng} />
 
-            <label htmlFor="harvst_lng">Longitude:</label>
-            <input
-              type="text"
-              id="harvst_lng"
-              valueLink={this.linkState("lng")} /><br /><br />
+          <div className="col-md-5">
+            <h1>Add Harvest</h1>
+            <form onSubmit={this._handleSubmit}>
 
-            <label htmlFor="harvst_description">Description</label>
-            <textarea
-              id="harvst_description"
-              valueLink={this.linkState("description")}></textarea><br /><br />
-            <button>Add Harvest</button>
-          </form>
+              <div className="form-group">
+                <label htmlFor="harvst_lat">Latitude:</label>
+                <input
+                  type="text"
+                  id="harvst_lat"
+                  className="form-control"
+                  valueLink={this.linkState("lat")} />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="harvst_lng">Longitude:</label>
+                <input
+                  type="text"
+                  id="harvst_lng"
+                  className="form-control"
+                  valueLink={this.linkState("lng")} />
+              </div>
+
+              <textarea
+                id="harvst_description"
+                className="form-control"
+                valueLink={this.linkState("description")}></textarea>
+
+              <button className="btn btn-default">Add Harvest</button>
+            </form>
+          </div>
+
         </div>
       )
     }

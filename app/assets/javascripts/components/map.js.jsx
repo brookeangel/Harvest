@@ -17,7 +17,6 @@
 
       this.map.addListener('idle', this._handleIdleEvent);
       HarvstStore.addChangeListener(this._adjustMarkers);
-      debugger;
       this.map.addListener('click', this.props.handleMapClick);
     },
 
