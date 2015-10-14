@@ -17,8 +17,12 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ body {
+   padding-top: 50px;
+ }
+
  #map {
-   width: 750px;
+   width: 700px;
    height: 700px;
    border-right: 1px solid gray;
  }

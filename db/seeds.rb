@@ -18,6 +18,7 @@ harvst = Harvst.create({
   description: "Lovely orange carrots for days and days",
   lat: 37,
   lng: -122,
+  address: "1418 25th Avenue, San Francisco, CA 94122",
   privacy: "public",
   contact: "6190-846-0167"
   })

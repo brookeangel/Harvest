@@ -20,6 +20,8 @@ id          | integer   | not null, primary key
 user_id     | integer   | not null, foreign key (references users), indexed
 title       | string    | not null
 description | string    | not null
+lat         | float     | not null
+lng         | float     | not null
 address     | string    | not null
 privacy     | string    | not null, included in [private, public]
 start_date  | datetime  |

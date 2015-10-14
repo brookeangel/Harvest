@@ -6,7 +6,7 @@
     },
 
     componentDidMount: function() {
-      ApiUtil.fetchHarvsts();
+      ApiUtil.fetchHarvsts(this.state.params);
       HarvstStore.addChangeListener(this._updateHarvsts);
     },
 
@@ -15,18 +15,19 @@
     },
 
     render: function() {
+
       return(
         <div className="container">
           <div className="harvst-index col-md-5">
-            <br /><br /><br />
             <h1>Harvests In Your Area</h1>
-            <div className="harvsts">
-              {this.state.harvsts.map(function(harvst) {
-                return(
-                  <HarvstIndexItem key={harvst.id} harvst={harvst} />
-                )
-              })}
-            </div>
+              <div className="harvsts">
+                {this.state.harvsts.map(function(harvst) {
+                  return(
+                    <HarvstIndexItem key={harvst.id} harvst={harvst} />
+                  );
+                })}
+              </div>
+
           </div>
         </div>
     )

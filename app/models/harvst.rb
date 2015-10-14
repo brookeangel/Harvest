@@ -1,3 +1,4 @@
+
 # == Schema Information
 #
 # Table name: harvsts
@@ -17,12 +18,24 @@
 #
 
 class Harvst < ActiveRecord::Base
-  validates :title, :lat, :lng, :description, :privacy, :contact, null: false
+  validates :address, :title, :lat, :lng, :description, :privacy, :contact, null: false
   validates :privacy, inclusion: { in: ["public", "private"] }
 
   belongs_to :user
 
-  def self.public_harvsts
-    self.where("privacy = 'public'")
+  def self.in_bounds(bounds, privacy = "public")
+    sql_bounds = {
+      swlat: bounds["southWest"]["lat"].to_f,
+      swlng: bounds["southWest"]["lng"].to_f,
+      nelat: bounds["northEast"]["lat"].to_f,
+      nelng: bounds["northEast"]["lng"].to_f,
+      privacy: privacy
+    }
+
+    Harvst.where(<<-SQL, sql_bounds)
+      (harvsts.lng BETWEEN :swlng AND :nelng) AND
+      (harvsts.lat BETWEEN :swlat AND :nelat) AND
+      (harvsts.privacy = :privacy)
+    SQL
   end
 end

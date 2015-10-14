@@ -1,16 +1,21 @@
 (function(root) {
   var CHANGE_EVENT = "change";
   var _harvsts = [];
+  var _harvstShow = {};
 
   root.HarvstStore = $.extend({}, EventEmitter.prototype, {
     all: function() {
       return _harvsts.slice(0);
     },
 
-    getHarvst: function(id) {
+    findHarvst: function(id) {
       var harvstIds = _harvsts.map(function(harvst) {return harvst["id"];});
       var index = harvstIds.indexOf(id);
       return _harvsts[index];
+    },
+
+    getHarvst: function() {
+      return _harvstShow;
     },
 
     addChangeListener: function(cb) {
@@ -25,8 +30,8 @@
       _harvsts = harvsts;
     },
 
-    addHarvst: function(harvst) {
-      _harvsts.push(harvst);
+    setHarvst: function(harvst) {
+      _harvstShow = harvst;
     },
 
     dispatcherID: AppDispatcher.register(function(payload) {
@@ -36,7 +41,7 @@
           HarvstStore.emit(CHANGE_EVENT);
           break;
         case HarvstConstants.HARVST_RECEIVED:
-          HarvstStore.addHarvst(payload.harvst);
+          HarvstStore.setHarvst(payload.harvst);
           HarvstStore.emit(CHANGE_EVENT);
           break;
       }

@@ -21,7 +21,7 @@ class Api::HarvstsController < ApplicationController
   end
 
   def index
-    @harvsts = Harvst.public_harvsts
+    @harvsts = Harvst.in_bounds(params[:bounds])
                       .joins(:user)
                       .select('harvsts.*, users.id, users.username')
   end
@@ -44,6 +44,6 @@ class Api::HarvstsController < ApplicationController
 
   def harvst_params
     params.require(:harvst).permit(:title, :description, :lat, :lng, :privacy,
-      :start_date, :end_date, :image_url, :contact)
+      :start_date, :end_date, :image_url, :contact, :address)
   end
 end

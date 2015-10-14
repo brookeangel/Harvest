@@ -1,23 +1,35 @@
 window.ApiUtil = {
-  fetchHarvsts: function() {
+  fetchHarvsts: function(boundsObj) {
+    var params = boundsObj;
     $.ajax({
       url: '/api/harvsts',
-      type: 'get',
+      method: 'GET',
       dataType: 'json',
+      data: params,
       success: function(result) {
         ApiActions.receiveAll(result);
       }
     })
   },
 
-  fetchHarvst: function(privacyInfo) {
+  fetchHarvst: function(id) {
     $.ajax({
-      url: '/api/harvsts',
+      url: '/api/harvsts/' + id,
       type: 'get',
-      data: params,
       dataType: 'json',
       success: function(result) {
-        ApiActions.receiveAll(result);
+        ApiActions.receiveOne(result);
+      }
+    })
+  },
+
+  addHarvst: function(params) {
+    $.ajax({
+      url: '/api/harvsts/',
+      type: 'post',
+      dataType: 'json',
+      success: function(result) {
+        console.log('harvest success');
       }
     })
   }

@@ -2,22 +2,23 @@
 
   root.Map = React.createClass({
 
+    mixins: [ReactRouter.History],
+
     componentDidMount: function() {
       var map = React.findDOMNode(this.refs.map);
       var mapOptions = {
         center: {lat: 37.7758, lng: -122.435},
-        zoom: 13
+        zoom: 10
       };
       this.markers = {};
       this.map = new google.maps.Map(map, mapOptions);
       this.infoWindow = new google.maps.InfoWindow({map: map});
       this._handleGeolocation();
 
-
       this.map.addListener('idle', this._handleIdleEvent);
       HarvstStore.addChangeListener(this._adjustMarkers);
-      //
-      // this.map.addListener('click', this.props.handleMapClick);
+      debugger;
+      this.map.addListener('click', this.props.handleMapClick);
     },
 
     _handleGeolocation: function() {
@@ -53,17 +54,16 @@
       var bounds = this.map.getBounds();
       var northEast = bounds.getNorthEast();
       var southWest = bounds.getSouthWest();
-      var northEastCoords = {lat: northEast["J"], lng: northEast["M"]};
-      var southWestCoords = {lat: southWest["J"], lng: southWest["M"]};
+      var northEastCoords = {lat: northEast.lat(), lng: northEast.lng()};
+      var southWestCoords = {lat: southWest.lat(), lng: southWest.lng()};
       var boundsObj = {bounds: {northEast: northEastCoords, southWest: southWestCoords}};
-      // FilterActions.receiveAll(boundsObj);
-
+      FilterActions.receiveAll(boundsObj);
     },
-    //
-    // _handleMarkerClick: function(id) {
-    //   this.history.pushState(null, "show/"+id);
-    // },
-    //
+
+    _handleMarkerClick: function(id) {
+      this.history.pushState(null, "show/"+id);
+    },
+
     _adjustMarkers: function() {
       var harvsts = HarvstStore.all();
       var that = this;
@@ -74,7 +74,7 @@
             map: that.map,
             title: harvst.title
           });
-          // marker.addListener('click', that._handleMarkerClick.bind(that, harvst.id));
+          marker.addListener('click', that._handleMarkerClick.bind(that, harvst.id));
           that.markers[harvst.id] = marker;
         }
       });
