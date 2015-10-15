@@ -22,6 +22,13 @@
       LocationStore.addChangeListener(this._centerMap);
     },
 
+    componentWillUnmount: function() {
+      HarvstStore.removeChangeListener(this._adjustMarkers);
+      LocationStore.removeChangeListener(this._centerMap);
+      // clearListeners(instance:this.map, eventName: 'click');
+      // clearListeners(instance:this.map, eventName: 'idle');
+    },
+
     _centerMap: function() {
       var coords = LocationStore.getCoords();
       var pos = {

@@ -34,11 +34,14 @@
     },
 
     componentDidMount: function() {
-      debugger;
       var address = LocationStore.getAddress();
       this.setState({address: address});
       var address_field = document.getElementById("harvst_address");
       address_field.value = address;
+    },
+
+    componentWillUnmount: function() {
+      MessageStore.removeChangeListener(this._addErrors)
     },
 
     _addErrors: function() {

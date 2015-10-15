@@ -8,10 +8,17 @@
     },
 
     componentDidMount: function() {
-      FilterParamsStore.addChangeListener(function() {
-        this.setState({params: FilterParamsStore.filterParams()});
-        ApiUtil.fetchHarvsts(this.state.params);
-      }.bind(this));
+      FilterParamsStore.addChangeListener(this._adjustHarvstParams);
+      //may need to bind
+    },
+
+    componentWillUnmount: function() {
+      FilterParamsStore.removeChangeListener(this._adjustHarvstParams);
+    },
+
+    _adjustHarvstParams: function() {
+      this.setState({params: FilterParamsStore.filterParams()});
+      ApiUtil.fetchHarvsts(this.state.params);
     },
 
     _handleMapClick: function(e) {
@@ -20,7 +27,9 @@
         lng: e.latLng.lng()
       };
 
-      this.props.history.pushState(null, "/harvsts/new", location);
+      LocationUtil.fetchAddress(location.lat, location.lng, function() {
+        this.props.history.pushState(null, "/harvsts/new", location);
+      }.bind(this));
     },
 
     render: function() {

@@ -1,5 +1,5 @@
 window.LocationUtil = {
-  fetchAddress: function(lat, lng) {
+  fetchAddress: function(lat, lng, cb) {
     $.ajax({
       url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+ lat + ','+ lng +'&key=AIzaSyDUpcTC4LuU7miLmrkawx2t-WhJtfi7dvw',
       type: 'get',
@@ -7,6 +7,10 @@ window.LocationUtil = {
       success: function(data) {
         var formatted_address = data.results[0].formatted_address;
         LocationActions.receiveOne(formatted_address);
+
+        if (typeof cb === 'function') {
+          cb();
+        }
       }
     })
   },

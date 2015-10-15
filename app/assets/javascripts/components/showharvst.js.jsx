@@ -11,6 +11,10 @@
       HarvstStore.addChangeListener(this._updateHarvsts);
     },
 
+    componentWillMount: function() {
+      HarvstStore.removeChangeListener(this._updateHarvsts);
+    },
+
     _updateHarvsts: function() {
       this.setState({harvst: HarvstStore.getHarvst()});
     },
