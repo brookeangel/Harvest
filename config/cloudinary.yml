@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: harvst
+  api_key: '451283948482353'
+  api_secret: 55aDETcVPUimQ3bEg3eYTXozH-Q
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: harvst
+  api_key: '451283948482353'
+  api_secret: 55aDETcVPUimQ3bEg3eYTXozH-Q
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: harvst
+  api_key: '451283948482353'
+  api_secret: 55aDETcVPUimQ3bEg3eYTXozH-Q
+  enhance_image_tag: true
+  static_image_support: false

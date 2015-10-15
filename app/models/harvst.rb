@@ -22,6 +22,8 @@ class Harvst < ActiveRecord::Base
   validates :title, length: {minimum: 1}
   validates :privacy, inclusion: { in: ["public", "private"] }
 
+  before_create :default_image_url
+
   belongs_to :user
 
   def self.in_bounds(bounds, privacy = "public")
@@ -38,5 +40,11 @@ class Harvst < ActiveRecord::Base
       (harvsts.lat BETWEEN :swlat AND :nelat) AND
       (harvsts.privacy = :privacy)
     SQL
+  end
+
+  private
+
+  def default_image_url
+    self.image_url ||= "http://res.cloudinary.com/harvst/image/upload/c_pad,h_500,w_500/v1444948106/carrot_shybg0.jpg"
   end
 end

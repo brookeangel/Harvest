@@ -11,6 +11,7 @@
       privacy: "public",
       end_date: null,
       image_url: null,
+      image_thumbnail: null,
       contact: null,
       errors: null
     },
@@ -29,6 +30,7 @@
         lat: lat,
         lng: lng
       });
+      
       LocationUtil.fetchAddress(lat, lng);
       MessageStore.addChangeListener(this._addErrors);
     },
@@ -81,11 +83,46 @@
       this.setState({address: e.target.value});
     },
 
+    _openWidget: function(e) {
+      e.preventDefault();
+
+      cloudinary.openUploadWidget({
+        cloud_name: 'harvst',
+        upload_preset:'bmx9ikkh',
+        max_file_size: 100000,
+        theme: 'minimal'
+      },
+      this._handleWidgetUpload.bind(this));
+    },
+
+    _handleWidgetUpload: function(error, result) {
+      if (error) {
+        this.setState({errors: ["Image upload failed. Peas try again!"]})
+      } else if (result) {
+        this.setState({
+          image_url: result[0].url,
+          image_thumbnail: result[0].thumbnail_url
+        });
+      }
+    },
+
     render: function() {
       var errors = null;
       if (this.state.errors) {
         errors = <Errors errors={this.state.errors} />;
       }
+
+      var photoText;
+      var photo = null;
+
+      if (this.state.image_url) {
+        photoText = "Edit";
+        photo = <p><img src={this.state.image_thumbnail} className="img-rounded"/></p>;
+      } else {
+        photoText = "  Add Photo";
+        photo = <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>;
+      }
+
 
       return(
         <div className="row">
@@ -96,6 +133,13 @@
             {errors}
             <form className="form-horizontal" onSubmit={this._handleSubmit}>
 
+
+              <div className="form-group text-center" onClick={this._openWidget}>
+                <a className="btn btn-default" href="#" role="button">
+                  {photo}
+                  {photoText}
+                </a>
+              </div>
 
               <div className="form-group">
                 <input
@@ -123,14 +167,6 @@
                   valueLink={this.linkState("description")}></textarea>
               </div>
 
-              <div className="form-group">
-                <input
-                  type="text"
-                  id="harvst_image_url"
-                  className="form-control"
-                  placeholder="Image Url"
-                  valueLink={this.linkState("image_url")} />
-              </div>
 
               <div className="form-group">
                 <input

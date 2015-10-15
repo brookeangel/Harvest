@@ -8,19 +8,35 @@
 
     componentWillMount: function() {
       ApiUtil.fetchHarvst(parseInt(this.props.routeParams.id));
-      HarvstStore.addChangeListener(this._updateHarvsts);
+      HarvstStore.addChangeListener(this._updateHarvst);
     },
 
-    componentWillMount: function() {
-      HarvstStore.removeChangeListener(this._updateHarvsts);
+    componentWillUnmount: function() {
+      HarvstStore.removeChangeListener(this._updateHarvst);
     },
 
-    _updateHarvsts: function() {
+    _updateHarvst: function() {
       this.setState({harvst: HarvstStore.getHarvst()});
     },
 
     render: function() {
-      var harvstShowContents = (this.state.harvst) ? this.state.harvst.title : null;
+      var harvstShowContents = null;
+
+      if (this.state.harvst) {
+        harvstShowContents = (
+          <div>
+            <img src={this.state.harvst.image_url} className="img-responsive img-circle"/>
+            <h1>{this.state.harvst.title}</h1>
+            <p>Posted by {this.state.harvst.username}</p>
+            <p>{this.state.harvst.address}</p>
+            <p>{this.state.harvst.contact}</p>
+            <p>{this.state.harvst.privacy}</p>
+            <p>{this.state.harvst.created_at}</p>
+            <p>{this.state.harvst.end_date}</p>
+          </div>
+        )
+      }
+
       var showMap;
 
       if (this.state.harvst) {
@@ -33,10 +49,10 @@
         <div>
           {showMap}
           <div className="container">
-            <div className="harvstShow">
-              <p>
+            <div className="row">
+              <div className="col-md-3 col-md-offset-1">
                 {harvstShowContents}
-              </p>
+              </div>
             </div>
           </div>
         </div>

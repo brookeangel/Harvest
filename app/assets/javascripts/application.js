@@ -18,5 +18,6 @@
 //= require flux
 //= require eventemitter
 //= require ReactRouter.min
+//= require moment
 //= require components
 //= require_tree .
