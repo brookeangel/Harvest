@@ -19,6 +19,16 @@
       this.map.addListener('idle', this._handleIdleEvent);
       HarvstStore.addChangeListener(this._adjustMarkers);
       this.map.addListener('click', this.props.handleMapClick);
+      LocationStore.addChangeListener(this._centerMap);
+    },
+
+    _centerMap: function() {
+      var coords = LocationStore.getCoords();
+      var pos = {
+        lat: coords.lat,
+        lng: coords.lng
+      }
+      this.map.setCenter(pos);
     },
 
     _handleGeolocation: function() {
@@ -31,9 +41,7 @@
             lng: position.coords.longitude
           };
 
-          that.infoWindow.setPosition(pos);
-          that.infoWindow.setContent('Location found.');
-          that.map.setCenter(pos);
+          LocationActions.receiveCoords(pos.lat, pos.lng, "");
         }, function() {
           that.handleLocationError(true, infoWindow, map.getCenter()).bind(that);
         });

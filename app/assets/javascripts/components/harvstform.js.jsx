@@ -30,8 +30,15 @@
         lng: lng
       });
       LocationUtil.fetchAddress(lat, lng);
-      LocationStore.addChangeListener(this._setAddress);
       MessageStore.addChangeListener(this._addErrors);
+    },
+
+    componentDidMount: function() {
+      debugger;
+      var address = LocationStore.getAddress();
+      this.setState({address: address});
+      var address_field = document.getElementById("harvst_address");
+      address_field.value = address;
     },
 
     _addErrors: function() {
@@ -61,13 +68,6 @@
         this.setState(this.blankAttrs);
         this.history.pushState("", "");
       }.bind(this));
-    },
-
-    _setAddress: function() {
-      var address = LocationStore.getAddress();
-      this.setState({address: address});
-      var address_field = document.getElementById("harvst_address");
-      address_field.value = address;
     },
 
     _handlePrivacyChange: function(privacy) {
