@@ -2,7 +2,6 @@ class Api::HarvstsController < ApplicationController
   def create
     @harvst = Harvst.new(harvst_params)
     @harvst.user_id = current_user.id
-
     if @harvst.save
       render :show
     else

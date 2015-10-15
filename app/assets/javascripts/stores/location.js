@@ -38,6 +38,7 @@
           break;
         case LocationConstants.COORDS_RECEIVED:
           LocationStore.setCoords(payload.lat, payload.lng);
+          LocationStore.setAddress(payload.address);
           LocationStore.emit(CHANGE_EVENT);
           break;
       }

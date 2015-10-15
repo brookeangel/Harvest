@@ -23,13 +23,18 @@ window.ApiUtil = {
     })
   },
 
-  addHarvst: function(params) {
+  addHarvst: function(params, cb) {
     $.ajax({
-      url: '/api/harvsts/',
+      url: '/api/harvsts',
       type: 'post',
+      data: {harvst: params},
       dataType: 'json',
       success: function(result) {
-        console.log('harvest success');
+        ApiActions.receiveOne(result);
+        cb();
+      },
+      error: function(result) {
+        MessageActions.receiveErrors(result.responseText);
       }
     })
   }

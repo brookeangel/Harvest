@@ -8,11 +8,12 @@
       })
     },
 
-    receiveCoords: function(lat, lng) {
+    receiveCoords: function(lat, lng, address) {
       AppDispatcher.dispatch({
         actionType: LocationConstants.COORDS_RECEIVED,
         lat: lat,
-        lng: lng
+        lng: lng,
+        address: address
       })
     }
   }

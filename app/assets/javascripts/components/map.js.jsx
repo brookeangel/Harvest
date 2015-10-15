@@ -8,8 +8,9 @@
       var map = React.findDOMNode(this.refs.map);
       var mapOptions = {
         center: {lat: 37.7758, lng: -122.435},
-        zoom: 10
+        zoom: 12
       };
+
       this.markers = {};
       this.map = new google.maps.Map(map, mapOptions);
       this.infoWindow = new google.maps.InfoWindow({map: map});
