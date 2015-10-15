@@ -5,15 +5,15 @@
     mixins: [ReactRouter.History],
 
     componentDidMount: function() {
-      var map = React.findDOMNode(this.refs.map);
+      var mapNode = React.findDOMNode(this.refs.map);
       var mapOptions = {
         center: {lat: 37.7758, lng: -122.435},
         zoom: 12
       };
 
       this.markers = {};
-      this.map = new google.maps.Map(map, mapOptions);
-      this.infoWindow = new google.maps.InfoWindow({map: map});
+      this.map = new google.maps.Map(mapNode, mapOptions);
+      this.infoWindow = new google.maps.InfoWindow({map: this.map});
       this._handleGeolocation();
 
       this.map.addListener('idle', this._handleIdleEvent);

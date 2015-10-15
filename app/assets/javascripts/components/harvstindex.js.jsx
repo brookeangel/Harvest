@@ -40,12 +40,7 @@
       return(
         <div className="container">
           <div className="harvst-index col-md-5">
-            <div className="date-inline form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="search by address" />
-            </div>
+            <MapSearch />
             <h4 className="add-harvst-link text-right" onClick={this._handleAddClick}>
               Add Harvest &nbsp;&nbsp;
               <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>

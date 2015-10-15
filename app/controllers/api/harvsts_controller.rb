@@ -21,8 +21,7 @@ class Api::HarvstsController < ApplicationController
 
   def index
     @harvsts = Harvst.in_bounds(params[:bounds])
-                      .joins(:user)
-                      .select('harvsts.*, users.id, users.username')
+                     .includes(:user)
   end
 
   def show
