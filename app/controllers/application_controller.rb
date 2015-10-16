@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def assure_logged_in
     unless logged_in?
       flash[:errors] = ["Please log in to enjoy our site."]
-      redirect_to new_session_url
+      redirect_to root_url
     end
   end
 
@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
     session[:session_token] = user.session_token
     redirect_to root_url
   end
-
 
   def current_user
     User.find_by(session_token: session[:session_token])

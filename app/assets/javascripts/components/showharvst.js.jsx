@@ -1,15 +1,17 @@
 (function(root) {
 
   root.ShowHarvst = React.createClass({
-
     mixins: [ReactRouter.History],
 
     getInitialState: function() {
-      return {harvst: null};
+      if (HarvstStore.getHarvst().id == this.props.params.id) {
+        return {harvst: HarvstStore.getHarvst()};
+      } else {
+        return {harvst: null};
+      }
     },
 
     componentWillMount: function() {
-      ApiUtil.fetchHarvst(parseInt(this.props.routeParams.id));
       HarvstStore.addChangeListener(this._updateHarvst);
     },
 
@@ -31,21 +33,18 @@
 
     _handleEditClick: function(e) {
       e.preventDefault();
-      this.history.pushState("", "/edit");
+      this.history.pushState("", this.state.harvst.id + "/edit");
     },
 
     render: function() {
       var harvstShowContents = null;
       var deleteButton = null;
-      var showMap = <div id="map"></div>;
 
       if (this.state.harvst) {
         harvstShowContents = (
           <div className="show-view-body">
-            <div className="harvst-img">
-              <img src={this.state.harvst.image_url} className="img-responsive img-circle" width="250" height="250"/>
-              <h1 className="text-overlay">{this.state.harvst.title}</h1>          
-            </div>
+            <img src={this.state.harvst.image_url} className="img-responsive img-circle" width="250" height="250"/>
+            <h1>{this.state.harvst.title}</h1>
             <p>Posted by {this.state.harvst.user.username} {this.state.harvst.created_at} ago.</p>
 
             <div className="harvst-details text-left">
@@ -56,9 +55,8 @@
               <ShowField label="Expires" contents={this.state.harvst.end_date} harvst={this.state.harvst} />
             </div>
           </div>
-        )
+        );
 
-        showMap = <ShowMap lat={this.state.harvst.lat} lng={this.state.harvst.lng} />;
         if (this.state.harvst.user.id === CURRENT_USER) {
           deleteButton = (
             <div className="btn-group" role="group" aria-label="...">
@@ -74,16 +72,13 @@
       }
 
       return(
-        <div>
-          {showMap}
-          <div className="container pad-top">
-            <div className="row">
-              <div className="col-md-5 text-center">
-                <div className="text-right">
-                  {deleteButton}
-                </div>
-                {harvstShowContents}
+        <div className="container pad-top">
+          <div className="row">
+            <div className="col-md-5 text-center">
+              <div className="text-right">
+                {deleteButton}
               </div>
+              {harvstShowContents}
             </div>
           </div>
         </div>

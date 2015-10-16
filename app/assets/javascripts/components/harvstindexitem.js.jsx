@@ -5,7 +5,7 @@
 
     _handleClick: function() {
       var id = this.props.harvst.id;
-      this.history.pushState(null, "show/" + id)
+      this.history.pushState(null, id + "/show")
     },
 
     render: function() {

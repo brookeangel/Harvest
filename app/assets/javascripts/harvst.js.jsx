@@ -18,7 +18,10 @@ $(function() {
   var routes = (
     <Route path='/' component={App}>
       <IndexRoute component={Search} />
-      <Route path="show/:id" component={ShowHarvst} />
+      <Route path=":id" component={HarvstContainer} >
+        <Route path="show" component={ShowHarvst} />
+        <Route path="edit" component={EditHarvst} />
+      </Route>
       <Route path="harvsts/new" component={HarvstForm} />
     </Route>
   );

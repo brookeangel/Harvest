@@ -31,7 +31,23 @@ window.ApiUtil = {
       dataType: 'json',
       success: function(result) {
         ApiActions.receiveOne(result);
-        cb();
+        cb(result);
+      },
+      error: function(result) {
+        MessageActions.receiveErrors(result.responseText);
+      }
+    })
+  },
+
+  updateHarvst: function(params, cb) {
+    $.ajax({
+      url: '/api/harvsts/' + params.id,
+      type: 'patch',
+      data: {harvst: params},
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveOne(result);
+        cb(result);
       },
       error: function(result) {
         MessageActions.receiveErrors(result.responseText);

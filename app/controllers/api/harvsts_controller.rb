@@ -1,4 +1,7 @@
 class Api::HarvstsController < ApplicationController
+  before_action :assure_logged_in
+  before_action :assure_correct_user, only: [:update, :destroy]
+
   def create
     @harvst = Harvst.new(harvst_params)
     @harvst.user_id = current_user.id
@@ -43,5 +46,11 @@ class Api::HarvstsController < ApplicationController
   def harvst_params
     params.require(:harvst).permit(:title, :description, :lat, :lng, :privacy,
       :end_date, :image_url, :contact, :address)
+  end
+
+  def assure_correct_user
+    unless Harvst.find(params[:id]).user_id == current_user.id
+      render json: {error: "You do not have access."}, status: 404
+    end
   end
 end

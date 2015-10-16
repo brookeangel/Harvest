@@ -30,7 +30,7 @@
         lat: lat,
         lng: lng
       });
-      
+
       LocationUtil.fetchAddress(lat, lng);
       MessageStore.addChangeListener(this._addErrors);
     },
@@ -43,7 +43,7 @@
     },
 
     componentWillUnmount: function() {
-      MessageStore.removeChangeListener(this._addErrors)
+      MessageStore.removeChangeListener(this._addErrors);
     },
 
     _addErrors: function() {
@@ -56,7 +56,7 @@
       LocationUtil.fetchCoords(this.state.address, this._submitCallback);
     },
 
-    _submitCallback: function() {
+    _submitCallback: function(result) {
       var coords = LocationStore.getCoords();
       var address = LocationStore.getAddress();
       this.setState({
@@ -69,9 +69,10 @@
         harvst[key] = this.state[key];
       }.bind(this))
 
-      ApiUtil.addHarvst(harvst, function() {
+      ApiUtil.addHarvst(harvst, function(result) {
         this.setState(this.blankAttrs);
-        this.history.pushState("", "");
+        debugger;
+        this.history.pushState("", result.id + "/show");
       }.bind(this));
     },
 

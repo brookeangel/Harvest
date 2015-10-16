@@ -9,7 +9,6 @@
 
     componentDidMount: function() {
       FilterParamsStore.addChangeListener(this._adjustHarvstParams);
-      //may need to bind
     },
 
     componentWillUnmount: function() {
