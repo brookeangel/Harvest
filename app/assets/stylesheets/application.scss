@@ -53,6 +53,7 @@
    font-size: 24px;
  }
 
+// harvst index
  .harvst-index-item {
    border: 1px solid gray;
    height: 125px;
@@ -62,8 +63,22 @@
  }
 
  .cover {
-   height: 125px;
+   height: 123px;
    margin: 0;
-   padding: 25px;
+   padding: 5px;
    background-color:rgba(255,255,255,0.5);
  }
+
+ //show harvst
+ .show-view-body {
+   position: relative;
+ }
+
+ .display-label {
+   display: inline-block;
+   width: 100px;
+ }
+
+.display-item {
+  display: inline-block;
+}

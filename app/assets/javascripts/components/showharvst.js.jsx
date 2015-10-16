@@ -28,6 +28,12 @@
       }.bind(this));
     },
 
+
+    _handleEditClick: function(e) {
+      e.preventDefault();
+      this.history.pushState("", "/edit");
+    },
+
     render: function() {
       var harvstShowContents = null;
       var deleteButton = null;
@@ -36,15 +42,18 @@
       if (this.state.harvst) {
         harvstShowContents = (
           <div className="show-view-body">
-            <img src={this.state.harvst.image_url} className="img-responsive img-circle" width="250" height="250"/>
-            <h1>{this.state.harvst.title}</h1>
+            <div className="harvst-img">
+              <img src={this.state.harvst.image_url} className="img-responsive img-circle" width="250" height="250"/>
+              <h1 className="text-overlay">{this.state.harvst.title}</h1>          
+            </div>
             <p>Posted by {this.state.harvst.user.username} {this.state.harvst.created_at} ago.</p>
+
             <div className="harvst-details text-left">
-              <p><b>Details: &nbsp;</b>{this.state.harvst.description}</p>
-              <p><b>Address: &nbsp;</b>{this.state.harvst.address}</p>
-              <p><b>Contact: &nbsp;</b>{this.state.harvst.contact}</p>
-              <p><b>Privacy: &nbsp;</b>{this.state.harvst.privacy}</p>
-              <p><b>Expires: &nbsp;</b>{this.state.harvst.end_date}</p>
+              <ShowField label="Details" contents={this.state.harvst.description} harvst={this.state.harvst}/>
+              <ShowField label="Address" contents={this.state.harvst.address} harvst={this.state.harvst} />
+              <ShowField label="Contact" contents={this.state.harvst.contact} harvst={this.state.harvst} />
+              <ShowField label="Privacy" contents={this.state.harvst.privacy} harvst={this.state.harvst} />
+              <ShowField label="Expires" contents={this.state.harvst.end_date} harvst={this.state.harvst} />
             </div>
           </div>
         )
@@ -52,9 +61,14 @@
         showMap = <ShowMap lat={this.state.harvst.lat} lng={this.state.harvst.lng} />;
         if (this.state.harvst.user.id === CURRENT_USER) {
           deleteButton = (
-            <button type="button" className="btn btn-default" onClick={this._handleDeleteClick}>
-              <span className="glyphicon glyphicon-remove" aria-hidden="true"></span> &nbsp; &nbsp; Delete
-            </button>
+            <div className="btn-group" role="group" aria-label="...">
+              <button type="button" className="btn btn-default" onClick={this._handleDeleteClick}>
+                <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </button>
+              <button type="button" className="btn btn-default" onClick={this._handleEditClick}>
+                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              </button>
+            </div>
           );
         }
       }
@@ -62,11 +76,13 @@
       return(
         <div>
           {showMap}
-          <div className="container">
+          <div className="container pad-top">
             <div className="row">
               <div className="col-md-5 text-center">
+                <div className="text-right">
+                  {deleteButton}
+                </div>
                 {harvstShowContents}
-                {deleteButton}
               </div>
             </div>
           </div>

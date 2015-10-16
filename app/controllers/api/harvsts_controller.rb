@@ -42,6 +42,6 @@ class Api::HarvstsController < ApplicationController
 
   def harvst_params
     params.require(:harvst).permit(:title, :description, :lat, :lng, :privacy,
-      :start_date, :end_date, :image_url, :contact, :address)
+      :end_date, :image_url, :contact, :address)
   end
 end

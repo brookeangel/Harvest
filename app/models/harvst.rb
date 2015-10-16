@@ -18,11 +18,11 @@
 #
 
 class Harvst < ActiveRecord::Base
-  validates :address, :title, :lat, :lng, :description, :privacy, :contact, null: false
+  validates :address, :title, :lat, :lng, :description, :privacy, null: false
   validates :title, length: {minimum: 1}
   validates :privacy, inclusion: { in: ["public", "private"] }
 
-  before_create :default_image_url
+  before_save :default_image_url
 
   belongs_to :user
 
@@ -45,6 +45,8 @@ class Harvst < ActiveRecord::Base
   private
 
   def default_image_url
-    self.image_url ||= "http://res.cloudinary.com/harvst/image/upload/c_pad,h_500,w_500/v1444948106/carrot_shybg0.jpg"
+    if !self.image_url || self.image_url == ""
+      self.image_url = "http://res.cloudinary.com/harvst/image/upload/c_pad,h_500,w_500/v1444948106/carrot_shybg0.jpg"
+    end
   end
 end
