@@ -23,8 +23,13 @@ class Api::HarvstsController < ApplicationController
   end
 
   def index
-    @harvsts = Harvst.in_bounds(params[:bounds])
-                     .includes(:user)
+    if params[:bounds]
+      @harvsts = Harvst.in_bounds(params[:bounds])
+                       .includes(:user)
+    else
+      @harvsts = User.find(params[:user_id])
+                      .public_harvsts
+    end
   end
 
   def show

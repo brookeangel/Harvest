@@ -102,3 +102,26 @@
   right: 0%;
   top: 0%;
 }
+
+// user show
+
+.profile-img {
+  border: 1px solid #e7e7e7;
+}
+
+// user harvst index item
+.mini-pad {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.user-harvst-index-item {
+  height: 200px;
+  border: 1px solid #e7e7e7;
+  margin: 5px;
+  padding: 10px;
+}
+
+.user-harvst-index-item:hover {
+  color: green;
+}

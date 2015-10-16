@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true, allow_nil: true
   validates :affiliation, inclusion: { in: ["individual", "organization"]}
 
+  before_save :default_image_url
+
   attr_reader :password, :password_confirmation
 
   has_many :harvsts
@@ -52,6 +54,10 @@ class User < ActiveRecord::Base
     return user if user && user.is_password?(password)
   end
 
+  def public_harvsts
+    self.harvsts.order(end_date: :asc).where(privacy: 'public')
+  end
+
   private
 
   def User.generate_session_token
@@ -60,6 +66,12 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
+  end
+
+  def default_image_url
+    if !self.profile_img_url || self.profile_img_url == ""
+      self.profile_img_url = "http://res.cloudinary.com/harvst/image/upload/c_fill,h_500,w_500/v1445028940/treesilhouette_bnbyvx.png"
+    end
   end
 
 end

@@ -23,6 +23,17 @@ window.ApiUtil = {
     })
   },
 
+  fetchUserHarvsts: function(id) {
+    $.ajax({
+      url: '/api/users/'+ id + '/harvsts',
+      method: 'GET',
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveAll(result);
+      }
+    })
+  },
+
   addHarvst: function(params, cb) {
     $.ajax({
       url: '/api/harvsts',

@@ -28,7 +28,7 @@
       if(root.confirm("Are you sure you want to delete this harvest?")) {
         ApiUtil.deleteHarvst(this.state.harvst.id, function() {
           this.history.pushState("", "");
-        }.bind(this));        
+        }.bind(this));
       }
     },
 
@@ -36,6 +36,11 @@
     _handleEditClick: function(e) {
       e.preventDefault();
       this.history.pushState("", this.state.harvst.id + "/edit");
+    },
+
+    _handleUserClick: function(e) {
+      e.preventDefault();
+      this.history.pushState("", "user/" + this.state.harvst.user.id);
     },
 
     render: function() {
@@ -63,7 +68,7 @@
               {delete button}
             </div>
             <h1>{this.state.harvst.title}</h1>
-            <p>Posted by {this.state.harvst.user.username} {this.state.harvst.created_at} ago.</p>
+            <p>Posted by <a href="#" onClick={this._handleUserClick} >{this.state.harvst.user.username}</a> {this.state.harvst.created_at} ago.</p>
 
             <div className="harvst-details text-left">
               <ShowField label="Details" contents={this.state.harvst.description} harvst={this.state.harvst}/>
