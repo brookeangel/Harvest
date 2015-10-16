@@ -25,9 +25,11 @@
 
     _handleDeleteClick: function(e) {
       e.preventDefault();
-      ApiUtil.deleteHarvst(this.state.harvst.id, function() {
-        this.history.pushState("", "");
-      }.bind(this));
+      if(root.confirm("Are you sure you want to delete this harvest?")) {
+        ApiUtil.deleteHarvst(this.state.harvst.id, function() {
+          this.history.pushState("", "");
+        }.bind(this));        
+      }
     },
 
 
@@ -41,9 +43,25 @@
       var deleteButton = null;
 
       if (this.state.harvst) {
+        if (this.state.harvst.user.id === CURRENT_USER) {
+          deleteButton = (
+            <div className="btn-group icon-right" role="group" aria-label="...">
+              <button type="button" className="btn btn-default" onClick={this._handleDeleteClick}>
+                <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </button>
+              <button type="button" className="btn btn-default" onClick={this._handleEditClick}>
+                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              </button>
+            </div>
+          );
+        }
+
         harvstShowContents = (
           <div className="show-view-body">
-            <img src={this.state.harvst.image_url} className="img-responsive img-circle" width="250" height="250"/>
+            <div className="relative margin-top">
+              <img src={this.state.harvst.image_url} className="img-responsive img-circle" width="250" height="250"/>
+              {delete button}
+            </div>
             <h1>{this.state.harvst.title}</h1>
             <p>Posted by {this.state.harvst.user.username} {this.state.harvst.created_at} ago.</p>
 
@@ -57,18 +75,6 @@
           </div>
         );
 
-        if (this.state.harvst.user.id === CURRENT_USER) {
-          deleteButton = (
-            <div className="btn-group" role="group" aria-label="...">
-              <button type="button" className="btn btn-default" onClick={this._handleDeleteClick}>
-                <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              </button>
-              <button type="button" className="btn btn-default" onClick={this._handleEditClick}>
-                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-              </button>
-            </div>
-          );
-        }
       }
 
       return(

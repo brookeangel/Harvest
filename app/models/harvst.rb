@@ -19,7 +19,8 @@
 
 class Harvst < ActiveRecord::Base
   validates :address, :title, :lat, :lng, :description, :privacy, null: false
-  validates :title, length: {minimum: 1}
+  validates :title, length: {minimum: 1, maximum: 40}
+  validates :address, length: {maximum: 255}
   validates :privacy, inclusion: { in: ["public", "private"] }
 
   before_save :default_image_url

@@ -99,16 +99,17 @@
 
       return(
         <div className="col-md-3 col-md-offset-1">
+
+          <div className="text-center margin-bottom margin-top relative">
+            <img src={this.state.image_url} className="img-responsive img-circle" width="150" height="150"/>
+            <button type="button" className="btn btn-default icon-right" onClick={this._openWidget}>
+              <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </button>
+          </div>
+
           <h1>Edit Harvest</h1>
           {errors}
           <form className="form-horizontal" onSubmit={this._handleSubmit}>
-
-            <div className="text-center" onClick={this._openWidget}>
-              <img src={this.state.image_url} className="img-responsive img-circle" width="150" height="150"/>
-              <button type="button" className="btn btn-default float-right">
-                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-              </button>
-            </div>
 
             <div className="form-group">
               <input

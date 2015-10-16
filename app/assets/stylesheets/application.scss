@@ -85,6 +85,20 @@
 
 //edit harvst
 
-.float-right {
-  float: right;
+.relative {
+  position: relative;
+}
+
+.margin-bottom {
+  margin-bottom: 25px;
+}
+
+.margin-top {
+  margin-top: 25px;
+}
+
+.icon-right {
+  position: absolute;
+  right: 0%;
+  top: 0%;
 }
