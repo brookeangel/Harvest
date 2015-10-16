@@ -21,14 +21,18 @@ window.LocationUtil = {
       type: 'get',
       dataType: 'json',
       success: function(data) {
-        var lat = data.results[0].geometry.location.lat;
-        var lng = data.results[0].geometry.location.lng;
-        var address = data.results[0].formatted_address;
-        LocationActions.receiveCoords(lat, lng, address);
-        cb();
+        if (data.status === "ZERO_RESULTS") {
+          MessageActions.receiveErrors('["Invalid address."]');
+        } else {
+          var lat = data.results[0].geometry.location.lat;
+          var lng = data.results[0].geometry.location.lng;
+          var address = data.results[0].formatted_address;
+          LocationActions.receiveCoords(lat, lng, address);
+          cb();
+        }
       },
       error: function(data) {
-        console.log(data);
+        MessageActions.receiveErrors('["Invalid address."]');
       }
     })
   }

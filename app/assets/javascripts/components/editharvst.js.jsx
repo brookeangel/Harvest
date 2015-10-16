@@ -5,20 +5,6 @@
 
     mixins: [React.addons.LinkedStateMixin, ReactRouter.History],
     getInitialState: function() {
-      return this._updateHarvst();
-    },
-
-    componentWillMount: function() {
-      MessageStore.addChangeListener(this._addErrors);
-      HarvstStore.addChangeListener(this._updateHarvst);
-    },
-
-    componentWillUnmount: function() {
-      MessageStore.removeChangeListener(this._addErrors);
-      HarvstStore.removeChangeListener(this._updateHarvst);
-    },
-
-    _updateHarvst: function() {
       var harvst = HarvstStore.getHarvst();
       return {
         id: harvst.id,
@@ -33,6 +19,22 @@
         contact: harvst.contact,
         errors: null
       };
+    },
+
+    componentWillMount: function() {
+      this._handleRefresh();
+      MessageStore.addChangeListener(this._addErrors);
+    },
+
+    componentWillUnmount: function() {
+      MessageStore.removeChangeListener(this._addErrors);
+    },
+
+    _handleRefresh: function() {
+      var harvst = HarvstStore.getHarvst();
+      if (Object.keys(harvst).length === 0) {
+        root.history.back();
+      }
     },
 
     _addErrors: function() {
