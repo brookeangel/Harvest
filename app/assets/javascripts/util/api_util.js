@@ -37,5 +37,16 @@ window.ApiUtil = {
         MessageActions.receiveErrors(result.responseText);
       }
     })
+  },
+
+  deleteHarvst: function(id, cb) {
+    $.ajax({
+      url: '/api/harvsts/' + id,
+      type: 'delete',
+      dataType: 'json',
+      success: function(result) {
+        cb();
+      }
+    })
   }
 }

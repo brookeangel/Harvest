@@ -10,7 +10,7 @@ class Api::HarvstsController < ApplicationController
   end
 
   def destroy
-    @harvst = Harvst.find(params_id)
+    @harvst = Harvst.find(params[:id])
 
     if @harvst
       @harvst.destroy

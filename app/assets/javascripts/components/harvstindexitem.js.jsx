@@ -9,10 +9,19 @@
     },
 
     render: function() {
+      var style = {
+        backgroundImage: 'url('+ this.props.harvst.image_url +')'
+      };
+
       return(
-        <div className="harvst" onClick={this._handleClick}>
-          <h2>{this.props.harvst.title}</h2>
-          <p>Posted by {this.props.harvst.user.username}</p>
+        <div
+          className="harvst-index-item"
+          onClick={this._handleClick}
+          style={style}>
+          <div className="cover">
+            <h2>{this.props.harvst.title}</h2>
+            <p>Posted by {this.props.harvst.user.username} {this.props.harvst.created_at} ago.</p>
+          </div>
         </div>
       )
     }

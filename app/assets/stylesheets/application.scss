@@ -32,6 +32,18 @@
    border-right: 1px solid gray;
  }
 
+ .harvst-details {
+   margin-top: 25px;
+ }
+
+ .img-responsive {
+   margin: 0 auto;
+ }
+
+ .show-view-body {
+   margin: 50px;
+ }
+
  .pad-top {
    padding-top: 25px;
  }
@@ -41,6 +53,17 @@
    font-size: 24px;
  }
 
- .harvst {
-   border-top: 1px solid gray;
+ .harvst-index-item {
+   border: 1px solid gray;
+   height: 125px;
+   margin-top: 25px;
+   margin-bottom: 25px;
+   background-position: center center;
+ }
+
+ .cover {
+   height: 125px;
+   margin: 0;
+   padding: 25px;
+   background-color:rgba(255,255,255,0.5);
  }
