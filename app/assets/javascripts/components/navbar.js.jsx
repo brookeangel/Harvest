@@ -1,9 +1,15 @@
 (function(root) {
 
   root.Navbar = React.createClass({
+    mixins: [ReactRouter.History],
 
     _handleLogout: function() {
       root.SessionUtil.logOut();
+    },
+
+    _handleProfileClick: function(e) {
+      e.preventDefault();
+      this.history.pushState("", "user/" + CURRENT_USER);
     },
 
     render: function() {
@@ -50,7 +56,7 @@
                   <ul className="dropdown-menu">
                     <li><a href="#">Add Harvest</a></li>
                     <li role="separator" className="divider"></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="#" onClick={this._handleProfileClick}>Profile</a></li>
                     <li><a href="#" onClick={this._handleLogout}>Logout</a></li>
                   </ul>
                 </li>

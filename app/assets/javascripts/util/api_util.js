@@ -64,5 +64,16 @@ window.ApiUtil = {
         cb();
       }
     })
-  }
+  },
+
+  fetchUser: function(id) {
+    $.ajax({
+      url: '/api/users/' + id,
+      type: 'get',
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.recieveOneUser(result);
+      }
+    })
+  },
 }
