@@ -26,6 +26,14 @@
       var lat = this.props.location.query.lat;
       var lng = this.props.location.query.lng;
 
+      if (typeof lat === 'undefined' && typeof LocationStore.getCoords().lat === 'undefined') {
+        lat = 37.7758;
+        lng = -122.435;
+      } else if (typeof lat === 'undefined') {
+        lat = LocationStore.getCoords().lat;
+        lng = LocationStore.getCoords().lng;
+      }
+
       this.setState({
         lat: lat,
         lng: lng
@@ -33,17 +41,23 @@
 
       LocationUtil.fetchAddress(lat, lng);
       MessageStore.addChangeListener(this._addErrors);
+      LocationStore.addChangeListener(this._setAddress);
     },
 
-    componentDidMount: function() {
+    _setAddress: function() {
       var address = LocationStore.getAddress();
       this.setState({address: address});
       var address_field = document.getElementById("harvst_address");
       address_field.value = address;
     },
 
+    componentDidMount: function() {
+      this._setAddress;
+    },
+
     componentWillUnmount: function() {
       MessageStore.removeChangeListener(this._addErrors);
+      LocationStore.removeChangeListener(this._setAddress);
     },
 
     _addErrors: function() {

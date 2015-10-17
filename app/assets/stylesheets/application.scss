@@ -48,6 +48,10 @@
    padding-top: 25px;
  }
 
+ .small-margin-bottom {
+   margin-bottom: 15px;
+ }
+
  .navbar-brand {
    font-family: 'Pacifico', cursive;
    font-size: 24px;
@@ -63,10 +67,14 @@
  }
 
  .cover {
-   height: 123px;
+   height: 100%;
    margin: 0;
    padding: 5px;
    background-color:rgba(255,255,255,0.5);
+ }
+
+ .cover:hover {
+   background-color:rgba(255,255,255,0.1);
  }
 
  //show harvst
@@ -119,9 +127,4 @@
   height: 200px;
   border: 1px solid #e7e7e7;
   margin: 5px;
-  padding: 10px;
-}
-
-.user-harvst-index-item:hover {
-  color: green;
 }

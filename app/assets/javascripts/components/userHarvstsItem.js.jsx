@@ -15,7 +15,9 @@
       return(
         <div className="col-sm-3 mini-pad" onClick={this._handleClick}>
           <div className="user-harvst-index-item" style={style} >
-            <h2>{this.props.harvst.title}</h2>
+            <div className="cover">
+              <h2>{this.props.harvst.title}</h2>
+            </div>
           </div>
         </div>
       )

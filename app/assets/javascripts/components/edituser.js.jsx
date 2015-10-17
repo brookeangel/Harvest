@@ -5,7 +5,6 @@
 
     getInitialState: function() {
       var user = UserStore.getUser();
-      debugger;
 
       return {
         user: user,
@@ -52,8 +51,13 @@
     _handleSubmit: function(e) {
       e.preventDefault();
       ApiUtil.updateUser(this.state.user.id, function() {
-        this.history.pushState(null, "user/" + this.state.user.id)
+        this.history.pushState(null, "user/" + this.state.user.id);
       }.bind(this));
+    },
+
+    _handleCancelClick: function(e) {
+      e.preventDefault();
+      this.history.pushState(null, "user/" + this.state.user.id);
     },
 
     render: function() {
@@ -69,8 +73,8 @@
                 <img src={this.state.profile_img_url} className="img-responsive profile-img"/>
               </div>
 
-                <div className="col-sm-7 relative">
-                  <form className="form-horizontal" onSubmit={this._handleSubmit}>
+                <div className="col-sm-7 relative text-center">
+                  <form className="form-horizontal">
                     <div className="form-group">
                       <input
                         type="text"
@@ -98,9 +102,13 @@
                         valueLink={this.linkState("description")}></textarea>
                     </div>
 
-                    <div className="text-center">
-                      <button className="btn btn-default">Update Profile</button>
+                    <div className="btn-group" role="group" aria-label="...">
+                      <button type="button" className="btn btn-default" onClick={this._handleSubmit}>Update Profile</button>
+                      <button type="button" className="btn btn-default" onClick={this._handleCancelClick}>
+                        <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      </button>
                     </div>
+
 
                 </form>
               </div>

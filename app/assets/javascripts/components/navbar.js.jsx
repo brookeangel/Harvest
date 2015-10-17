@@ -9,7 +9,12 @@
 
     _handleProfileClick: function(e) {
       e.preventDefault();
-      this.history.pushState("", "user/" + CURRENT_USER);
+      this.history.pushState(null, "user/" + CURRENT_USER);
+    },
+
+    _handleAddHarvestClick: function(e) {
+      e.preventDefault();
+      this.history.pushState(null, "harvsts/new");
     },
 
     render: function() {
@@ -54,7 +59,8 @@
                     Welcome, {window.CURRENT_USER_USERNAME} <span className="caret"></span>
                   </a>
                   <ul className="dropdown-menu">
-                    <li><a href="#">Add Harvest</a></li>
+                    <li><a href="#" onClick={this._handleAddHarvestClick}>Add Harvest</a></li>
+                    <li><a href="#">My Harvests</a></li>
                     <li role="separator" className="divider"></li>
                     <li><a href="#" onClick={this._handleProfileClick}>Profile</a></li>
                     <li><a href="#" onClick={this._handleLogout}>Logout</a></li>
