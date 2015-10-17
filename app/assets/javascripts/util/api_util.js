@@ -87,4 +87,19 @@ window.ApiUtil = {
       }
     })
   },
+
+  updateUser: function(id, cb) {
+    $.ajax({
+      url: '/api/users/' + id,
+      type: 'patch',
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.recieveOneUser(result);
+        cb();
+      },
+      error(result) {
+        MessageActions.receiveErrors(result.responseText);
+      }
+    })
+  },
 }
