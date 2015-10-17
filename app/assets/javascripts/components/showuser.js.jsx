@@ -28,19 +28,15 @@
     },
 
     render: function() {
-      var user, harvests;
+      var harvests;
 
       if (this.state.user) {
-        user = <ShowUserDetail user={this.state.user} />
-
         harvests = (
           <div>
             <h1>Current Harvests</h1>
             <UserHarvsts harvsts={this.state.userHarvsts}/>
           </div>
         );
-      } else {
-        user = <div></div>;
       }
 
       return (

@@ -30,7 +30,7 @@
       }
     },
 
-    componentWillMount: function() {
+    componentWillUnmount: function() {
       MessageStore.removeChangeListener(this._addErrors);
     },
 
@@ -50,7 +50,15 @@
 
     _handleSubmit: function(e) {
       e.preventDefault();
-      ApiUtil.updateUser(this.state.user.id, function() {
+      var params = {
+        user: {
+          website_url: this.state.website_url,
+          email: this.state.email,
+          description: this.state.description,
+          profile_img_url: this.state.profile_img_url
+        }
+      }
+      ApiUtil.updateUser(this.state.user.id, params ,function() {
         this.history.pushState(null, "user/" + this.state.user.id);
       }.bind(this));
     },

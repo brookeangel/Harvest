@@ -88,10 +88,11 @@ window.ApiUtil = {
     })
   },
 
-  updateUser: function(id, cb) {
+  updateUser: function(id, params, cb) {
     $.ajax({
       url: '/api/users/' + id,
       type: 'patch',
+      data: params,
       dataType: 'json',
       success: function(result) {
         ApiActions.recieveOneUser(result);

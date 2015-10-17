@@ -14,16 +14,20 @@ class Api::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      redirect_to user_url(@user)
+      render :show
     else
-      flash.now[:errors] = @user.errors.full_messages
+      render json: @harvst.errors.full_messages, status: 422
     end
   end
 
   private
 
+  def user_params
+    params.require(:user).permit(:email, :website_url, :description)
+  end
+
   def assure_correct_user
-    @user.find(params[:id]) == current_user
+    User.find(params[:id].to_i) == current_user
   end
 
 end
