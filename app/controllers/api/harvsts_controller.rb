@@ -27,8 +27,7 @@ class Api::HarvstsController < ApplicationController
       @harvsts = Harvst.in_bounds(params[:bounds])
                        .includes(:user)
     else
-      @harvsts = User.find(params[:user_id])
-                      .public_harvsts
+      @harvsts = User.find(params[:user_id]).harvst_settings(params[:privacy])
     end
   end
 

@@ -54,8 +54,12 @@ class User < ActiveRecord::Base
     return user if user && user.is_password?(password)
   end
 
-  def public_harvsts
-    self.harvsts.order(end_date: :asc).where(privacy: 'public')
+  def harvst_settings(settings)
+    if settings == 'all'
+      return self.harvsts.order(end_date: :asc)
+    end
+
+    self.harvsts.order(end_date: :asc).where(privacy: settings)
   end
 
   private

@@ -10,7 +10,7 @@
     componentWillMount: function() {
       ApiUtil.fetchUser(parseInt(this.props.routeParams.id));
       UserStore.addChangeListener(this._updateUser);
-      ApiUtil.fetchUserHarvsts(parseInt(this.props.routeParams.id));
+      ApiUtil.fetchUserHarvsts(parseInt(this.props.routeParams.id), 'public');
       HarvstStore.addChangeListener(this._updateUserHarvsts);
     },
 
@@ -40,8 +40,8 @@
       }
 
       return (
-        <div className="row pad-top">
-          <div className="col-md-8 col-md-offset-2">
+        <div className="row profile-page">
+          <div className="col-md-8 col-md-offset-2 profile-container">
             {this.props.children}
             {harvests}
           </div>

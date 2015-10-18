@@ -17,6 +17,11 @@
       this.history.pushState(null, "harvsts/new");
     },
 
+    _handleMyHarvstsClick: function(e) {
+      e.preventDefault();
+      this.history.pushState(null, "user/" + CURRENT_USER + "/harvsts");
+    },
+
     render: function() {
 
       return(
@@ -60,9 +65,9 @@
                   </a>
                   <ul className="dropdown-menu">
                     <li><a href="#" onClick={this._handleAddHarvestClick}>Add Harvest</a></li>
-                    <li><a href="#">My Harvests</a></li>
-                    <li role="separator" className="divider"></li>
+                    <li><a href="#" onClick={this._handleMyHarvstsClick}>My Harvests</a></li>
                     <li><a href="#" onClick={this._handleProfileClick}>Profile</a></li>
+                    <li role="separator" className="divider"></li>
                     <li><a href="#" onClick={this._handleLogout}>Logout</a></li>
                   </ul>
                 </li>

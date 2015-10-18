@@ -23,10 +23,11 @@ window.ApiUtil = {
     })
   },
 
-  fetchUserHarvsts: function(id) {
+  fetchUserHarvsts: function(id, privacy) {
     $.ajax({
       url: '/api/users/'+ id + '/harvsts',
       method: 'GET',
+      data: {privacy: privacy},
       dataType: 'json',
       success: function(result) {
         ApiActions.receiveAll(result);

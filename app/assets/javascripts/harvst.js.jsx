@@ -22,6 +22,7 @@ $(function() {
         <IndexRoute component={ShowUserDetail} />
         <Route path="edit" component={EditUser} />
       </Route>
+      <Route path="user/:id/harvsts" component={MyHarvsts} />
       <Route path=":id" component={HarvstContainer} >
         <Route path="show" component={ShowHarvst} />
         <Route path="edit" component={EditHarvst} />

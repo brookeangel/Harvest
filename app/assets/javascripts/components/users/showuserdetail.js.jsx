@@ -28,7 +28,7 @@
 
       if (this.state.user) {
         if (this.state.user.website_url) {
-          website_url = <p><b>Website:</b> {this.state.user.website_url} </p>;
+          website_url = this.state.user.website_url;
         }
 
         if (this.state.user.description) {
@@ -51,8 +51,10 @@
                   </button>
                 </div>
 
-                <h5>{this.state.user.affiliation}</h5>
-                {website_url}
+                <h5>
+                  {this.state.user.affiliation} &nbsp;|&nbsp;
+                  <a href={website_url}>{website_url}</a>
+                </h5>
                 {description}
               </div>
             </div>

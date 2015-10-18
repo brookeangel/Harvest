@@ -82,7 +82,7 @@
               </div>
 
                 <div className="col-sm-7 relative text-center">
-                  <form className="form-horizontal">
+                  <form>
                     <div className="form-group">
                       <input
                         type="text"
@@ -126,7 +126,7 @@
       }
 
       return (
-        <div>
+        <div className="margin-right">
           {user}
         </div>
       );

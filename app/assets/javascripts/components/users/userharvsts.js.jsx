@@ -4,7 +4,7 @@
 
     render: function() {
       return(
-        <div className="pad-top row text-center">
+        <div className="pad-top row no-margin text-center">
           {this.props.harvsts.map(function(harvst) {
             return(
               <UserHarvstsItem harvst={harvst} key={harvst.id} />
