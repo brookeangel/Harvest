@@ -3,9 +3,17 @@
   root.HarvstIndexItem = React.createClass({
     mixins: [ReactRouter.History],
 
-    _handleClick: function() {
+    _handleClick: function(e) {
       var id = this.props.harvst.id;
       this.history.pushState(null, id + "/show")
+    },
+
+    _handleHover: function(e) {
+      HarvstActions.receiveOne(this.props.harvst);
+    },
+
+    _handleLeave: function(e) {
+      HarvstActions.receiveOne(null);
     },
 
     render: function() {
@@ -17,6 +25,8 @@
         <div
           className="harvst-index-item"
           onClick={this._handleClick}
+          onMouseOver={this._handleHover}
+          onMouseLeave={this._handleLeave}
           style={style}>
           <div className="cover">
             <h2>{this.props.harvst.title}</h2>

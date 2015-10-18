@@ -2,6 +2,7 @@
   var CHANGE_EVENT = "change";
   var _harvsts = [];
   var _harvstShow = {};
+  var _activeHarvst = null;
 
   root.HarvstStore = $.extend({}, EventEmitter.prototype, {
     all: function() {
@@ -16,6 +17,10 @@
 
     getHarvst: function() {
       return _harvstShow;
+    },
+
+    getActiveHarvst: function() {
+      return _activeHarvst;
     },
 
     addChangeListener: function(cb) {
@@ -34,6 +39,10 @@
       _harvstShow = harvst;
     },
 
+    setActiveHarvst: function(harvst) {
+      _activeHarvst = harvst;
+    },
+
     dispatcherID: AppDispatcher.register(function(payload) {
       switch(payload.actionType) {
         case HarvstConstants.HARVSTS_RECEIVED:
@@ -42,6 +51,10 @@
           break;
         case HarvstConstants.HARVST_RECEIVED:
           HarvstStore.setHarvst(payload.harvst);
+          HarvstStore.emit(CHANGE_EVENT);
+          break;
+        case HarvstConstants.ACTIVE_HARVST_RECEIVED:
+          HarvstStore.setActiveHarvst(payload.harvst);
           HarvstStore.emit(CHANGE_EVENT);
           break;
       }

@@ -18,13 +18,28 @@
 
       this.map.addListener('idle', this._handleIdleEvent);
       HarvstStore.addChangeListener(this._adjustMarkers);
+      HarvstStore.addChangeListener(this._bounceMarker);
       this.map.addListener('click', this.props.handleMapClick);
       LocationStore.addChangeListener(this._centerMap);
     },
 
     componentWillUnmount: function() {
       HarvstStore.removeChangeListener(this._adjustMarkers);
+      HarvstStore.removeChangeListener(this._bounceMarker)
       LocationStore.removeChangeListener(this._centerMap);
+    },
+
+    _bounceMarker: function() {
+      var activeHarvst = HarvstStore.getActiveHarvst()
+
+      if (activeHarvst) {
+        var marker = this.markers[activeHarvst.id];
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+      } else {
+        Object.keys(this.markers).map(function(markerHarvstId) {
+          this.markers[markerHarvstId].setAnimation(null);
+        }.bind(this));
+      }
     },
 
     _centerMap: function() {
