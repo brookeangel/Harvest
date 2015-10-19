@@ -9,9 +9,14 @@
 
     componentWillMount: function() {
       ApiUtil.fetchUser(parseInt(this.props.routeParams.id));
-      UserStore.addChangeListener(this._updateUser);
       ApiUtil.fetchUserHarvsts(parseInt(this.props.routeParams.id), 'public');
+      UserStore.addChangeListener(this._updateUser);
       HarvstStore.addChangeListener(this._updateUserHarvsts);
+    },
+
+    componentWillReceiveProps: function (newProps) {
+      ApiUtil.fetchUser(parseInt(newProps.params.id));
+      ApiUtil.fetchUserHarvsts(parseInt(newProps.params.id));
     },
 
     componentWillUnmount: function() {

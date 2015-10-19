@@ -43,13 +43,16 @@
       }
     },
 
+    removeSearchString: function() {
+
+    },
+
     render: function() {
       return(
-        <div className="collapse navbar-collapse" id="collapse-menu">
-          <ul className="nav navbar-nav navbar-left">
-            <li className="dropdown">
-              <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
-                aria-haspopup="true" aria-expanded="false">
+        <ul className="nav navbar-nav">
+          <li className="dropdown">
+            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
+              aria-haspopup="true" aria-expanded="false">
                 <input type="text"
                   className="form-control"
                   placeholder="Search Users"
@@ -62,6 +65,7 @@
                     <li key={user.id}>
                       <SearchItem
                         user={user}
+                        removeSearchString={this.removeSearchString}
                         history={this.props.history} />
                     </li>
                     );
@@ -69,7 +73,6 @@
               </ul>
             </li>
           </ul>
-        </div>
       )
     }
   })
