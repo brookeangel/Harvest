@@ -43,9 +43,9 @@
  // harvst index
 
  #map {
-   width: 700px;
-   height: 700px;
-   border-right: 1px solid gray;
+   border-right: 1px solid #e7e7e7;
+  //  width: 700px;
+  //  height: 700px;
  }
 
  .harvst-details {
@@ -96,6 +96,7 @@
    margin-top: 25px;
    margin-bottom: 25px;
    background-position: center center;
+   background-size: cover;
  }
 
  .cover {

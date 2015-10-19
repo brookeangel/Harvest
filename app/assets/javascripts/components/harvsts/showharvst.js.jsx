@@ -82,7 +82,7 @@
       }
 
       return(
-        <div className="container pad-top">
+        <div className="pad-top">
           <div className="row">
             <div className="col-md-5 text-center">
               <div className="text-right">

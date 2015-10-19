@@ -1,11 +1,13 @@
 (function(root) {
 
   root.ShowMap = React.createClass({
+
     componentDidMount: function() {
       var lat = parseFloat(this.props.lat);
       var lng = parseFloat(this.props.lng);
 
       var map = React.findDOMNode(this.refs.map);
+
       var mapOptions = {
         center: {lat: lat, lng: lng},
         zoom: 13
@@ -17,12 +19,16 @@
         map: this.map,
         title: "harvest"
       });
-
     },
 
     render: function() {
+      var mapStyle = {
+        width: root.screen.availWidth * 0.56,
+        height: root.screen.availHeight - 100
+      };
+
       return(
-        <div id="map" ref="map" className="col-md-7"></div>
+        <div id="map" ref="map" className="col-md-7" style={mapStyle}></div>
       );
     }
   });

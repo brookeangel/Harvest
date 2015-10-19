@@ -36,13 +36,10 @@
       }
 
       return(
-        <div className="container">
-          <div className="harvst-index col-md-5">
-            <MapSearch history={this.history} />
-            <h1>Harvests In Your Area</h1>
-            {index}
-
-          </div>
+        <div className="harvst-index col-md-5">
+          <MapSearch history={this.history} />
+          <h1>Harvests In Your Area</h1>
+          {index}
         </div>
     );
     }

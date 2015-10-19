@@ -6,13 +6,15 @@
 
     componentDidMount: function() {
       var mapNode = React.findDOMNode(this.refs.map);
+
       var mapOptions = {
         center: {lat: 37.7758, lng: -122.435},
-        zoom: 12
+        zoom: 13
       };
 
       this.markers = {};
       this.map = new google.maps.Map(mapNode, mapOptions);
+
       this.infoWindow = new google.maps.InfoWindow({map: this.map});
       this._handleGeolocation();
 
@@ -23,11 +25,13 @@
       LocationStore.addChangeListener(this._centerMap);
     },
 
+
     componentWillUnmount: function() {
       HarvstStore.removeChangeListener(this._adjustMarkers);
       HarvstStore.removeChangeListener(this._bounceMarker);
       LocationStore.removeChangeListener(this._centerMap);
     },
+
 
     _bounceMarker: function() {
       var activeHarvst = HarvstStore.getActiveHarvst();
@@ -118,8 +122,13 @@
     },
 
     render: function() {
+      var mapStyle = {
+        width: root.screen.availWidth * 0.56,
+        height: root.screen.availHeight - 100
+      };
+
       return(
-        <div id="map" ref="map" className="col-md-7"></div>
+        <div id="map" ref="map" className="col-md-7" style={mapStyle}></div>
       );
     }
   });
