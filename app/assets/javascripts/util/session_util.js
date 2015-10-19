@@ -4,9 +4,9 @@ window.SessionUtil = {
       type: 'delete',
       url: 'session',
       success: function() {
-        window.location="/"
+        window.location="/";
       }
     });
   }
 
-}
+};

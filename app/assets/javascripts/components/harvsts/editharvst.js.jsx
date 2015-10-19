@@ -58,7 +58,7 @@
       var harvst = {};
       Object.keys(this.state).forEach(function(key) {
         harvst[key] = this.state[key];
-      }.bind(this))
+      }.bind(this));
 
       ApiUtil.updateHarvst(harvst, function() {
         this.setState(this.blankAttrs);
@@ -84,7 +84,7 @@
 
     _handleWidgetUpload: function(error, result) {
       if (error) {
-        this.setState({errors: ["Image upload failed. Peas try again!"]})
+        this.setState({errors: ["Image upload failed. Peas try again!"]});
       } else if (result) {
         this.setState({
           image_url: result[0].url,
@@ -190,9 +190,9 @@
             </div>
           </form>
         </div>
-      )
+      );
     }
 
-  })
+  });
 
 }(this));

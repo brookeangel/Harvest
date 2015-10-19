@@ -8,10 +8,10 @@
           {this.props.harvsts.map(function(harvst) {
             return(
               <UserHarvstsItem harvst={harvst} key={harvst.id} />
-            )
+            );
           })}
         </div>
-      )
+      );
     }
   });
 

@@ -5,7 +5,7 @@
 
     _handleClick: function(e) {
       var id = this.props.harvst.id;
-      this.history.pushState(null, id + "/show")
+      this.history.pushState(null, id + "/show");
     },
 
     _handleHover: function(e) {
@@ -33,8 +33,8 @@
             <p>Posted by {this.props.harvst.user.username} {this.props.harvst.created_at} ago.</p>
           </div>
         </div>
-      )
+      );
     }
-  })
+  });
 
-}(this))
+}(this));

@@ -2,16 +2,16 @@
 
   root.MyHarvsts = React.createClass({
     getInitialState: function() {
-      return {userHarvsts: null}
+      return {userHarvsts: null};
     },
 
     componentWillMount: function() {
-      ApiUtil.fetchUserHarvsts(parseInt(this.props.routeParams.id), 'all')
+      ApiUtil.fetchUserHarvsts(parseInt(this.props.routeParams.id), 'all');
       HarvstStore.addChangeListener(this._updateUserHarvsts);
     },
 
     componentWillUnmount: function() {
-      HarvstStore.addChangeListener(this._updateUserHarvsts);
+      HarvstStore.removeChangeListener(this._updateUserHarvsts);
     },
 
     _updateUserHarvsts: function() {
@@ -21,7 +21,7 @@
     render: function() {
       var userHarvsts;
       if (this.state.userHarvsts) {
-        userHarvsts = <UserHarvsts harvsts={this.state.userHarvsts}/>
+        userHarvsts = <UserHarvsts harvsts={this.state.userHarvsts}/>;
       }
 
       return(
@@ -31,7 +31,7 @@
             {userHarvsts}
           </div>
         </div>
-      )
+      );
     }
   });
 

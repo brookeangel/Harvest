@@ -10,9 +10,9 @@ $(function() {
         <div>
           HI
         </div>
-      )
+      );
     }
-  })
+  });
 
   var routes = (
     <Route path='/' component={App}>
@@ -20,6 +20,6 @@ $(function() {
   );
 
   if (root) {
-    React.render(<Router>{routes}</Router>, root)
+    React.render(<Router>{routes}</Router>, root);
   }
 });

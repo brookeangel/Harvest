@@ -4,7 +4,7 @@
     mixins: [ReactRouter.History],
 
     _handleClick: function(e) {
-      this.history.pushState(null, this.props.harvst.id + "/show")
+      this.history.pushState(null, this.props.harvst.id + "/show");
     },
 
     render: function() {
@@ -20,7 +20,7 @@
             </div>
           </div>
         </div>
-      )
+      );
     }
   });
 

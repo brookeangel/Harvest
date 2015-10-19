@@ -20,7 +20,7 @@
     },
 
     _handleEditClick: function() {
-      this.history.pushState(null, "user/" + this.state.user.id + "/edit")
+      this.history.pushState(null, "user/" + this.state.user.id + "/edit");
     },
 
     render: function() {

@@ -58,8 +58,8 @@
             <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
           </span>
         </div>
-      )
+      );
     }
-  })
+  });
 
-}(this))
+}(this));

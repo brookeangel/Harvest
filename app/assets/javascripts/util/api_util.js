@@ -9,7 +9,7 @@ window.ApiUtil = {
       success: function(result) {
         ApiActions.receiveAll(result);
       }
-    })
+    });
   },
 
   fetchHarvst: function(id) {
@@ -20,7 +20,7 @@ window.ApiUtil = {
       success: function(result) {
         ApiActions.receiveOne(result);
       }
-    })
+    });
   },
 
   fetchUserHarvsts: function(id, privacy) {
@@ -32,7 +32,7 @@ window.ApiUtil = {
       success: function(result) {
         ApiActions.receiveAll(result);
       }
-    })
+    });
   },
 
   addHarvst: function(params, cb) {
@@ -48,7 +48,7 @@ window.ApiUtil = {
       error: function(result) {
         MessageActions.receiveErrors(result.responseText);
       }
-    })
+    });
   },
 
   updateHarvst: function(params, cb) {
@@ -64,7 +64,7 @@ window.ApiUtil = {
       error: function(result) {
         MessageActions.receiveErrors(result.responseText);
       }
-    })
+    });
   },
 
   deleteHarvst: function(id, cb) {
@@ -75,7 +75,7 @@ window.ApiUtil = {
       success: function(result) {
         cb();
       }
-    })
+    });
   },
 
   fetchUser: function(id) {
@@ -86,7 +86,7 @@ window.ApiUtil = {
       success: function(result) {
         ApiActions.recieveOneUser(result);
       }
-    })
+    });
   },
 
   fetchUsers: function(id) {
@@ -97,7 +97,7 @@ window.ApiUtil = {
       success: function(result) {
         ApiActions.recieveAllUsers(result);
       }
-    })
+    });
   },
 
   updateUser: function(id, params, cb) {
@@ -110,9 +110,9 @@ window.ApiUtil = {
         ApiActions.recieveOneUser(result);
         cb();
       },
-      error(result) {
+      error: function(result) {
         MessageActions.receiveErrors(result.responseText);
       }
-    })
+    });
   },
-}
+};

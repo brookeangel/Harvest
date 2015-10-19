@@ -12,7 +12,7 @@
       AppDispatcher.dispatch({
         actionType: HarvstConstants.HARVST_RECEIVED,
         harvst: harvst
-      })
+      });
     },
 
     recieveOneUser: function(user) {
@@ -29,5 +29,5 @@
       });
     },
 
-  }
+  };
 }(this));

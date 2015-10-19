@@ -12,7 +12,7 @@ window.LocationUtil = {
           cb();
         }
       }
-    })
+    });
   },
 
   fetchCoords: function(address, cb) {
@@ -34,6 +34,6 @@ window.LocationUtil = {
       error: function(data) {
         MessageActions.receiveErrors('["Invalid address."]');
       }
-    })
+    });
   }
-}
+};

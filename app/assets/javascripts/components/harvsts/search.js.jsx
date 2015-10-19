@@ -37,8 +37,8 @@
           <Map handleMapClick={this._handleMapClick}/>
           <HarvstIndex />
         </div>
-      )
+      );
     }
-  })
+  });
 
-}(this))
+}(this));

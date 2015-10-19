@@ -51,7 +51,7 @@
             {harvests}
           </div>
         </div>
-      )
+      );
     }
   });
 

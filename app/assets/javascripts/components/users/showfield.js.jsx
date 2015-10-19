@@ -16,8 +16,8 @@
           <div className="col-xs-8" id={this.props.label} >{contents}<br /></div>
         </div>
 
-      )
+      );
     }
-  })
+  });
 
 }(this));

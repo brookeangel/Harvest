@@ -9,8 +9,8 @@
     render: function() {
       return(
         <a href="#" onClick={this._handleClick}>{this.props.user.username}</a>
-      )
+      );
     }
 
-  })
+  });
 }(this));

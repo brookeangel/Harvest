@@ -13,9 +13,9 @@ $(function() {
           <Navbar history={this.props.history} />
           {this.props.children}
         </div>
-      )
+      );
     }
-  })
+  });
 
   var routes = (
     <Route path='/' component={App}>
@@ -34,6 +34,6 @@ $(function() {
   );
 
   if (root) {
-    React.render(<Router>{routes}</Router>, root)
+    React.render(<Router>{routes}</Router>, root);
   }
 });

@@ -20,7 +20,7 @@
     render: function() {
       return(
         <div className="map" ref="map"></div>
-      )
+      );
     }
   });
 

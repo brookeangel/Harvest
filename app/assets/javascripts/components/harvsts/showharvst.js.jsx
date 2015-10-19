@@ -65,7 +65,6 @@
           <div className="show-view-body">
             <div className="relative margin-top">
               <img src={this.state.harvst.image_url} className="img-responsive img-circle" width="250" height="250"/>
-              {delete button}
             </div>
             <h1>{this.state.harvst.title}</h1>
             <p>Posted by <a href="#" onClick={this._handleUserClick} >{this.state.harvst.user.username}</a> {this.state.harvst.created_at} ago.</p>
@@ -93,8 +92,8 @@
             </div>
           </div>
         </div>
-      )
+      );
     }
-  })
+  });
 
 }(this));

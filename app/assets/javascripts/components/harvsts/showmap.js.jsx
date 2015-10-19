@@ -23,7 +23,7 @@
     render: function() {
       return(
         <div id="map" ref="map" className="col-md-7"></div>
-      )
+      );
     }
   });
 

@@ -52,7 +52,7 @@
     },
 
     componentDidMount: function() {
-      this._setAddress;
+      this._setAddress();
     },
 
     componentWillUnmount: function() {
@@ -81,11 +81,10 @@
       var harvst = {};
       Object.keys(this.state).forEach(function(key) {
         harvst[key] = this.state[key];
-      }.bind(this))
+      }.bind(this));
 
       ApiUtil.addHarvst(harvst, function(result) {
         this.setState(this.blankAttrs);
-        debugger;
         this.history.pushState("", result.id + "/show");
       }.bind(this));
     },
@@ -112,7 +111,7 @@
 
     _handleWidgetUpload: function(error, result) {
       if (error) {
-        this.setState({errors: ["Image upload failed. Peas try again!"]})
+        this.setState({errors: ["Image upload failed. Peas try again!"]});
       } else if (result) {
         this.setState({
           image_url: result[0].url,
@@ -234,7 +233,7 @@
             </form>
           </div>
         </div>
-      )
+      );
     }
 
   });

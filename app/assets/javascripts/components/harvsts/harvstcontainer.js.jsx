@@ -2,7 +2,7 @@
 
   root.HarvstContainer = React.createClass({
     mixins: [ReactRouter.History],
-    
+
     getInitialState: function() {
       return ({harvst: null});
     },
@@ -32,8 +32,8 @@
           {showMap}
           {this.props.children}
         </div>
-      )
+      );
     }
-  })
+  });
 
 }(this));

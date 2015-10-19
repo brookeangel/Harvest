@@ -25,12 +25,12 @@
 
     componentWillUnmount: function() {
       HarvstStore.removeChangeListener(this._adjustMarkers);
-      HarvstStore.removeChangeListener(this._bounceMarker)
+      HarvstStore.removeChangeListener(this._bounceMarker);
       LocationStore.removeChangeListener(this._centerMap);
     },
 
     _bounceMarker: function() {
-      var activeHarvst = HarvstStore.getActiveHarvst()
+      var activeHarvst = HarvstStore.getActiveHarvst();
 
       if (activeHarvst) {
         var marker = this.markers[activeHarvst.id];
@@ -47,7 +47,7 @@
       var pos = {
         lat: coords.lat,
         lng: coords.lng
-      }
+      };
       this.map.setCenter(pos);
     },
 
@@ -120,7 +120,7 @@
     render: function() {
       return(
         <div id="map" ref="map" className="col-md-7"></div>
-      )
+      );
     }
   });
 

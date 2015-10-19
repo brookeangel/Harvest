@@ -10,7 +10,7 @@
     },
 
     findHarvst: function(id) {
-      var harvstIds = _harvsts.map(function(harvst) {return harvst["id"];});
+      var harvstIds = _harvsts.map(function(harvst) {return harvst.id;});
       var index = harvstIds.indexOf(id);
       return _harvsts[index];
     },
@@ -59,5 +59,5 @@
           break;
       }
     })
-  })
-}(this))
+  });
+}(this));

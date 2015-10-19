@@ -37,9 +37,9 @@
       var matches = this._getMatches(searchString);
 
       if (matches.length > 0) {
-        this.setState({matches: matches})
+        this.setState({matches: matches});
       } else if (searchString.length > 0) {
-        this.setState({matches: "No users match your search."})
+        this.setState({matches: "No users match your search."});
       }
     },
 
@@ -73,7 +73,7 @@
               </ul>
             </li>
           </ul>
-      )
+      );
     }
-  })
+  });
 }(this));

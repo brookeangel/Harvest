@@ -30,9 +30,9 @@
               );
             })}
           </div>
-        )
+        );
       } else {
-        index = (<div className="text-center pad-top">Sorry, no harvests in your area yet!</div>)
+        index = (<div className="text-center pad-top">Sorry, no harvests in your area yet!</div>);
       }
 
       return(
@@ -44,7 +44,7 @@
 
           </div>
         </div>
-    )
+    );
     }
   });
 
