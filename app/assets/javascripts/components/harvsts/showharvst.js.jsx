@@ -52,7 +52,7 @@
           deleteButton = (
             <div className="btn-group icon-right" role="group" aria-label="...">
               <button type="button" className="btn btn-default" onClick={this._handleDeleteClick}>
-                <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
               </button>
               <button type="button" className="btn btn-default" onClick={this._handleEditClick}>
                 <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>

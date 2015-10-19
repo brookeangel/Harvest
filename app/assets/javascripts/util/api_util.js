@@ -89,6 +89,17 @@ window.ApiUtil = {
     })
   },
 
+  fetchUsers: function(id) {
+    $.ajax({
+      url: '/api/users',
+      type: 'get',
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.recieveAllUsers(result);
+      }
+    })
+  },
+
   updateUser: function(id, params, cb) {
     $.ajax({
       url: '/api/users/' + id,

@@ -5,10 +5,12 @@ $(function() {
   var IndexRoute = ReactRouter.IndexRoute;
 
   var App = React.createClass({
+    mixins: [ReactRouter.History],
+
     render: function() {
       return(
         <div>
-          <Navbar />
+          <Navbar history={this.props.history} />
           {this.props.children}
         </div>
       )

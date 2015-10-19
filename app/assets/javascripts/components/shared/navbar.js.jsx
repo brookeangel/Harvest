@@ -1,25 +1,24 @@
 (function(root) {
 
   root.Navbar = React.createClass({
-    mixins: [ReactRouter.History],
 
     _handleLogout: function() {
       root.SessionUtil.logOut();
     },
 
-    _handleProfileClick: function(e) {
-      e.preventDefault();
-      this.history.pushState(null, "user/" + CURRENT_USER);
-    },
-
     _handleAddHarvestClick: function(e) {
       e.preventDefault();
-      this.history.pushState(null, "harvsts/new");
+      this.props.history.pushState(null, "harvsts/new");
     },
 
     _handleMyHarvstsClick: function(e) {
       e.preventDefault();
-      this.history.pushState(null, "user/" + CURRENT_USER + "/harvsts");
+      this.props.history.pushState(null, "user/" + CURRENT_USER + "/harvsts");
+    },
+
+    _handleProfileClick: function(e) {
+      e.preventDefault();
+      this.props.history.pushState(null, "user/" + window.CURRENT_USER);
     },
 
     render: function() {
@@ -40,12 +39,7 @@
               <a className="navbar-brand" href="#">Harvst</a>
             </div>
 
-            <form className="navbar-form navbar-left" role="search">
-              <div className="form-group">
-                <input type="text" className="form-control" placeholder="Search users" />
-              </div>
-            </form>
-
+            <SearchBar history={this.props.history} />
 
             <div className="collapse navbar-collapse" id="collapse-menu">
               <ul className="nav navbar-nav navbar-right">
