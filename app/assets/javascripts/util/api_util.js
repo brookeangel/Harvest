@@ -168,4 +168,43 @@ window.ApiUtil = {
       }
     });
   },
+
+  fetchComments: function(harvstId) {
+    $.ajax({
+      url: '/api/harvsts/' + harvstId + '/comments',
+      type: 'get',
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveAllComments(result);
+      }
+    });
+  },
+
+  addComment: function(params) {
+    $.ajax({
+      url: '/api/comments',
+      type: 'post',
+      data: {comment: params},
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveOneComment(result);
+        MessageActions.receiveErrors('[]');
+      },
+      error: function(result) {
+        MessageActions.receiveErrors('["Comment must contain content."]');
+      }
+    });
+  },
+
+  deleteComment: function(comment) {
+    $.ajax({
+      url: '/api/comments/' + comment.id,
+      type: 'delete',
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.removeComment(result);
+        MessageActions.receiveErrors('[]');
+      }
+    });
+  },
 };

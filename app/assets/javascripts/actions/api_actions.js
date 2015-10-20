@@ -48,6 +48,27 @@
         actionType: ShareConstants.SHARE_REMOVED,
         share: share
       });
+    },
+
+    receiveAllComments: function(comments) {
+      AppDispatcher.dispatch({
+        actionType: CommentConstants.COMMENTS_RECEIVED,
+        comments: comments
+      });
+    },
+
+    receiveOneComment: function(comment) {
+      AppDispatcher.dispatch({
+        actionType: CommentConstants.COMMENT_RECEIVED,
+        comment: comment
+      });
+    },
+
+    removeComment: function(comment) {
+      AppDispatcher.dispatch({
+        actionType: CommentConstants.COMMENT_REMOVED,
+        comment: comment
+      });
     }
 
   };

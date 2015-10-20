@@ -26,7 +26,8 @@ class Harvst < ActiveRecord::Base
   before_save :default_image_url
 
   belongs_to :user
-  has_many :shares
+  has_many :shares, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def self.in_bounds(bounds, privacy = "public")
     sql_bounds = {

@@ -7,11 +7,12 @@ Rails.application.routes.draw do
     resources :users, only: [:update, :index, :show] do
       resources :harvsts, only: [:index]
     end
-    resources :harvsts, only: [:create, :update, :show, :index, :destroy]
+    resources :harvsts, only: [:create, :update, :show, :index, :destroy] do
+      resources :comments, only: [:index]
+    end
     resources :shares, only: [:create, :index, :show, :destroy]
+    resources :comments, only: [:create, :destroy]
   end
-
-  get "/", to: 'static_pages#root'
 
   root 'static_pages#root'
 end

@@ -66,7 +66,7 @@ class Api::HarvstsController < ApplicationController
   def restrict_private_harvsts
     harvst = Harvst.includes(:shares).find(params[:id])
     not_owner = harvst.user_id != current_user.id
-    not_shared = harvst.shares.none? { |share| share.user_id != current_user.id }
+    not_shared = harvst.shares.none? { |share| share.user_id == current_user.id }
 
     if harvst.private? && not_owner && not_shared
       render json: {error: "You do not have access."}, status: 404
