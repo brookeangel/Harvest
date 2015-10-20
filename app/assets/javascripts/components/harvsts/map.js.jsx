@@ -2,8 +2,6 @@
 
   root.Map = React.createClass({
 
-    mixins: [ReactRouter.History],
-
     componentDidMount: function() {
       var mapNode = React.findDOMNode(this.refs.map);
 
@@ -93,7 +91,7 @@
     },
 
     _handleMarkerClick: function(id) {
-      this.history.pushState(null, "show/"+id);
+      this.props.history.pushState(null, id + "/show");
     },
 
     _adjustMarkers: function() {

@@ -1,22 +1,27 @@
 (function(root) {
 
   root.ShowHarvst = React.createClass({
-    mixins: [ReactRouter.History],
 
     getInitialState: function() {
       if (HarvstStore.getHarvst().id == this.props.params.id) {
-        return {harvst: HarvstStore.getHarvst()};
+        return {harvst: HarvstStore.getHarvst(), errors: []};
       } else {
-        return {harvst: null};
+        return {harvst: null, errors: []};
       }
+    },
+
+    _updateErrors: function() {
+      this.setState({errors: MessageStore.allErrors()});
     },
 
     componentWillMount: function() {
       HarvstStore.addChangeListener(this._updateHarvst);
+      MessageStore.addChangeListener(this._updateErrors);
     },
 
     componentWillUnmount: function() {
       HarvstStore.removeChangeListener(this._updateHarvst);
+      MessageStore.removeChangeListener(this._updateErrors);
     },
 
     _updateHarvst: function() {
@@ -27,7 +32,7 @@
       e.preventDefault();
       if(root.confirm("Are you sure you want to delete this harvest?")) {
         ApiUtil.deleteHarvst(this.state.harvst.id, function() {
-          this.history.pushState("", "");
+          this.props.history.pushState("", "");
         }.bind(this));
       }
     },
@@ -35,12 +40,12 @@
 
     _handleEditClick: function(e) {
       e.preventDefault();
-      this.history.pushState("", this.state.harvst.id + "/edit");
+      this.props.history.pushState("", this.state.harvst.id + "/edit");
     },
 
     _handleUserClick: function(e) {
       e.preventDefault();
-      this.history.pushState("", "user/" + this.state.harvst.user.id);
+      this.props.history.pushState("", "user/" + this.state.harvst.user.id);
     },
 
     render: function() {
@@ -64,20 +69,26 @@
 
         harvstShowContents = (
           <div className="show-view-body">
-            <div className="relative margin-top">
-              <img src={this.state.harvst.image_url} className="img-responsive img-circle" width="250" height="250"/>
-            </div>
+            <Errors errors={this.state.errors} />
             <h1>{this.state.harvst.title}</h1>
             <p>Posted by <a href="#" onClick={this._handleUserClick} >{this.state.harvst.user.username}</a> {this.state.harvst.created_at} ago.</p>
-
-            <div className="harvst-details text-left">
-              <ShowField label="Details" contents={this.state.harvst.description} harvst={this.state.harvst}/>
-              <ShowField label="Address" contents={this.state.harvst.address} harvst={this.state.harvst} />
-              <ShowField label="Contact" contents={this.state.harvst.contact} harvst={this.state.harvst} />
-              <ShowField label="Privacy" contents={this.state.harvst.privacy} harvst={this.state.harvst} />
-              <ShowField label="Expires" contents={this.state.harvst.end_date} harvst={this.state.harvst} />
+            <div className="row margin-top">
+              <div className="col-sm-6 col-xs-12">
+                <img src={this.state.harvst.image_url} className="img-responsive"/>
+              </div>
+              <div className="col-sm-6 col-xs-12">
+                {shareForm}
+                <div className="harvst-details text-left">
+                  <ShowField label="Contact" contents={this.state.harvst.contact} harvst={this.state.harvst} />
+                  <ShowField label="Address" contents={this.state.harvst.address} harvst={this.state.harvst} />
+                  <ShowField label="Privacy" contents={this.state.harvst.privacy} harvst={this.state.harvst} />
+                  <ShowField label="Expires" contents={this.state.harvst.end_date} harvst={this.state.harvst} />
+                  <ShowField label="Details" contents={this.state.harvst.description} harvst={this.state.harvst}/>
+                </div>
+              </div>
             </div>
-            <HarvstComments harvst={this.state.harvst}  history={this.history} />
+
+            <HarvstComments harvst={this.state.harvst}  history={this.props.history} />
           </div>
         );
 
@@ -91,7 +102,6 @@
                 {deleteButton}
               </div>
               {harvstShowContents}
-              {shareForm}
             </div>
           </div>
         </div>

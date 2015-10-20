@@ -1,7 +1,6 @@
 (function(root) {
 
   root.Search = React.createClass({
-    mixins: [ReactRouter.History],
 
     getInitialState: function() {
       return {params: ''};
@@ -34,8 +33,8 @@
     render: function() {
       return(
         <div className="row">
-          <Map handleMapClick={this._handleMapClick}/>
-          <HarvstIndex />
+          <Map handleMapClick={this._handleMapClick} history={this.props.history} />
+          <HarvstIndex history={this.props.history} />
         </div>
       );
     }

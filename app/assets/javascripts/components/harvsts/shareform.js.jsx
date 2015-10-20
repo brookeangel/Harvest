@@ -4,23 +4,18 @@
     mixins: [React.addons.LinkedStateMixin],
 
     getInitialState: function() {
-      return {username: "", shares: [], errors: []};
+      return {username: "", shares: []};
     },
 
     componentWillMount: function() {
       ApiUtil.fetchHarvstShares(this.props.harvstId);
       ShareStore.addChangeListener(this._updateShares);
-      MessageStore.addChangeListener(this._updateErrors);
     },
 
     componentWillUnmount: function() {
       ShareStore.removeChangeListener(this._updateShares);
-      MessageStore.removeChangeListener(this._updateErrors);
     },
 
-    _updateErrors: function() {
-      this.setState({errors: MessageStore.allErrors()});
-    },
 
     _updateShares: function() {
       this.setState({shares: ShareStore.all()});
@@ -44,8 +39,7 @@
 
     render: function() {
       return(
-        <div className="col-xs-6 col-xs-offset-3">
-          <Errors errors={this.state.errors} />
+        <div>
           <div className="input-group" >
             <input type="text"
               className="form-control"
