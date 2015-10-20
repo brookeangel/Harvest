@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   has_many :harvsts
   has_many :shares
   has_many :comments
+  has_many :notifications
 
   def reset_session_token!
     self.session_token = User.generate_session_token

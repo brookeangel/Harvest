@@ -69,6 +69,13 @@
         actionType: CommentConstants.COMMENT_REMOVED,
         comment: comment
       });
+    },
+
+    receiveNotifications: function(notifications) {
+      AppDispatcher.dispatch({
+        actionType: NotificationConstants.NOTIFICATIONS_RECEIVED,
+        notifications: notifications 
+      });
     }
 
   };

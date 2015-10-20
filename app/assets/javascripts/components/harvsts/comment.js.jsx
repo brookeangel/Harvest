@@ -6,10 +6,14 @@
     },
 
     render: function() {
+    var deleteButton;
+    if (CURRENT_USER === this.props.comment.user_id) {
+      deleteButton = <h6 onClick={this._handleClick}>Delete</h6>;
+    }
       return(
         <div>
           {this.props.comment.body}
-          <h6 onClick={this._handleClick}>Delete</h6>
+          {deleteButton}
         </div>
       );
     }

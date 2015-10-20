@@ -128,7 +128,7 @@ window.ApiUtil = {
     });
   },
 
-  addShare: function(params) {
+  addShare: function(params, cb) {
     $.ajax({
       url: '/api/shares',
       type: 'post',
@@ -137,6 +137,7 @@ window.ApiUtil = {
       success: function(result) {
         ApiActions.receiveOneShare(result);
         MessageActions.receiveErrors('[]');
+        cb(result);
       },
       error: function(result) {
         MessageActions.receiveErrors('["User not found."]');
@@ -180,7 +181,7 @@ window.ApiUtil = {
     });
   },
 
-  addComment: function(params) {
+  addComment: function(params, cb) {
     $.ajax({
       url: '/api/comments',
       type: 'post',
@@ -189,6 +190,7 @@ window.ApiUtil = {
       success: function(result) {
         ApiActions.receiveOneComment(result);
         MessageActions.receiveErrors('[]');
+        cb(result);
       },
       error: function(result) {
         MessageActions.receiveErrors('["Comment must contain content."]');
@@ -207,4 +209,27 @@ window.ApiUtil = {
       }
     });
   },
+
+  addNotification: function(params) {
+    $.ajax({
+      url: '/api/notifications',
+      type: 'post',
+      data: {notification: params},
+      dataType: 'json',
+      success: function(result) {
+        console.log('notification sent');
+      }
+    });
+  },
+
+  fetchNotifications: function() {
+    $.ajax({
+      url: '/api/notifications',
+      type: 'get',
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveNotifications(result);
+      }
+    });
+  }
 };

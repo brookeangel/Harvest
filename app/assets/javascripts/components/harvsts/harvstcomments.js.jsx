@@ -24,8 +24,16 @@
       ApiUtil.addComment({
         harvst_id: this.props.harvst.id,
         body: this.state.body
-      });
+      }, this.generateNotification);
       this.setState({body: ""});
+    },
+
+    generateNotification: function(result) {
+      ApiUtil.addNotification({
+        notifyable_id: result.id,
+        notifyable_type: "Comment",
+        user_id: result.user_to_notify
+      });
     },
 
     render: function() {

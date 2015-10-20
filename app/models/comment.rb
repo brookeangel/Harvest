@@ -14,5 +14,6 @@ class Comment < ActiveRecord::Base
   validates :user_id, :harvst_id, :body, presence: true
 
   belongs_to :user
-  belongs_to :harvst 
+  belongs_to :harvst
+  has_many :notifications, as: :notifyable
 end

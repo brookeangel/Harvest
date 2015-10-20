@@ -30,8 +30,16 @@
       ApiUtil.addShare({
         username: this.state.username,
         harvstId: this.props.harvstId
-      });
+      }, this.generateNotification);
       this.setState({username: ""});
+    },
+
+    generateNotification: function(result) {
+      ApiUtil.addNotification({
+        notifyable_id: result.id,
+        notifyable_type: "Share",
+        user_id: result.shared_userid
+      });
     },
 
     render: function() {
