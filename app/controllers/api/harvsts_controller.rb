@@ -27,6 +27,10 @@ class Api::HarvstsController < ApplicationController
     if params[:bounds]
       @harvsts = Harvst.in_bounds(params[:bounds])
                        .includes(:user)
+    elsif params[:sharedId]
+      @harvsts = Share.includes(:harvst)
+                      .where(user_id: params[:sharedId])
+                      .map { |share| share.harvst }
     else
       @harvsts = User.find(params[:user_id]).harvst_settings(params[:privacy])
     end
@@ -60,7 +64,11 @@ class Api::HarvstsController < ApplicationController
   end
 
   def restrict_private_harvsts
-    if Harvst.find(params[:id]).user_id != current_user.id && Harvst.find(params[:id]).private?
+    harvst = Harvst.includes(:shares).find(params[:id])
+    not_owner = harvst.user_id != current_user.id
+    not_shared = harvst.shares.none? { |share| share.user_id != current_user.id }
+
+    if harvst.private? && not_owner && not_shared
       render json: {error: "You do not have access."}, status: 404
     end
   end

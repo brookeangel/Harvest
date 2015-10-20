@@ -35,6 +35,18 @@ window.ApiUtil = {
     });
   },
 
+  fetchSharedHarvsts: function(id) {
+    $.ajax({
+      url: '/api/harvsts',
+      method: 'GET',
+      data: {sharedId: id},
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveAll(result);
+      }
+    });
+  },
+
   addHarvst: function(params, cb) {
     $.ajax({
       url: '/api/harvsts',
@@ -124,9 +136,10 @@ window.ApiUtil = {
       dataType: 'json',
       success: function(result) {
         ApiActions.receiveOneShare(result);
+        MessageActions.receiveErrors('[]');
       },
       error: function(result) {
-        MessageActions.receiveErrors(result.responseText);
+        MessageActions.receiveErrors('["User not found."]');
       }
     });
   },
@@ -143,17 +156,6 @@ window.ApiUtil = {
     });
   },
 
-  fetchShares: function() {
-    $.ajax({
-      url: '/api/shares',
-      type: 'get',
-      dataType: 'json',
-      success: function(result) {
-        ApiActions.receiveAllShares(result);
-      }
-    });
-  },
-
   deleteShare: function(share) {
     $.ajax({
       url: '/api/shares/' + share.id,
@@ -162,6 +164,7 @@ window.ApiUtil = {
       data: {share: {harvstId: share.harvst_id}},
       success: function(result) {
         ApiActions.removeShare(result);
+        MessageActions.receiveErrors('[]');
       }
     });
   },

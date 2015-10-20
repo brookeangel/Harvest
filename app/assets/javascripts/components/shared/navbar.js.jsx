@@ -16,6 +16,11 @@
       this.props.history.pushState(null, "user/" + CURRENT_USER + "/harvsts");
     },
 
+    _handleSharedHarvstsClick: function(e) {
+      e.preventDefault();
+      this.props.history.pushState(null, "harvsts/shared");
+    },
+
     _handleProfileClick: function(e) {
       e.preventDefault();
       this.props.history.pushState(null, "user/" + window.CURRENT_USER);
@@ -58,9 +63,10 @@
                     Welcome, {window.CURRENT_USER_USERNAME} <span className="caret"></span>
                   </a>
                   <ul className="dropdown-menu">
+                    <li><a href="#" onClick={this._handleProfileClick}>Profile</a></li>
                     <li><a href="#" onClick={this._handleAddHarvestClick}>Add Harvest</a></li>
                     <li><a href="#" onClick={this._handleMyHarvstsClick}>My Harvests</a></li>
-                    <li><a href="#" onClick={this._handleProfileClick}>Profile</a></li>
+                    <li><a href="#" onClick={this._handleSharedHarvstsClick}>Shared Harvests</a></li>
                     <li role="separator" className="divider"></li>
                     <li><a href="#" onClick={this._handleLogout}>Logout</a></li>
                   </ul>

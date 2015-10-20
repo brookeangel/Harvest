@@ -30,6 +30,7 @@ $(function() {
         <Route path="edit" component={EditHarvst} />
       </Route>
       <Route path="harvsts/new" component={HarvstForm} />
+      <Route path="harvsts/shared" component={SharedHarvsts} />
     </Route>
   );
 
