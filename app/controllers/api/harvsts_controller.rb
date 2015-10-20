@@ -1,6 +1,7 @@
 class Api::HarvstsController < ApplicationController
   before_action :assure_logged_in
   before_action :assure_correct_user, only: [:update, :destroy]
+  before_action :restrict_private_harvsts, only: [:show]
 
   def create
     @harvst = Harvst.new(harvst_params)
@@ -54,6 +55,12 @@ class Api::HarvstsController < ApplicationController
 
   def assure_correct_user
     unless Harvst.find(params[:id]).user_id == current_user.id
+      render json: {error: "You do not have access."}, status: 404
+    end
+  end
+
+  def restrict_private_harvsts
+    if Harvst.find(params[:id]).user_id != current_user.id && Harvst.find(params[:id]).private?
       render json: {error: "You do not have access."}, status: 404
     end
   end

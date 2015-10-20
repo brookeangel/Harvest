@@ -84,7 +84,7 @@ window.ApiUtil = {
       type: 'get',
       dataType: 'json',
       success: function(result) {
-        ApiActions.recieveOneUser(result);
+        ApiActions.receiveOneUser(result);
       }
     });
   },
@@ -95,7 +95,7 @@ window.ApiUtil = {
       type: 'get',
       dataType: 'json',
       success: function(result) {
-        ApiActions.recieveAllUsers(result);
+        ApiActions.receiveAllUsers(result);
       }
     });
   },
@@ -107,11 +107,61 @@ window.ApiUtil = {
       data: params,
       dataType: 'json',
       success: function(result) {
-        ApiActions.recieveOneUser(result);
+        ApiActions.receiveOneUser(result);
         cb();
       },
       error: function(result) {
         MessageActions.receiveErrors(result.responseText);
+      }
+    });
+  },
+
+  addShare: function(params) {
+    $.ajax({
+      url: '/api/shares',
+      type: 'post',
+      data: {share: params},
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveOneShare(result);
+      },
+      error: function(result) {
+        MessageActions.receiveErrors(result.responseText);
+      }
+    });
+  },
+
+  fetchHarvstShares: function(harvstId) {
+    $.ajax({
+      url: '/api/shares',
+      type: 'get',
+      data: {harvstId: harvstId},
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveAllShares(result);
+      }
+    });
+  },
+
+  fetchShares: function() {
+    $.ajax({
+      url: '/api/shares',
+      type: 'get',
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveAllShares(result);
+      }
+    });
+  },
+
+  deleteShare: function(share) {
+    $.ajax({
+      url: '/api/shares/' + share.id,
+      type: 'delete',
+      dataType: 'json',
+      data: {share: {harvstId: share.harvst_id}},
+      success: function(result) {
+        ApiActions.removeShare(result);
       }
     });
   },

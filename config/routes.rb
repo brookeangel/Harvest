@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :harvsts, only: [:index]
     end
     resources :harvsts, only: [:create, :update, :show, :index, :destroy]
+    resources :shares, only: [:create, :index, :show, :destroy]
   end
 
   get "/", to: 'static_pages#root'

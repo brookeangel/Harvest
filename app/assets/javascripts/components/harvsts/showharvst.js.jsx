@@ -44,8 +44,7 @@
     },
 
     render: function() {
-      var harvstShowContents = null;
-      var deleteButton = null;
+      var harvstShowContents, deleteButton, shareForm;
 
       if (this.state.harvst) {
         if (this.state.harvst.user.id === CURRENT_USER) {
@@ -59,6 +58,8 @@
               </button>
             </div>
           );
+
+          shareForm = <ShareForm harvstId={this.state.harvst.id} />;
         }
 
         harvstShowContents = (
@@ -89,6 +90,7 @@
                 {deleteButton}
               </div>
               {harvstShowContents}
+              {shareForm}
             </div>
           </div>
         </div>

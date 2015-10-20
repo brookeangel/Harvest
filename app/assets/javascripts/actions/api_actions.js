@@ -15,19 +15,40 @@
       });
     },
 
-    recieveOneUser: function(user) {
+    receiveOneUser: function(user) {
       AppDispatcher.dispatch({
         actionType: UserConstants.USER_RECEIVED,
         user: user
       });
     },
 
-    recieveAllUsers: function(users) {
+    receiveAllUsers: function(users) {
       AppDispatcher.dispatch({
         actionType: UserConstants.USERS_RECEIVED,
         users: users
       });
     },
+
+    receiveOneShare: function(share) {
+      AppDispatcher.dispatch({
+        actionType: ShareConstants.SHARE_RECEIVED,
+        share: share
+      });
+    },
+
+    receiveAllShares: function(shares) {
+      AppDispatcher.dispatch({
+        actionType: ShareConstants.SHARES_RECEIVED,
+        shares: shares
+      });
+    },
+
+    removeShare: function(share) {
+      AppDispatcher.dispatch({
+        actionType: ShareConstants.SHARE_REMOVED,
+        share: share
+      });
+    }
 
   };
 }(this));

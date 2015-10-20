@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   attr_reader :password, :password_confirmation
 
   has_many :harvsts
+  has_many :shares
 
   def reset_session_token!
     self.session_token = User.generate_session_token
