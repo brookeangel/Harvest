@@ -18,6 +18,15 @@
       this.setState({notifications: NotificationStore.all()});
     },
 
+    _viewNotifications: function() {
+      var notificationIds = [];
+      this.state.notifications.map(function(notification) {
+        notifications.push(notification.id);
+      });
+
+      ApiUtil.viewNotifications(notificationIds);
+    },
+
     render: function() {
       return(
         <li className="dropdown">
@@ -25,10 +34,15 @@
             aria-haspopup="true" aria-expanded="false">
             {this.state.notifications.length} Notifications
           </a>
-          <ul className="dropdown-menu">
+          <ul className="dropdown-menu" onClick={this._viewNotifications}>
             {this.state.notifications.map(function(notification) {
-              return <li>{notification.notifyable_id} {notification.notifyable_type}</li>;
-            })}
+              return (
+                <NotificationItem
+                  history={this.props.history}
+                  notification={notification}
+                  key={notification.id}/>
+              );
+            }.bind(this))}
           </ul>
         </li>
       );

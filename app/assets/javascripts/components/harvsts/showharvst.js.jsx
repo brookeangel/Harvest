@@ -77,7 +77,7 @@
               <ShowField label="Privacy" contents={this.state.harvst.privacy} harvst={this.state.harvst} />
               <ShowField label="Expires" contents={this.state.harvst.end_date} harvst={this.state.harvst} />
             </div>
-            <HarvstComments harvst={this.state.harvst} />
+            <HarvstComments harvst={this.state.harvst}  history={this.history} />
           </div>
         );
 

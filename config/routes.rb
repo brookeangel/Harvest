@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
     resources :shares, only: [:create, :index, :show, :destroy]
     resources :comments, only: [:create, :destroy]
-    resources :notifications, only: [:create, :destroy, :index]
+    resources :notifications, only: [:create, :index, :update]
   end
 
   root 'static_pages#root'

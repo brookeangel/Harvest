@@ -29,10 +29,10 @@ class User < ActiveRecord::Base
 
   attr_reader :password, :password_confirmation
 
-  has_many :harvsts
-  has_many :shares
-  has_many :comments
-  has_many :notifications
+  has_many :harvsts, dependent: :destroy
+  has_many :shares, dependent: :destroy
+  has_many :comments, dependent: :destroy 
+  has_many :notifications, dependent: :destroy
 
   def reset_session_token!
     self.session_token = User.generate_session_token

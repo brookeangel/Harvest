@@ -48,7 +48,7 @@
 
             <div className="collapse navbar-collapse" id="collapse-menu">
               <ul className="nav navbar-nav navbar-right">
-                <Notifications />
+                <Notifications history={this.props.history}/>
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
                     aria-haspopup="true" aria-expanded="false">

@@ -1,8 +1,10 @@
 class Api::NotificationsController < ApplicationController
-  before_action :ensure_correct_user, only: [:destroy]
+  before_action :ensure_correct_user, only: [:update]
 
   def index
-    @notifications = Notification.where(user_id: current_user.id)
+    @notifications = Notification.includes(:notifyable)
+                                  .where(user_id: current_user.id)
+                                  .limit(25)
   end
 
   def create
@@ -15,11 +17,12 @@ class Api::NotificationsController < ApplicationController
     end
   end
 
-  def destroy
+  def update
     @notification = Notification.find(params[:id])
 
     if @notification
-      @notification.destroy
+      @notification.viewed = true
+      @notification.save
       render json: "Notification viewed."
     else
       render json: "Notification does not exist.", status: 422

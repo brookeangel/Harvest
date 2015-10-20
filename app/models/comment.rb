@@ -15,5 +15,5 @@ class Comment < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :harvst
-  has_many :notifications, as: :notifyable
+  has_many :notifications, as: :notifyable, dependent: :destroy
 end

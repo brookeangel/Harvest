@@ -39,7 +39,11 @@
     render: function() {
       return(
         <div>
-          <form className="form-horizontal" onSubmit={this._handleSubmit}>
+          <h1 className="text-center">Comments</h1>
+          {this.state.comments.map(function(comment) {
+            return <Comment key={comment.id} comment={comment} history={this.props.history}/>;
+          }.bind(this))}
+          <form onSubmit={this._handleSubmit}>
             <div className="form-group">
               <textarea
                 id="harvst_description"
@@ -51,9 +55,6 @@
               <button className="btn btn-default">Add Comment</button>
             </div>
           </form>
-          {this.state.comments.map(function(comment) {
-            return <Comment key={comment.id} comment={comment} />;
-          })}
         </div>
       );
     }

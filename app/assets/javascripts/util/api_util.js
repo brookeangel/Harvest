@@ -222,6 +222,14 @@ window.ApiUtil = {
     });
   },
 
+  viewNotifications: function(ids) {
+    $.ajax({
+      url: '/api/notifications/' + id,
+      type: 'patch',
+      dataType: 'json'
+    });
+  },
+
   fetchNotifications: function() {
     $.ajax({
       url: '/api/notifications',
