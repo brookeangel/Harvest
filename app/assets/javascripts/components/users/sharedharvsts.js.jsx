@@ -15,7 +15,7 @@
     },
 
     _updateSharedHarvsts: function() {
-      this.setState({sharedHarvsts: HarvstStore.all()});
+      this.setState({sharedHarvsts: HarvstStore.allSharedHarvsts()});
     },
 
     render: function() {

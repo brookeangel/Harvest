@@ -8,6 +8,13 @@
       });
     },
 
+    receiveAllShared: function(harvsts) {
+      AppDispatcher.dispatch({
+        actionType: HarvstConstants.SHARED_HARVSTS_RECEIVED,
+        harvsts: harvsts
+      });
+    },
+
     receiveOne: function(harvst) {
       AppDispatcher.dispatch({
         actionType: HarvstConstants.HARVST_RECEIVED,
@@ -74,7 +81,7 @@
     receiveNotifications: function(notifications) {
       AppDispatcher.dispatch({
         actionType: NotificationConstants.NOTIFICATIONS_RECEIVED,
-        notifications: notifications 
+        notifications: notifications
       });
     }
 

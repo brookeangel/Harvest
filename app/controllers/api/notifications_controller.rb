@@ -3,7 +3,7 @@ class Api::NotificationsController < ApplicationController
   def index
     @notifications = Notification.includes(:notifyable)
                                   .where(user_id: current_user.id)
-                                  .limit(25)
+                                  .limit(15)
   end
 
   def create

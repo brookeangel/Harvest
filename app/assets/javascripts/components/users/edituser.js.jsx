@@ -74,7 +74,6 @@
       if (this.state.user) {
         user = (
           <div>
-            <h1>{this.state.user.username}s Profile</h1>
             <Errors errors={this.state.errors} />
             <div className="row pad-top">
               <div className="col-sm-5">
@@ -82,6 +81,7 @@
               </div>
 
                 <div className="col-sm-7 relative text-center">
+                <h1 className="black-border-bottom text-left">{this.state.user.username}s Profile</h1>
                   <form>
                     <div className="form-group">
                       <input
