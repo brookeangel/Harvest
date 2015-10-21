@@ -5,7 +5,7 @@
     render: function() {
 
       return(
-        <div className="row no-margin text-center">
+        <div className="no-margin row text-center">
           {this.props.harvsts.map(function(harvst) {
             return(
               <UserHarvstsItem harvst={harvst} key={harvst.id} />

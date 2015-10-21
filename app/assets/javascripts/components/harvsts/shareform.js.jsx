@@ -40,7 +40,16 @@
     render: function() {
       return(
         <div>
-          <div>
+          <div className="input-group" >
+            <input type="text"
+              className="form-control"
+              placeholder="Share Harvst"
+              valueLink={this.linkState("username")}/>
+            <span className="input-group-addon" onClick={this._handleSubmit}>
+              <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </span>
+          </div>
+          <div className="pad-top">
             <button type="button"
               className="btn btn-default tiny-button tiny-button-case">Shared Users
             </button>
@@ -49,21 +58,6 @@
                 <ShareButton key={share.id} share={share} />
               );
             })}
-          </div>
-          <div className="input-group pad-top" >
-            <input type="text"
-              className="form-control"
-              placeholder="Share Harvst"
-              valueLink={this.linkState("username")}/>
-            <span className="input-group-addon" onClick={this._handleSubmit}>
-              <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </span>
-            <span className="input-group-addon" onClick={this.props.handleEditClick}>
-              <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-            </span>
-            <span className="input-group-addon" onClick={this.props.handleDeleteClick}>
-              <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
-            </span>
           </div>
         </div>
       );

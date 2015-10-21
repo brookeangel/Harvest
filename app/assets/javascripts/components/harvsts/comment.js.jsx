@@ -6,7 +6,7 @@
       ApiUtil.deleteComment(this.props.comment);
     },
 
-    _handleUserclick: function(e) {
+    _handleUserClick: function(e) {
       e.preventDefault();
       this.props.history.pushState(null, "user/" + this.props.comment.user_id);
     },

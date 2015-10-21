@@ -58,7 +58,6 @@
                     <li><a href="#" onClick={this._handleProfileClick}>Profile</a></li>
                     <li><a href="#" onClick={this._handleAddHarvestClick}>Add Harvest</a></li>
                     <li><a href="#" onClick={this._handleMyHarvstsClick}>My Harvests</a></li>
-                    <li><a href="#" onClick={this._handleSharedHarvstsClick}>Shared Harvests</a></li>
                     <li role="separator" className="divider"></li>
                     <li><a href="#" onClick={this._handleLogout}>Logout</a></li>
                   </ul>

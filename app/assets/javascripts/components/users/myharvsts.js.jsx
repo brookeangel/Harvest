@@ -27,9 +27,11 @@
       return(
         <div className="row profile-page">
           <div className="col-md-8 col-md-offset-2 profile-container text-center">
-            <h1>My Harvsts</h1>
+            <h1 className="text-left black-border-bottom">My Harvsts</h1>
             {userHarvsts}
+            <SharedHarvsts />
           </div>
+
         </div>
       );
     }

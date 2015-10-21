@@ -25,14 +25,14 @@
       }
 
       return(
-        <div className="row profile-page">
-          <div className="col-md-8 col-md-offset-2 profile-container text-center">
-            <h1>Shared Harvsts</h1>
-            {sharedHarvsts}
-          </div>
+        <div>
+          <h1 className="text-right black-border-bottom">Shared Harvsts</h1>
+          {sharedHarvsts}
         </div>
       );
     }
   });
 
 }(this));
+
+// className="col-md-8 col-md-offset-2 profile-container text-center"

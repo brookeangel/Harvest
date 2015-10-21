@@ -45,15 +45,26 @@
     },
 
     render: function() {
-      var harvstShowContents, shareForm;
+      var harvstShowContents, shareForm, editDeleteButton;
 
       if (this.state.harvst) {
         if (this.state.harvst.user.id === CURRENT_USER) {
           shareForm = (
-            <ShareForm harvst={this.state.harvst}
-              handleDeleteClick={this.handleDeleteClick}
-              handleEditClick={this.handleEditClick} />
+            <ShareForm harvst={this.state.harvst}/>
             );
+
+          editDeleteButton = (
+            <span className="float-right">
+              <div className="btn-group" >
+                <button type="button" className="btn btn-default" onClick={this.handleEditClick}>
+                  <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </button>
+                <button type="button" className="btn btn-default" onClick={this.handleDeleteClick}>
+                  <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
+              </div>
+            </span>
+          );
 
         }
 
@@ -61,7 +72,10 @@
           <div className="show-view-body text-left">
             {shareForm}
             <Errors errors={this.state.errors} />
-            <h1 className="text-left">{this.state.harvst.title}</h1>
+            <h1 className="text-left">
+              {this.state.harvst.title}
+              {editDeleteButton}
+            </h1>
             <p className="black-border-bottom cf">
               <span className="float-left">
                 Posted by <a href="#" onClick={this._handleUserClick} >{this.state.harvst.user.username}</a> {this.state.harvst.created_at} ago.
