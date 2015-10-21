@@ -24,8 +24,19 @@
  }
 
  h1 {
-   text-align: center;
    font-family: 'Pacifico', cursive;
+ }
+
+ .cf:after {
+   content: "";
+   clear: both;
+   display: block;
+ }
+
+ //navbar
+
+ .navbar-search {
+   margin-top: 7px;
  }
 
  // new session new user forms
@@ -58,10 +69,6 @@
 
  #map {
    border-right: 1px solid #e7e7e7;
- }
-
- .harvst-details {
-   margin-top: 25px;
  }
 
  .img-responsive {
@@ -99,6 +106,10 @@
 
  .show-view-body {
    margin: 15px;
+ }
+
+ .tiny-margin-top {
+   margin-top: 5px;
  }
 
 // harvst index
@@ -142,6 +153,15 @@
   padding-bottom: 2px;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.tiny-button-case {
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+.black-border-top {
+  border-top: 1px solid black;
 }
 
 //edit harvst
@@ -202,6 +222,10 @@
 .comment-body {
   min-height: 75px;
   padding: 15px;
+}
+
+.black-border-bottom {
+  border-bottom: 5px solid black;
 }
 
 .comment-details {

@@ -24,11 +24,13 @@
     },
 
     render: function() {
-      var user, website_url, description;
+      var user, website_url, description, editButton;
 
       if (this.state.user) {
         if (this.state.user.website_url) {
-          website_url = this.state.user.website_url;
+          website_url = <a href={website_url}>{this.state.user.website_url}</a>;
+        } else {
+          website_url = "No website";
         }
 
         if (this.state.user.description) {
@@ -37,23 +39,29 @@
           description = "No description yet!";
         }
 
+        if (this.state.user.id === CURRENT_USER) {
+          editButton = (
+            <div className="btn-group icon-right" role="group" aria-label="...">
+              <button type="button" className="btn btn-default" onClick={this._handleEditClick}>
+                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              </button>
+            </div>
+          );
+        }
+
         user = (
           <div>
-            <h1>{this.state.user.username}s Profile</h1>
             <div className="row pad-top">
               <div className="col-sm-5">
                 <img src={this.state.user.profile_img_url} className="img-responsive profile-img"/>
               </div>
               <div className="col-sm-7 relative">
-                <div className="btn-group icon-right" role="group" aria-label="...">
-                  <button type="button" className="btn btn-default" onClick={this._handleEditClick}>
-                    <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                  </button>
-                </div>
+                {editButton}
 
+                <h1 className="text-left black-border-bottom tiny-margin-top">{this.state.user.username}s Profile</h1>
                 <h5>
                   {this.state.user.affiliation} &nbsp;|&nbsp;
-                  <a href={website_url}>{website_url}</a>
+                  {website_url}
                 </h5>
                 {description}
               </div>

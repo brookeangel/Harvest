@@ -14,7 +14,7 @@
     render: function() {
     var deleteButton;
     if (CURRENT_USER === this.props.comment.user_id) {
-      deleteButton = <span onClick={this._handleClick}>Delete</span>;
+      deleteButton = <a href="#" onClick={this._handleClick}>Delete</a>;
     }
       return(
         <div className="comment text-left">
@@ -24,7 +24,7 @@
           <div className="comment-details">
             <div className="float-left">
               Posted by &nbsp;
-              <span onClick={this._handleUserClick}>{this.props.comment.user_username}</span>
+              <a href="#" onClick={this._handleUserClick}>{this.props.comment.user_username}</a>
               &nbsp;
               {this.props.comment.created_at} ago &nbsp;
             </div>

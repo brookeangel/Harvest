@@ -8,7 +8,7 @@
     },
 
     componentWillMount: function() {
-      ApiUtil.fetchHarvstShares(this.props.harvstId);
+      ApiUtil.fetchHarvstShares(this.props.harvst.id);
       ShareStore.addChangeListener(this._updateShares);
     },
 
@@ -24,7 +24,7 @@
     _handleSubmit: function(e) {
       ApiUtil.addShare({
         username: this.state.username,
-        harvstId: this.props.harvstId
+        harvstId: this.props.harvst.id
       }, this.generateNotification);
       this.setState({username: ""});
     },
@@ -40,7 +40,17 @@
     render: function() {
       return(
         <div>
-          <div className="input-group" >
+          <div>
+            <button type="button"
+              className="btn btn-default tiny-button tiny-button-case">Shared Users
+            </button>
+            {this.state.shares.map(function(share) {
+              return(
+                <ShareButton key={share.id} share={share} />
+              );
+            })}
+          </div>
+          <div className="input-group pad-top" >
             <input type="text"
               className="form-control"
               placeholder="Share Harvst"
@@ -48,15 +58,12 @@
             <span className="input-group-addon" onClick={this._handleSubmit}>
               <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>
             </span>
-          </div>
-          <div className="text-center pad-top">
-            <div>
-              {this.state.shares.map(function(share) {
-                return(
-                  <ShareButton key={share.id} share={share} />
-                );
-              })}
-            </div>
+            <span className="input-group-addon" onClick={this.props.handleEditClick}>
+              <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </span>
+            <span className="input-group-addon" onClick={this.props.handleDeleteClick}>
+              <span className="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </span>
           </div>
         </div>
       );

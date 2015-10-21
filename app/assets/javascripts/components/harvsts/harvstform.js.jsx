@@ -142,7 +142,7 @@
         <div className="row pad-top">
           <ShowMap lat={this.state.lat} lng={this.state.lng} />
 
-          <div className="col-md-3 col-md-offset-8">
+          <div className="col-md-5 offset-56">
             <h1>Add Harvest</h1>
             {errors}
             <form className="form-horizontal" onSubmit={this._handleSubmit}>

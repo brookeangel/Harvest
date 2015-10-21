@@ -14,7 +14,7 @@
 
     render: function() {
       return(
-        <div className="btn-group" role="group" aria-label="...">
+        <div className="btn-group tiny-button-case" role="group" aria-label="...">
           <button type="button"
             className="btn btn-default tiny-button"
             onClick={this._handleUserClick}>

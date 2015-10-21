@@ -39,7 +39,7 @@
     render: function() {
       return(
         <div>
-          <h1 className="text-center">Comments</h1>
+          <h1 className="text-left black-border-bottom">Comments</h1>
           {this.state.comments.map(function(comment) {
             return <Comment key={comment.id} comment={comment} history={this.props.history}/>;
           }.bind(this))}

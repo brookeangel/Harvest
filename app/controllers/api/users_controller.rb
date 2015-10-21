@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.includes(:harvsts).find(params[:id])
 
     if @user.update(user_params)
       render :show
@@ -27,7 +27,9 @@ class Api::UsersController < ApplicationController
   end
 
   def assure_correct_user
-    User.find(params[:id].to_i) == current_user
+    unless params[:id].to_i == current_user.id
+      render json: "You do not have access.", status: 404
+    end
   end
 
 end

@@ -2,26 +2,20 @@
   root.SearchBar = React.createClass({
 
     getInitialState: function() {
-      return {users: [], matches: []};
+      return {matches: [], searchString: ""};
     },
 
     componentWillMount: function() {
       ApiUtil.fetchUsers();
-      UserStore.addChangeListener(this._updateUsers);
     },
 
-    componentWillUnmount: function() {
-      UserStore.removeChangeListener(this._updateUsers);
-    },
-
-    _updateUsers: function() {
-      this.setState({users: UserStore.all()});
-    },
-
-    _getMatches: function(searchString) {
+    _getMatches: function() {
+      var users = UserStore.all();
+      var searchString = this.state.searchString;
       var matches = [];
+
       if(searchString.length > 0){
-        this.state.users.forEach(function (user) {
+        users.forEach(function (user) {
           var sub = user.username.slice(0, searchString.length);
           if(sub.toLowerCase() === searchString.toLowerCase() && matches.length < 6){
             matches.push(user);
@@ -33,32 +27,32 @@
     },
 
     _handleSearch: function(e) {
-      var searchString = e.target.value;
-      var matches = this._getMatches(searchString);
+      this.setState({searchString: e.target.value});
+      var matches = this._getMatches(this.state.searchString);
 
       if (matches.length > 0) {
         this.setState({matches: matches});
-      } else if (searchString.length > 0) {
-        this.setState({matches: "No users match your search."});
+      } else if (this.state.searchString.length > 0) {
+        this.setState({matches: [
+          {username: "No users match your search."}
+        ]});
       }
     },
 
     removeSearchString: function() {
-
+      this.setState({searchString: ""});
     },
 
     render: function() {
       return(
         <ul className="nav navbar-nav">
-          <li className="dropdown">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
-              aria-haspopup="true" aria-expanded="false">
-                <input type="text"
-                  className="form-control"
-                  placeholder="Search Users"
-                  onChange={this._handleSearch}
-                  aria-label="..." />
-              </a>
+          <li className="dropdown open">
+            <input type="text"
+              className="navbar-search form-control"
+              placeholder="Search Users"
+              onChange={this._handleSearch}
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+              aria-label="..." />
               <ul className="dropdown-menu">
                 {this.state.matches.map(function(user) {
                   return (
@@ -77,3 +71,5 @@
     }
   });
 }(this));
+
+// <li class="dropdown open" data-reactid=".0.0.0.1.0"><input type="text" class="navbar-search form-control" placeholder="Search Users" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" aria-label="..." data-reactid=".0.0.0.1.0.0"><ul class="dropdown-menu" data-reactid=".0.0.0.1.0.1"><li data-reactid=".0.0.0.1.0.1.$1"><a href="#" data-reactid=".0.0.0.1.0.1.$1.0">brooke</a></li></ul></li>
