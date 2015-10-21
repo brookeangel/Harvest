@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     end
     resources :shares, only: [:create, :index, :show, :destroy]
     resources :comments, only: [:create, :destroy]
-    resources :notifications, only: [:create, :index, :update]
+    resources :notifications, only: [:create, :index]
   end
+
+  get 'api/notifications/updatebatch', to: 'api/notifications#updatebatch'
 
   root 'static_pages#root'
 end

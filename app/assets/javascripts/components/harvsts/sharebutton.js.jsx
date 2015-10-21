@@ -16,12 +16,12 @@
       return(
         <div className="btn-group" role="group" aria-label="...">
           <button type="button"
-            className="btn btn-default"
+            className="btn btn-default tiny-button"
             onClick={this._handleUserClick}>
             {this.props.share.shared_username}
           </button>
           <button type="button"
-            className="btn btn-default"
+            className="btn btn-default tiny-button"
             onClick={this._handleDeleteClick}>
             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
           </button>

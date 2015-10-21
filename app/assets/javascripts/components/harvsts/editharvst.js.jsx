@@ -100,7 +100,7 @@
       }
 
       return(
-        <div className="col-md-3 col-md-offset-1">
+        <div className="col-md-5 offset-56">
 
           <div className="text-center margin-bottom margin-top relative">
             <img src={this.state.image_url} className="img-responsive img-circle" width="150" height="150"/>

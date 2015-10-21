@@ -126,7 +126,9 @@
       };
 
       return(
-        <div id="map" ref="map" className="col-md-7" style={mapStyle}></div>
+        <div className="map-holder">
+          <div id="map" ref="map" className="col-md-7" style={mapStyle}></div>
+        </div>
       );
     }
   });

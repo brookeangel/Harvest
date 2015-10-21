@@ -2,7 +2,7 @@
   root.Notifications = React.createClass({
 
     getInitialState: function() {
-      return {notifications: []};
+      return {notifications: [], notificationCount: 0};
     },
 
     componentWillMount: function() {
@@ -15,34 +15,50 @@
     },
 
     _updateNotifications: function() {
-      this.setState({notifications: NotificationStore.all()});
+      this.setState({
+        notifications: NotificationStore.all(),
+        notificationCount: this.notificationCount()
+      });
     },
 
     _viewNotifications: function() {
-      var notificationIds = [];
-      this.state.notifications.map(function(notification) {
-        notifications.push(notification.id);
+      ApiUtil.viewNotifications();
+    },
+
+    notificationCount: function() {
+      var unviewedNotifications = 0;
+      NotificationStore.all().forEach(function(notification) {
+        if (notification.viewed === false) {
+          unviewedNotifications += 1;
+        }
       });
 
-      ApiUtil.viewNotifications(notificationIds);
+      return unviewedNotifications;
     },
 
     render: function() {
+      var notifications;
+      if (this.state.notifications.length > 0) {
+        notifications = this.state.notifications.map(function(notification) {
+          return (
+            <NotificationItem
+              history={this.props.history}
+              notification={notification}
+              key={notification.id}/>
+          );
+        }.bind(this));
+      } else {
+        notifications = "You have no notifications.";
+      }
+
       return(
-        <li className="dropdown">
+        <li className="dropdown" onClick={this._viewNotifications}>
           <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
             aria-haspopup="true" aria-expanded="false">
-            {this.state.notifications.length} Notifications
+            {this.notificationCount()} Notifications
           </a>
-          <ul className="dropdown-menu" onClick={this._viewNotifications}>
-            {this.state.notifications.map(function(notification) {
-              return (
-                <NotificationItem
-                  history={this.props.history}
-                  notification={notification}
-                  key={notification.id}/>
-              );
-            }.bind(this))}
+          <ul className="dropdown-menu">
+            {notifications}
           </ul>
         </li>
       );

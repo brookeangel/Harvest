@@ -3,11 +3,7 @@
   root.ShowHarvst = React.createClass({
 
     getInitialState: function() {
-      if (HarvstStore.getHarvst().id == this.props.params.id) {
-        return {harvst: HarvstStore.getHarvst(), errors: []};
-      } else {
-        return {harvst: null, errors: []};
-      }
+      return {harvst: null, errors: []};
     },
 
     _updateErrors: function() {
@@ -76,7 +72,7 @@
               <div className="col-sm-6 col-xs-12">
                 <img src={this.state.harvst.image_url} className="img-responsive"/>
               </div>
-              <div className="col-sm-6 col-xs-12">
+              <div className="col-sm-6 col-xs-12 no-padding-left">
                 {shareForm}
                 <div className="harvst-details text-left">
                   <ShowField label="Contact" contents={this.state.harvst.contact} harvst={this.state.harvst} />
@@ -96,13 +92,11 @@
 
       return(
         <div className="pad-top">
-          <div className="row">
-            <div className="col-md-5 text-center">
-              <div className="text-right">
-                {deleteButton}
-              </div>
-              {harvstShowContents}
+          <div className="col-md-5 offset-56 text-center">
+            <div className="text-right">
+              {deleteButton}
             </div>
+            {harvstShowContents}
           </div>
         </div>
       );

@@ -36,7 +36,7 @@
       }
 
       return(
-        <div className="harvst-index col-md-5">
+        <div className="harvst-index col-md-5 offset-56">
           <MapSearch history={this.history} />
           <h1>Harvests In Your Area</h1>
           {index}

@@ -222,11 +222,14 @@ window.ApiUtil = {
     });
   },
 
-  viewNotifications: function(ids) {
+  viewNotifications: function() {
     $.ajax({
-      url: '/api/notifications/' + id,
-      type: 'patch',
-      dataType: 'json'
+      url: '/api/notifications/updatebatch',
+      type: 'get',
+      dataType: 'json',
+      success: function(result) {
+        ApiActions.receiveNotifications(result);
+      }
     });
   },
 

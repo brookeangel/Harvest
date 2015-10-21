@@ -19,6 +19,8 @@
 
  body {
    padding-top: 50px;
+   max-width: 100%;
+   overflow-x: hidden;
  }
 
  h1 {
@@ -42,10 +44,20 @@
 
  // harvst index
 
+ .full-height {
+   height: 100vh;
+ }
+
+ .map-holder {
+   position: fixed;
+ }
+
+ .offset-56 {
+   margin-left: 56%;
+ }
+
  #map {
    border-right: 1px solid #e7e7e7;
-  //  width: 700px;
-  //  height: 700px;
  }
 
  .harvst-details {
@@ -86,7 +98,7 @@
 }
 
  .show-view-body {
-   margin: 50px;
+   margin: 15px;
  }
 
 // harvst index
@@ -119,6 +131,17 @@
 
 .display-item {
   display: inline-block;
+}
+
+.padding-left {
+  padding-left: 0px;
+}
+
+.tiny-button {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 //edit harvst

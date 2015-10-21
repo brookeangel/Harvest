@@ -3,6 +3,7 @@ json.array! @notifications do |notification|
   json.notifyable_type notification.notifyable_type
   json.notifyable_id notification.notifyable_id
   json.harvst_id notification.notifyable.harvst_id
+  json.viewed notification.viewed
   if notification.notifyable_type == "Comment"
     json.message "You've harvest received a comment."
   else

@@ -1,7 +1,6 @@
 (function(root) {
 
   root.HarvstContainer = React.createClass({
-    mixins: [ReactRouter.History],
 
     getInitialState: function() {
       return ({harvst: null});
@@ -10,6 +9,10 @@
     componentWillMount: function() {
       ApiUtil.fetchHarvst(parseInt(this.props.routeParams.id));
       HarvstStore.addChangeListener(this._updateHarvst);
+    },
+
+    componentWillReceiveProps: function(nextProps) {
+      ApiUtil.fetchHarvst(parseInt(nextProps.params.id));
     },
 
     componentWillUnmount: function() {
@@ -24,7 +27,11 @@
       var showMap = <div id="map" className="col-md-7"></div>;
 
       if (this.state.harvst) {
-        showMap = <ShowMap lat={this.state.harvst.lat} lng={this.state.harvst.lng} style={this.mapStyle}/>;
+        showMap = <ShowMap
+                    lat={this.state.harvst.lat}
+                    lng={this.state.harvst.lng}
+                    style={this.mapStyle}
+                    history={this.props.history} />;
       }
 
       return(

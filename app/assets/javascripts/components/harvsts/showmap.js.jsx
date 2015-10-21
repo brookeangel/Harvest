@@ -21,6 +21,17 @@
       });
     },
 
+    componentWillReceiveProps: function(newProps) {
+      var pos = {
+        lat: newProps.lat,
+        lng: newProps.lng
+      };
+      var latLng = new google.maps.LatLng(pos.lat, pos.lng);
+
+      this.map.setCenter(pos);
+      this.marker.setPosition(latLng);
+    },
+
     render: function() {
       var mapStyle = {
         width: root.screen.availWidth * 0.56,
@@ -28,7 +39,9 @@
       };
 
       return(
-        <div id="map" ref="map" className="col-md-7" style={mapStyle}></div>
+        <div className="map-holder">
+          <div id="map" ref="map" className="col-md-7" style={mapStyle}></div>
+        </div>
       );
     }
   });
