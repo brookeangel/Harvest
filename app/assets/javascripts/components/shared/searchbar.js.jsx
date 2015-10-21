@@ -9,9 +9,8 @@
       ApiUtil.fetchUsers();
     },
 
-    _getMatches: function() {
+    _getMatches: function(searchString) {
       var users = UserStore.all();
-      var searchString = this.state.searchString;
       var matches = [];
 
       if(searchString.length > 0){
@@ -28,15 +27,8 @@
 
     _handleSearch: function(e) {
       this.setState({searchString: e.target.value});
-      var matches = this._getMatches(this.state.searchString);
-
-      if (matches.length > 0) {
-        this.setState({matches: matches});
-      } else if (this.state.searchString.length > 0) {
-        this.setState({matches: [
-          {username: "No users match your search."}
-        ]});
-      }
+      var matches = this._getMatches(e.target.value);
+      this.setState({matches: matches});
     },
 
     removeSearchString: function() {
@@ -45,31 +37,35 @@
 
     render: function() {
       return(
-        <ul className="nav navbar-nav">
-          <li className="dropdown open">
-            <input type="text"
-              className="navbar-search form-control"
-              placeholder="Search Users"
-              onChange={this._handleSearch}
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-              aria-label="..." />
-              <ul className="dropdown-menu">
-                {this.state.matches.map(function(user) {
-                  return (
-                    <li key={user.id}>
-                      <SearchItem
-                        user={user}
-                        removeSearchString={this.removeSearchString}
-                        history={this.props.history} />
-                    </li>
-                    );
-                }.bind(this))}
-              </ul>
-            </li>
-          </ul>
+        <ul className="nav navbar-nav navbar-left">
+          <li className="dropdown" role="presentation">
+            <a className="dropdown-toggle" data-toggle="dropdown" role="button"
+              aria-haspopup="true" aria-expanded="false">
+              <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+            </a>
+            <ul className="dropdown-menu">
+              <li>
+                <div className="input-group search">
+                <input type="text"
+                  className="form-control"
+                  placeholder="Search Users"
+                  onKeyUp={this._handleSearch} />
+                </div>
+              </li>
+              {this.state.matches.map(function(user) {
+                return (
+                  <li key={user.id}>
+                    <SearchItem
+                      user={user}
+                      removeSearchString={this.removeSearchString}
+                      history={this.props.history} />
+                  </li>
+                  );
+              }.bind(this))}
+            </ul>
+          </li>
+        </ul>
       );
     }
   });
 }(this));
-
-// <li class="dropdown open" data-reactid=".0.0.0.1.0"><input type="text" class="navbar-search form-control" placeholder="Search Users" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" aria-label="..." data-reactid=".0.0.0.1.0.0"><ul class="dropdown-menu" data-reactid=".0.0.0.1.0.1"><li data-reactid=".0.0.0.1.0.1.$1"><a href="#" data-reactid=".0.0.0.1.0.1.$1.0">brooke</a></li></ul></li>

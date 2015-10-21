@@ -9,28 +9,20 @@
 
     componentWillMount: function() {
       ApiUtil.fetchUser(parseInt(this.props.routeParams.id));
-      // ApiUtil.fetchUserHarvsts(parseInt(this.props.routeParams.id), 'public');
       UserStore.addChangeListener(this._updateUser);
-      // HarvstStore.addChangeListener(this._updateUserHarvsts);
     },
 
     componentWillReceiveProps: function (newProps) {
       ApiUtil.fetchUser(parseInt(newProps.params.id));
-      // ApiUtil.fetchUserHarvsts(parseInt(newProps.params.id));
     },
 
     componentWillUnmount: function() {
       UserStore.removeChangeListener(this._updateUser);
-      // HarvstStore.removeChangeListener(this._updateUserHarvsts);
     },
 
     _updateUser: function() {
       this.setState({user: UserStore.getUser()});
     },
-
-    // _updateUserHarvsts: function() {
-    //   this.setState({userHarvsts: HarvstStore.all()});
-    // },
 
     render: function() {
       var harvests;

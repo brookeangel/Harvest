@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /@/
   validates :session_token, :affiliation, :password_digest, presence: true
   validates :password, confirmation: true, length: {minimum: 6, allow_nil: true}
+  validates :username, length: {minimum: 6, maximum: 20}
   validates :password_confirmation, presence: true, allow_nil: true
   validates :affiliation, inclusion: { in: ["individual", "organization"]}
 
@@ -31,7 +32,7 @@ class User < ActiveRecord::Base
 
   has_many :harvsts, dependent: :destroy
   has_many :shares, dependent: :destroy
-  has_many :comments, dependent: :destroy 
+  has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
   def reset_session_token!

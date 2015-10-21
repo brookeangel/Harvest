@@ -25,6 +25,7 @@
 
  h1 {
    font-family: 'Pacifico', cursive;
+   text-align: center;
  }
 
  .cf:after {
@@ -37,6 +38,10 @@
 
  .navbar-search {
    margin-top: 7px;
+ }
+
+ .search {
+   width: 250px;
  }
 
  // new session new user forms

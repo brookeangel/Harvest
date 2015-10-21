@@ -44,9 +44,9 @@
               <a className="navbar-brand" href="#">Harvst</a>
             </div>
 
-            <SearchBar history={this.props.history} />
 
             <div className="collapse navbar-collapse" id="collapse-menu">
+              <SearchBar history={this.props.history} />
               <ul className="nav navbar-nav navbar-right">
                 <Notifications history={this.props.history}/>
                 <li className="dropdown">
