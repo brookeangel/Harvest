@@ -75,7 +75,7 @@
               {this.state.harvst.address} &nbsp;|&nbsp; {this.state.harvst.contact}
             </div>
             <div className="row small-margin-bottom margin-top">
-              <div className="col-xs-10">{this.state.harvst.description}<br /></div>
+              <div className="col-xs-10 wrap-text">{this.state.harvst.description}<br /></div>
               <div className="col-xs-2 text-right"><b>Details</b></div>
             </div>
 

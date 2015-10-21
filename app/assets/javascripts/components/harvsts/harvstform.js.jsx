@@ -103,7 +103,7 @@
       cloudinary.openUploadWidget({
         cloud_name: 'harvst',
         upload_preset:'bmx9ikkh',
-        max_file_size: 100000,
+        max_file_size: 300000,
         theme: 'minimal'
       },
       this._handleWidgetUpload.bind(this));
@@ -127,33 +127,31 @@
       }
 
       var photoText;
-      var photo = null;
+      var photo;
 
       if (this.state.image_url) {
-        photoText = "Edit";
-        photo = <p><img src={this.state.image_thumbnail} className="img-rounded"/></p>;
+        photoText = "Edit Photo";
+        photo = <img src={this.state.image_url} className="img-responsive img-circle" width="150" height="150"/>;
       } else {
-        photoText = "  Add Photo";
-        photo = <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>;
+        photoText = "Add Photo";
       }
 
 
       return(
-        <div className="row pad-top">
+        <div className="row">
           <ShowMap lat={this.state.lat} lng={this.state.lng} />
 
           <div className="col-md-5 offset-56">
-            <h1>Add Harvest</h1>
+            <div className="text-center margin-bottom margin-top relative">
+              {photo}
+              <button type="button" className="btn btn-default icon-right" onClick={this._openWidget}>
+                <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; {photoText}
+              </button>
+            </div>
+
+            <h1 className="pad-top">Add Harvest</h1>
             {errors}
             <form className="form-horizontal" onSubmit={this._handleSubmit}>
-
-
-              <div className="form-group text-center" onClick={this._openWidget}>
-                <a className="btn btn-default" href="#" role="button">
-                  {photo}
-                  {photoText}
-                </a>
-              </div>
 
               <div className="form-group">
                 <input
@@ -239,3 +237,10 @@
   });
 
 }(this));
+
+// <div className="form-group text-center" onClick={this._openWidget}>
+//   <a className="btn btn-default" href="#" role="button">
+//     {photo}
+//     {photoText}
+//   </a>
+// </div>

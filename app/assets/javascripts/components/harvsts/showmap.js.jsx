@@ -28,7 +28,7 @@
       };
       var latLng = new google.maps.LatLng(pos.lat, pos.lng);
 
-      this.map.setCenter(pos);
+      this.map.setCenter(latLng);
       this.marker.setPosition(latLng);
     },
 

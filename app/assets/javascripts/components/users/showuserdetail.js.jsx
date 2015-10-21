@@ -28,13 +28,13 @@
 
       if (this.state.user) {
         if (this.state.user.website_url) {
-          website_url = <a href={website_url}>{this.state.user.website_url}</a>;
+          website_url = <a href={"http://" + this.state.user.website_url}>{this.state.user.website_url}</a>;
         } else {
           website_url = "No website";
         }
 
         if (this.state.user.description) {
-          description = <p>{this.state.user.description} </p>;
+          description = <div className="wrap-text">{this.state.user.description} </div>;
         } else {
           description = "No description yet!";
         }

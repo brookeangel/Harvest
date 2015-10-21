@@ -76,7 +76,7 @@
       cloudinary.openUploadWidget({
         cloud_name: 'harvst',
         upload_preset:'bmx9ikkh',
-        max_file_size: 100000,
+        max_file_size: 300000,
         theme: 'minimal'
       },
       this._handleWidgetUpload.bind(this));
@@ -105,7 +105,7 @@
           <div className="text-center margin-bottom margin-top relative">
             <img src={this.state.image_url} className="img-responsive img-circle" width="150" height="150"/>
             <button type="button" className="btn btn-default icon-right" onClick={this._openWidget}>
-              <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Edit Photo
             </button>
           </div>
 
