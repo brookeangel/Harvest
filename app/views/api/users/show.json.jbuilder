@@ -3,4 +3,4 @@ json.extract!(
   :profile_img_url, :id
   )
 
-json.harvsts @user.harvsts
+json.harvsts @harvsts

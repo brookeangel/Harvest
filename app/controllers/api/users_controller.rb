@@ -8,10 +8,11 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @harvsts = Harvst.where(user_id: params[:id]).where(privacy: 'public')
   end
 
   def update
-    @user = User.includes(:harvsts).find(params[:id])
+    @user = User.find(params[:id])
 
     if @user.update(user_params)
       render :show
