@@ -48,7 +48,7 @@
           );
         }.bind(this));
       } else {
-        notifications = "You have no notifications.";
+        notifications = <li>You have no notifications.</li>;
       }
 
       return(

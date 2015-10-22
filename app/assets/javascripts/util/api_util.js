@@ -23,30 +23,6 @@ window.ApiUtil = {
     });
   },
 
-  fetchUserHarvsts: function(id, privacy) {
-    $.ajax({
-      url: '/api/users/'+ id + '/harvsts',
-      method: 'GET',
-      data: {privacy: privacy},
-      dataType: 'json',
-      success: function(result) {
-        ApiActions.receiveAll(result);
-      }
-    });
-  },
-
-  fetchSharedHarvsts: function(id) {
-    $.ajax({
-      url: '/api/harvsts',
-      method: 'GET',
-      data: {sharedId: id},
-      dataType: 'json',
-      success: function(result) {
-        ApiActions.receiveAll(result);
-      }
-    });
-  },
-
   addHarvst: function(params, cb) {
     $.ajax({
       url: '/api/harvsts',

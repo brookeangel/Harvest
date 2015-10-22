@@ -16,4 +16,6 @@ class Notification < ActiveRecord::Base
 
   belongs_to :notifyable, polymorphic: true
   belongs_to :user
+
+  has_one :notifying_user, through: :notifyable, source: :user 
 end

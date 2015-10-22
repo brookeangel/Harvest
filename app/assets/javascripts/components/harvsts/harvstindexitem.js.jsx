@@ -1,11 +1,10 @@
 (function(root) {
 
   root.HarvstIndexItem = React.createClass({
-    mixins: [ReactRouter.History],
 
     _handleClick: function(e) {
       var id = this.props.harvst.id;
-      this.history.pushState(null, id + "/show");
+      this.props.history.pushState(null, id + "/show");
     },
 
     _handleHover: function(e) {

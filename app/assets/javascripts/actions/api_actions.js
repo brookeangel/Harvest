@@ -8,13 +8,6 @@
       });
     },
 
-    receiveAllShared: function(harvsts) {
-      AppDispatcher.dispatch({
-        actionType: HarvstConstants.SHARED_HARVSTS_RECEIVED,
-        harvsts: harvsts
-      });
-    },
-
     receiveOne: function(harvst) {
       AppDispatcher.dispatch({
         actionType: HarvstConstants.HARVST_RECEIVED,

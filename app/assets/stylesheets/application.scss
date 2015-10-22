@@ -34,7 +34,11 @@
    display: block;
  }
 
+
  //navbar
+ .dropdown-menu {
+   min-width: 225px;
+ }
 
  .navbar-search {
    margin-top: 7px;

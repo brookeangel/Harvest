@@ -1,17 +1,12 @@
 (function(root) {
   var CHANGE_EVENT = "change";
   var _harvsts = [];
-  var _sharedHarvsts = [];
   var _harvstShow = {};
   var _activeHarvst = null;
 
   root.HarvstStore = $.extend({}, EventEmitter.prototype, {
     all: function() {
       return _harvsts.slice(0);
-    },
-
-    allSharedHarvsts: function() {
-      return _sharedHarvsts.slice(0);
     },
 
     findHarvst: function(id) {
@@ -40,10 +35,6 @@
       _harvsts = harvsts;
     },
 
-    resetSharedHarvsts: function(harvsts) {
-      _harvsts = harvsts;
-    },
-
     setHarvst: function(harvst) {
       _harvstShow = harvst;
     },
@@ -56,10 +47,6 @@
       switch(payload.actionType) {
         case HarvstConstants.HARVSTS_RECEIVED:
           HarvstStore.resetHarvsts(payload.harvsts);
-          HarvstStore.emit(CHANGE_EVENT);
-          break;
-        case HarvstConstants.SHARED_HARVSTS_RECEIVED:
-          HarvstStore.resetSharedHarvsts(payload.harvsts);
           HarvstStore.emit(CHANGE_EVENT);
           break;
         case HarvstConstants.HARVST_RECEIVED:

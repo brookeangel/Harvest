@@ -43,7 +43,7 @@
           <div className="input-group">
             <input type="text"
               className="form-control"
-              placeholder="Share Harvst"
+              placeholder="Share your harvst with other users!"
               valueLink={this.linkState("username")}/>
             <span className="input-group-addon" onClick={this._handleSubmit}>
               <span className="glyphicon glyphicon-plus" aria-hidden="true"></span>

@@ -26,7 +26,7 @@
           <div className="harvsts">
             {this.state.harvsts.map(function(harvst) {
               return(
-                <HarvstIndexItem key={harvst.id} harvst={harvst} />
+                <HarvstIndexItem key={harvst.id} harvst={harvst} history={this.history}/>
               );
             })}
           </div>

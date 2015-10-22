@@ -5,8 +5,8 @@ json.array! @notifications do |notification|
   json.harvst_id notification.notifyable.harvst_id
   json.viewed notification.viewed
   if notification.notifyable_type == "Comment"
-    json.message "You've harvest received a comment."
+    json.message notification.notifyable.user.username.to_s + " commented on your harvest."
   else
-    json.message "You've been shared a harvest."
+    json.message notification.notifyable.user.username.to_s + " shared a harvest with you."
   end
 end

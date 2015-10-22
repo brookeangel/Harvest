@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 
   validates :email, :username, presence: true, uniqueness: true
   validates_format_of :email, :with => /@/
-  validates :session_token, :affiliation, :password_digest, presence: true
+  validates :session_token, :password_digest, presence: true
   validates :password, confirmation: true, length: {minimum: 6, allow_nil: true}
   validates :username, length: {minimum: 6, maximum: 20}
   validates :password_confirmation, presence: true, allow_nil: true

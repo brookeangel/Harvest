@@ -70,8 +70,8 @@
 
         harvstShowContents = (
           <div className="show-view-body text-left">
-            {shareForm}
             <Errors errors={this.state.errors} />
+            {shareForm}
             <h1 className="text-left">
               {this.state.harvst.title}
               {editDeleteButton}

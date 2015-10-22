@@ -1,13 +1,18 @@
 (function(root) {
   root.NotificationItem = React.createClass({
 
-    _handleClick: function() {
+    _handleClick: function(e) {
+      e.preventDefault();
       this.props.history.pushState(null, this.props.notification.harvst_id + "/show");
     },
 
     render: function() {
       return(
-        <li onClick={this._handleClick}>{this.props.notification.message}</li>
+        <li>
+          <a onClick={this._handleClick}>
+            {this.props.notification.message}
+          </a>
+        </li>
       );
     }
   });
