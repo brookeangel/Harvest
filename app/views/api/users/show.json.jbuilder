@@ -4,3 +4,6 @@ json.extract!(
   )
 
 json.harvsts @harvsts
+
+json.private_harvsts @user.harvsts
+json.shared_harvsts @user.shared_harvsts

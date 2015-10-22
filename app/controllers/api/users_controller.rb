@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(:harvsts).includes(:shared_harvsts).find(params[:id])
     @harvsts = Harvst.where(user_id: params[:id]).where(privacy: 'public')
   end
 
