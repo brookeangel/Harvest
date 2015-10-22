@@ -39,18 +39,18 @@
     render: function() {
       return(
         <div className="input-group pad-top">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="search or add by address"
+            aria-describedby="search-addon"
+            onChange={this._handleChange} />
           <span
             className="input-group-addon"
             id="search-addon"
             onClick={this._handleSubmit} >
             <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
           </span>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="search by address"
-            aria-describedby="search-addon"
-            onChange={this._handleChange} />
           <span
             className="input-group-addon"
             alt="Add Harvest"

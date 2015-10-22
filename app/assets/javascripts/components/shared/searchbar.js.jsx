@@ -37,34 +37,32 @@
 
     render: function() {
       return(
-        <ul className="nav navbar-nav navbar-left">
-          <li className="dropdown" role="presentation">
-            <a className="dropdown-toggle" data-toggle="dropdown" role="button"
-              aria-haspopup="true" aria-expanded="false">
-              <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
-            </a>
-            <ul className="dropdown-menu">
-              <li>
-                <div className="input-group search">
-                <input type="text"
-                  className="form-control"
-                  placeholder="Search Users"
-                  onKeyUp={this._handleSearch} />
-                </div>
-              </li>
-              {this.state.matches.map(function(user) {
-                return (
-                  <li key={user.id}>
-                    <SearchItem
-                      user={user}
-                      removeSearchString={this.removeSearchString}
-                      history={this.props.history} />
-                  </li>
-                  );
-              }.bind(this))}
-            </ul>
-          </li>
-        </ul>
+        <li className="dropdown" role="presentation">
+          <a className="dropdown-toggle" data-toggle="dropdown" role="button"
+            aria-haspopup="true" aria-expanded="false">
+            <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+            &nbsp;&nbsp;Search Users
+          </a>
+          <ul className="dropdown-menu">
+            <li>
+              <div className="input-group search">
+              <input type="text"
+                className="form-control"
+                onKeyUp={this._handleSearch} />
+              </div>
+            </li>
+            {this.state.matches.map(function(user) {
+              return (
+                <li key={user.id}>
+                  <SearchItem
+                    user={user}
+                    removeSearchString={this.removeSearchString}
+                    history={this.props.history} />
+                </li>
+                );
+            }.bind(this))}
+          </ul>
+        </li>
       );
     }
   });

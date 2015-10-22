@@ -26,20 +26,8 @@
       var lat = this.props.location.query.lat;
       var lng = this.props.location.query.lng;
 
-      if (typeof lat === 'undefined' && typeof LocationStore.getCoords().lat === 'undefined') {
-        lat = 37.7758;
-        lng = -122.435;
-      } else if (typeof lat === 'undefined') {
-        lat = LocationStore.getCoords().lat;
-        lng = LocationStore.getCoords().lng;
-      }
-
-      this.setState({
-        lat: lat,
-        lng: lng
-      });
-
       LocationUtil.fetchAddress(lat, lng);
+
       MessageStore.addChangeListener(this._addErrors);
       LocationStore.addChangeListener(this._setAddress);
     },
@@ -139,7 +127,7 @@
 
       return(
         <div className="row">
-          <ShowMap lat={this.state.lat} lng={this.state.lng} />
+          <ShowMap lat={this.props.location.query.lat} lng={this.props.location.query.lng} />
 
           <div className="col-md-5 offset-56">
             <div className="text-center margin-bottom margin-top relative">
@@ -237,10 +225,3 @@
   });
 
 }(this));
-
-// <div className="form-group text-center" onClick={this._openWidget}>
-//   <a className="btn btn-default" href="#" role="button">
-//     {photo}
-//     {photoText}
-//   </a>
-// </div>

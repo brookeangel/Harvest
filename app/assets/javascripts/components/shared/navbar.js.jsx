@@ -6,11 +6,6 @@
       root.SessionUtil.logOut();
     },
 
-    _handleAddHarvestClick: function(e) {
-      e.preventDefault();
-      this.props.history.pushState(null, "harvsts/new");
-    },
-
     _handleMyHarvstsClick: function(e) {
       e.preventDefault();
       this.props.history.pushState(null, "user/" + CURRENT_USER + "/harvsts");
@@ -46,8 +41,8 @@
 
 
             <div className="collapse navbar-collapse" id="collapse-menu">
-              <SearchBar history={this.props.history} />
               <ul className="nav navbar-nav navbar-right">
+                <SearchBar history={this.props.history} />
                 <Notifications history={this.props.history}/>
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -56,7 +51,6 @@
                   </a>
                   <ul className="dropdown-menu">
                     <li><a href="#" onClick={this._handleProfileClick}>Profile</a></li>
-                    <li><a href="#" onClick={this._handleAddHarvestClick}>Add Harvest</a></li>
                     <li><a href="#" onClick={this._handleMyHarvstsClick}>My Harvests</a></li>
                     <li role="separator" className="divider"></li>
                     <li><a href="#" onClick={this._handleLogout}>Logout</a></li>
