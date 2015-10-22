@@ -13,18 +13,19 @@ class Api::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @harvsts = Harvst.where(user_id: params[:id]).where(privacy: 'public')
 
     if @user.update(user_params)
       render :show
     else
-      render json: @harvst.errors.full_messages, status: 422
+      render json: @user.errors.full_messages, status: 422
     end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:email, :website_url, :description)
+    params.require(:user).permit(:email, :website_url, :description, :profile_img_url)
   end
 
   def assure_correct_user

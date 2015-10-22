@@ -38,18 +38,9 @@
       this.setState({errors: MessageStore.allErrors()});
     },
 
-    _updateUser: function() {
-      this.setState({
-        user: UserStore.getUser(),
-        website_url: user.website_url,
-        email: user.email,
-        description: user.description,
-        profile_img_url: user.profile_img_url
-      });
-    },
-
     _handleSubmit: function(e) {
       e.preventDefault();
+
       var params = {
         user: {
           website_url: this.state.website_url,
@@ -58,6 +49,7 @@
           profile_img_url: this.state.profile_img_url
         }
       };
+
       ApiUtil.updateUser(this.state.user.id, params ,function() {
         this.history.pushState(null, "user/" + this.state.user.id);
       }.bind(this));
@@ -66,6 +58,28 @@
     _handleCancelClick: function(e) {
       e.preventDefault();
       this.history.pushState(null, "user/" + this.state.user.id);
+    },
+
+    _openWidget: function(e) {
+      e.preventDefault();
+
+      cloudinary.openUploadWidget({
+        cloud_name: 'harvst',
+        upload_preset:'bmx9ikkh',
+        max_file_size: 300000,
+        theme: 'minimal'
+      },
+      this._handleWidgetUpload.bind(this));
+    },
+
+    _handleWidgetUpload: function(error, result) {
+      if (error) {
+        this.setState({errors: ["Image upload failed. Peas try again!"]});
+      } else if (result) {
+        this.setState({
+          profile_img_url: result[0].url,
+        });
+      }
     },
 
     render: function() {
@@ -81,7 +95,9 @@
               </div>
 
                 <div className="col-sm-7 relative text-center">
-                <h1 className="black-border-bottom text-left">{this.state.user.username}s Profile</h1>
+                <h1 className="black-border-bottom text-left">
+                  {this.state.user.username}s Profile
+                </h1>
                   <form>
                     <div className="form-group">
                       <input
@@ -109,6 +125,10 @@
                         placeholder="Description"
                         valueLink={this.linkState("description")}></textarea>
                     </div>
+
+                    <button type="button" className="btn btn-default icon-right" onClick={this._openWidget}>
+                      <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp; Edit Photo
+                    </button>
 
                     <div className="btn-group" role="group" aria-label="...">
                       <button type="button" className="btn btn-default" onClick={this._handleSubmit}>Update Profile</button>

@@ -4,7 +4,7 @@
     mixins: [ReactRouter.History],
 
     getInitialState: function() {
-      return {user: null, userHarvsts: []};
+      return {user: null};
     },
 
     componentWillMount: function() {
@@ -30,7 +30,7 @@
       if (this.state.user && this.state.user.harvsts.length > 0) {
         harvests = <UserHarvsts harvsts={this.state.user.harvsts}/>;
       } else {
-        harvests = <p>"This user has no current harvests."</p>;
+        harvests = <p>This user has no current harvests.</p>;
       }
 
 

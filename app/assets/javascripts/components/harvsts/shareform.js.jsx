@@ -40,7 +40,7 @@
     render: function() {
       return(
         <div>
-          <div className="input-group" >
+          <div className="input-group">
             <input type="text"
               className="form-control"
               placeholder="Share Harvst"
@@ -50,9 +50,6 @@
             </span>
           </div>
           <div className="pad-top">
-            <button type="button"
-              className="btn btn-default tiny-button tiny-button-case">Shared Users
-            </button>
             {this.state.shares.map(function(share) {
               return(
                 <ShareButton key={share.id} share={share} />
