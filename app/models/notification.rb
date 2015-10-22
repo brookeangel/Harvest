@@ -17,5 +17,9 @@ class Notification < ActiveRecord::Base
   belongs_to :notifyable, polymorphic: true
   belongs_to :user
 
-  has_one :notifying_user, through: :notifyable, source: :user 
+  has_one :user_creating_though_share, through: :notifyable,
+          source: :user, source_type: 'Share'
+  has_one :user_creating_through_comment, through: :notifyable,
+          source: :user, source_type: 'Comment'
+
 end

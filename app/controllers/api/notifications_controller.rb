@@ -2,6 +2,7 @@ class Api::NotificationsController < ApplicationController
 
   def index
     @notifications = Notification.includes(:notifyable)
+                                  .order(created_at: :desc)
                                   .includes(:user)
                                   .where(user_id: current_user.id)
                                   .limit(15)

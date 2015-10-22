@@ -39,7 +39,7 @@
     render: function() {
       var notifications;
       if (this.state.notifications.length > 0) {
-        notifications = this.state.notifications.map(function(notification) {
+        notifications = this.state.notifications.reverse().map(function(notification) {
           return (
             <NotificationItem
               history={this.props.history}

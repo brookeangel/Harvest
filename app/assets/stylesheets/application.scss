@@ -62,6 +62,19 @@
     transform: translate(-50%, -50%);
 }
 
+.just-link {
+  border: 0px;
+  background: white;
+  color: #337ab7;
+  padding: 0px;
+  margin: 0px;
+  display: inline;
+}
+
+.just-link:hover {
+  text-decoration: underline;
+}
+
  // harvst index
 
  .full-height {

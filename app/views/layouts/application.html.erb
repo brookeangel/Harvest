@@ -13,8 +13,15 @@
       window.CURRENT_USER_USERNAME="<%= current_user.username %>";
     </script>
   <% end %>
+
+  <% if Rails.env.production? %>
+    <% api_key = "key=AIzaSyCRKF0B68vlxCNdrokKKlUQWcB2XPGUdvg" %>
+  <% else %>
+    <% api_key = "key=AIzaSyDUpcTC4LuU7miLmrkawx2t-WhJtfi7dvw" %>
+  <% end %>
+
   <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUpcTC4LuU7miLmrkawx2t-WhJtfi7dvw">
+      src="https://maps.googleapis.com/maps/api/js?<%= api_key %>">
   </script>
 </head>
 <body>

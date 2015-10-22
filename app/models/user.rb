@@ -34,7 +34,6 @@ class User < ActiveRecord::Base
   has_many :shares, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
-
   has_many :shared_harvsts, through: :shares, source: :harvst
 
   def reset_session_token!

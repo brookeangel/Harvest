@@ -1,12 +1,12 @@
 json.array! @notifications do |notification|
-  json.id notification.id
-  json.notifyable_type notification.notifyable_type
-  json.notifyable_id notification.notifyable_id
+
+  json.extract!(notification, :id, :notifyable_type, :notifyable_id, :viewed, :created_at)
+
   json.harvst_id notification.notifyable.harvst_id
-  json.viewed notification.viewed
+
   if notification.notifyable_type == "Comment"
     json.message notification.notifyable.user.username.to_s + " commented on your harvest."
   else
-    json.message notification.notifyable.user.username.to_s + " shared a harvest with you."
+    json.message notification.notifyable.harvst.user.username.to_s + " shared a harvest with you."
   end
 end

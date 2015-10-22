@@ -38,6 +38,26 @@
           <button type="submit" class="btn btn-default">Sign In!</button>
         </div>
       </form>
+
+      <div class='text-center margin-top'>
+          Don't have an account?
+          <%= link_to "Join Harvst", new_user_url %> or sign in as a
+          <form action=<%= session_url %> method="POST">
+            <input
+              type="hidden"
+              name="authenticity_token"
+              value="<%= form_authenticity_token %>" >
+            <input
+              type="hidden"
+              name="user[username]"
+              value="MaryGardener">
+            <input type="hidden"
+              name="user[password]"
+              value="password">
+            <input type="submit" class="just-link" value="demo user.">
+          </form>
+      </div>
+
     </div>
   </div>
 </div>
