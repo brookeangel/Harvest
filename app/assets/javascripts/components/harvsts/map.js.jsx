@@ -15,6 +15,7 @@
 
       this.infoWindow = new google.maps.InfoWindow({map: this.map});
       this._handleGeolocation();
+      HarvstActions.receiveOne(null);
 
       this.map.addListener('idle', this._handleIdleEvent);
       HarvstStore.addChangeListener(this._adjustMarkers);

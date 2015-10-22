@@ -23,3 +23,5 @@ class Notification < ActiveRecord::Base
           source: :user, source_type: 'Comment'
 
 end
+
+Notification.includes({notifyable: [:user, :harvst]})

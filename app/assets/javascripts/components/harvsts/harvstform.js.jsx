@@ -6,7 +6,7 @@
       lat: null,
       lng: null,
       title: null,
-      description: "This will be the coolest harvest of all time.",
+      description: "Pick up instructions and description",
       address: "",
       privacy: "public",
       end_date: null,
