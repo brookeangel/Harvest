@@ -2,7 +2,17 @@
 
   root.Map = React.createClass({
 
+    getInitialState: function() {
+      return {windowWidth: root.innerWidth, windowHeight: root.innerHeight};
+    },
+
+    handleResize: function(e) {
+      this.setState({windowWidth: root.innerWidth, windowHeight: root.innerHeight});
+    },
+
+
     componentDidMount: function() {
+      root.addEventListener('resize', this.handleResize);
       var mapNode = React.findDOMNode(this.refs.map);
 
       var mapOptions = {
@@ -29,6 +39,7 @@
       HarvstStore.removeChangeListener(this._adjustMarkers);
       HarvstStore.removeChangeListener(this._bounceMarker);
       LocationStore.removeChangeListener(this._centerMap);
+      root.removeEventListener('resize', this.handleResize);
     },
 
 
@@ -121,14 +132,25 @@
     },
 
     render: function() {
-      var mapStyle = {
-        width: root.screen.availWidth * 0.56,
-        height: root.screen.availHeight - 100
-      };
+      var mapStyle;
+      if (this.state.windowWidth > 992) {
+        mapStyle = {
+          width: this.state.windowWidth * 0.58,
+          height: this.state.windowHeight
+        };
+        divStyle = {position: 'fixed'};
+      } else {
+        mapStyle = {
+          width: this.state.windowWidth,
+          height: this.state.windowHeight
+        };
+        divStyle = {position: 'relative'};
+      }
+
 
       return(
-        <div className="map-holder">
-          <div id="map" ref="map" className="col-md-7" style={mapStyle}></div>
+        <div className="col-md-7" style={divStyle}>
+          <div id="map" ref="map" style={mapStyle}></div>
         </div>
       );
     }

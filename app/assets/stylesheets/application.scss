@@ -34,6 +34,12 @@
    display: block;
  }
 
+ //map pages
+ .pad-right {
+   padding-right: 25px;
+   padding-left:25px;
+ }
+
 
  //navbar
  .dropdown-menu {
@@ -81,16 +87,12 @@
    height: 100vh;
  }
 
- .map-holder {
-   position: fixed;
- }
-
- .offset-56 {
-   margin-left: 56%;
- }
-
  #map {
    border-right: 1px solid #e7e7e7;
+ }
+
+ .spacer {
+   height: 100%;
  }
 
  .img-responsive {

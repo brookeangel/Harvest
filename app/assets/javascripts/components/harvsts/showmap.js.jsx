@@ -2,7 +2,17 @@
 
   root.ShowMap = React.createClass({
 
+    getInitialState: function() {
+      return {windowWidth: root.innerWidth, windowHeight: root.innerHeight};
+    },
+
+    handleResize: function(e) {
+      this.setState({windowWidth: root.innerWidth, windowHeight: root.innerHeight});
+    },
+
     componentDidMount: function() {
+      root.addEventListener('resize', this.handleResize);
+
       var lat = parseFloat(this.props.lat);
       var lng = parseFloat(this.props.lng);
 
@@ -32,15 +42,29 @@
       this.marker.setPosition(latLng);
     },
 
+    componentWillUnmount: function() {
+      root.removeEventListener('resize', this.handleResize);
+    },
+
     render: function() {
-      var mapStyle = {
-        width: root.screen.availWidth * 0.56,
-        height: root.screen.availHeight - 100
-      };
+      var mapStyle;
+      if (this.state.windowWidth > 992) {
+        mapStyle = {
+          width: this.state.windowWidth * 0.58,
+          height: this.state.windowHeight
+        };
+        divStyle = {position: 'fixed'};
+      } else {
+        mapStyle = {
+          width: this.state.windowWidth,
+          height: this.state.windowHeight
+        };
+        divStyle = {position: 'relative'};
+      }
 
       return(
-        <div className="map-holder">
-          <div id="map" ref="map" className="col-md-7" style={mapStyle}></div>
+        <div className="col-md-7" style={divStyle}>
+          <div id="map" ref="map" style={mapStyle}></div>
         </div>
       );
     }

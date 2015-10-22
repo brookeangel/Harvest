@@ -100,7 +100,7 @@
       }
 
       return(
-        <div className="col-md-5 offset-56">
+        <div className="col-md-5 col-md-offset-7 pad-right">
 
           <div className="text-center margin-bottom margin-top relative">
             <img src={this.state.image_url} className="img-responsive img-circle" width="150" height="150"/>
@@ -111,7 +111,7 @@
 
           <h1>Edit Harvest</h1>
           {errors}
-          <form className="form-horizontal" onSubmit={this._handleSubmit}>
+          <form onSubmit={this._handleSubmit}>
 
             <div className="form-group">
               <input

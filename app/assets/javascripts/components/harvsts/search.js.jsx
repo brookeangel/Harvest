@@ -32,7 +32,10 @@
 
     render: function() {
       return(
-        <div className="row full-height">
+        <div className="row">
+          <div className="spacer col-md-7">
+            &nbsp;
+          </div>
           <Map handleMapClick={this._handleMapClick} history={this.props.history} />
           <HarvstIndex history={this.props.history} />
         </div>

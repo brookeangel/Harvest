@@ -36,6 +36,9 @@
 
       return(
         <div className="row">
+          <div className="spacer col-md-7">
+            &nbsp;
+          </div>
           {showMap}
           {this.props.children}
         </div>

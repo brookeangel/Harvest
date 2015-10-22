@@ -129,7 +129,7 @@
         <div className="row">
           <ShowMap lat={this.props.location.query.lat} lng={this.props.location.query.lng} />
 
-          <div className="col-md-5 offset-56">
+          <div className="col-md-5 col-md-offset-7 pad-right">
             <div className="text-center margin-bottom margin-top relative">
               {photo}
               <button type="button" className="btn btn-default icon-right" onClick={this._openWidget}>
@@ -139,7 +139,7 @@
 
             <h1 className="pad-top">Add Harvest</h1>
             {errors}
-            <form className="form-horizontal" onSubmit={this._handleSubmit}>
+            <form onSubmit={this._handleSubmit}>
 
               <div className="form-group">
                 <input
