@@ -135,7 +135,7 @@
       var mapStyle;
       if (this.state.windowWidth > 992) {
         mapStyle = {
-          width: this.state.windowWidth * 0.58,
+          width: this.state.windowWidth * 0.59,
           height: this.state.windowHeight
         };
         divStyle = {position: 'fixed'};
