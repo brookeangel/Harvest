@@ -1,4 +1,5 @@
 class Api::NotificationsController < ApplicationController
+  before_action :assure_logged_in
 
   def index
     @notifications = Notification.includes({notifyable: [:user, {harvst: [:user]}]})
@@ -12,6 +13,7 @@ class Api::NotificationsController < ApplicationController
     @notification = Notification.new(notification_params)
 
     if @notification.save
+      Pusher.trigger('notification_channel' + current_user.id.to_s, 'new_notification', {})
       render :show
     else
       render json: @notification.errors.full_messages, status: 422

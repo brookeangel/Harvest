@@ -36,7 +36,9 @@
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="#">Harvst</a>
+              <a className="navbar-brand" href="#">
+                harvst
+              </a>
             </div>
 
 

@@ -8,10 +8,16 @@
     componentWillMount: function() {
       ApiUtil.fetchNotifications();
       NotificationStore.addChangeListener(this._updateNotifications);
+      this.channel = pusher.subscribe('notification_channel' + CURRENT_USER);
+
+      this.channel.bind('new_notification', function() {
+        ApiUtil.fetchNotifications();
+      });
     },
 
     componentWillUnmount: function() {
       NotificationStore.removeChangeListener(this._updateNotifications);
+      this.channel.unsubscribe('notification_channel' + CURRENT_USER);
     },
 
     _updateNotifications: function() {

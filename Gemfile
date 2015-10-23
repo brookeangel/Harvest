@@ -16,6 +16,7 @@ gem 'cloudinary'
 gem 'momentjs-rails'
 gem 'newrelic_rpm'
 gem 'rails_12factor'
+gem 'pusher'
 
 group :development, :test do
   gem 'byebug'
