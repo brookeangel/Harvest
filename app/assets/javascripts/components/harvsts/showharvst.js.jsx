@@ -100,7 +100,7 @@
       }
 
       return(
-        <div className="col-md-5 col-md-offset-7 pad-right pad-top">
+        <div className="col-md-5 col-md-offset-7 pad-right">
           {harvstShowContents}
         </div>
       );

@@ -11,8 +11,8 @@
       CommentStore.addChangeListener(this._updateComments);
     },
 
-    componentWillReceiveProps: function() {
-      ApiUtil.fetchComments(this.props.harvst.id);
+    componentWillReceiveProps: function(nextProps) {
+      ApiUtil.fetchComments(nextProps.harvst.id);
     },
 
     componentWillUnmount: function() {
