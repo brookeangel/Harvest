@@ -24,10 +24,13 @@
       };
 
       this.map = new google.maps.Map(map, mapOptions);
+      var img = "http://res.cloudinary.com/harvst/image/upload/c_scale,h_35/v1445568875/favicon_ovtwiw.png";
+
       this.marker = new google.maps.Marker({
         position: {lat: lat, lng: lng},
         map: this.map,
-        title: "harvest"
+        title: "harvest",
+        icon: img
       });
     },
 

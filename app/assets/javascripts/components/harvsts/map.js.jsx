@@ -109,12 +109,15 @@
     _adjustMarkers: function() {
       var harvsts = HarvstStore.all();
       var that = this;
+      var img = "http://res.cloudinary.com/harvst/image/upload/c_scale,h_35/v1445568875/favicon_ovtwiw.png";
+
       harvsts.map(function(harvst) {
         if (typeof that.markers[harvst.id] === 'undefined') {
           var marker = new google.maps.Marker({
             position: {lat: harvst.lat, lng: harvst.lng},
             map: that.map,
-            title: harvst.title
+            title: harvst.title,
+            icon: img
           });
           marker.addListener('click', that._handleMarkerClick.bind(that, harvst.id));
           that.markers[harvst.id] = marker;
