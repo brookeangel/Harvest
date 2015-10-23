@@ -37,7 +37,9 @@ class Api::HarvstsController < ApplicationController
   end
 
   def show
-    @harvst = Harvst.includes(:user).includes(:comments).find(params[:id])
+    @harvst = Harvst.includes(:user)
+                    .includes({comments: [:user]})
+                    .find(params[:id])
   end
 
   def update

@@ -28,6 +28,7 @@ class Harvst < ActiveRecord::Base
   belongs_to :user
   has_many :shares, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifications, as: :notifyable, dependent: :destroy
 
   def self.in_bounds(bounds, privacy = "public")
     sql_bounds = {

@@ -1,15 +1,13 @@
 class Api::CommentsController < ApplicationController
   before_action :assure_correct_user, only: [:destroy]
-  def index
-    @comments = Comment.includes(:user).where(harvst_id: params[:harvst_id])
-  end
 
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
 
     if @comment.save
-      render :show
+      @harvst = @comment.harvst
+      render "api/harvsts/show"
     else
       render json: @comment.errors.full_messages, status: 422
     end
@@ -19,8 +17,9 @@ class Api::CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
 
     if @comment
+      @harvst = @comment.harvst
       @comment.destroy
-      render :show
+      render "api/harvsts/show"
     else
       render json: "Comment does not exist.", status: 422
     end

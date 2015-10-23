@@ -1,7 +1,8 @@
 class Api::NotificationsController < ApplicationController
 
   def index
-    @notifications = Notification.includes({notifyable: [:user, {harvst: [:user]}]})
+    @notifications = Notification.includes(:notifyable)
+                                  .includes(:notifying_user)
                                   .order(created_at: :desc)
                                   .includes(:user)
                                   .where(user_id: current_user.id)
@@ -10,6 +11,7 @@ class Api::NotificationsController < ApplicationController
 
   def create
     @notification = Notification.new(notification_params)
+    @notification.notifying_user = current_user
 
     if @notification.save
       render :show

@@ -3,24 +3,7 @@
     mixins: [React.addons.LinkedStateMixin],
 
     getInitialState: function() {
-      return {comments: [], body: ""};
-    },
-
-    componentWillMount: function() {
-      ApiUtil.fetchComments(this.props.harvst.id);
-      CommentStore.addChangeListener(this._updateComments);
-    },
-
-    componentWillReceiveProps: function() {
-      ApiUtil.fetchComments(this.props.harvst.id);
-    },
-
-    componentWillUnmount: function() {
-      CommentStore.removeChangeListener(this._updateComments);
-    },
-
-    _updateComments: function() {
-      this.setState({comments: CommentStore.all()});
+      return {body: ""};
     },
 
     _handleSubmit: function(e) {
@@ -35,8 +18,8 @@
     generateNotification: function(result) {
       ApiUtil.addNotification({
         notifyable_id: result.id,
-        notifyable_type: "Comment",
-        user_id: result.user_to_notify
+        notifyable_type: "Harvst",
+        user_id: result.user.id
       });
     },
 
@@ -44,8 +27,8 @@
       return(
         <div>
           <h1 className="text-left black-border-bottom">Comments</h1>
-          {this.state.comments.map(function(comment) {
-            return <Comment key={comment.id} comment={comment} history={this.props.history}/>;
+          {this.props.harvst.comments.map(function(comment) {
+            return <Comment key={comment.id} comment={comment} history={this.props.history} />;
           }.bind(this))}
           <form onSubmit={this._handleSubmit}>
             <div className="form-group">

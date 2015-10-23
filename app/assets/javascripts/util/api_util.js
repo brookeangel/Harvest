@@ -146,17 +146,6 @@ window.ApiUtil = {
     });
   },
 
-  fetchComments: function(harvstId) {
-    $.ajax({
-      url: '/api/harvsts/' + harvstId + '/comments',
-      type: 'get',
-      dataType: 'json',
-      success: function(result) {
-        ApiActions.receiveAllComments(result);
-      }
-    });
-  },
-
   addComment: function(params, cb) {
     $.ajax({
       url: '/api/comments',
@@ -164,7 +153,7 @@ window.ApiUtil = {
       data: {comment: params},
       dataType: 'json',
       success: function(result) {
-        ApiActions.receiveOneComment(result);
+        ApiActions.receiveOne(result);
         MessageActions.receiveErrors('[]');
         cb(result);
       },
@@ -180,7 +169,7 @@ window.ApiUtil = {
       type: 'delete',
       dataType: 'json',
       success: function(result) {
-        ApiActions.removeComment(result);
+        ApiActions.receiveOne(result);
         MessageActions.receiveErrors('[]');
       }
     });

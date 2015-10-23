@@ -7,3 +7,5 @@ json.user do
   json.id @harvst.user_id
   json.username @harvst.user.username
 end
+
+json.comments @harvst.comments, partial: 'api/comments/comment', as: :comment
