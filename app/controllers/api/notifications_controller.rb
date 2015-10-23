@@ -26,6 +26,7 @@ class Api::NotificationsController < ApplicationController
     render :index
   end
 
+
   private
 
   def notification_params
