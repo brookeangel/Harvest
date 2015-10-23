@@ -14,7 +14,7 @@
     <script>
       window.CURRENT_USER=<%= current_user.id %>;
       window.CURRENT_USER_USERNAME="<%= current_user.username %>";
-      window.pusher = new Pusher('49a72d05d7a79b72be79');
+      window.pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>');
     </script>
   <% end %>
 
