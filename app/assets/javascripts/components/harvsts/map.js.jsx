@@ -14,31 +14,36 @@
     componentDidMount: function() {
       root.addEventListener('resize', this.handleResize);
       var mapNode = React.findDOMNode(this.refs.map);
+      var center;
+
+      if (typeof root.position !== 'undefined') {
+        center = {lat: root.position.lat, lng: root.position.lng};
+      } else {
+        center = {lat: 37.7758, lng: -122.435};
+        this._handleGeolocation();
+      }
 
       var mapOptions = {
-        center: {lat: 37.7758, lng: -122.435},
+        center: center,
         zoom: 13
       };
 
-      this.markers = {};
       this.map = new google.maps.Map(mapNode, mapOptions);
 
-      this.infoWindow = new google.maps.InfoWindow({map: this.map});
-      this._handleGeolocation();
-      HarvstActions.receiveOne(null);
 
+      HarvstActions.receiveOne(null);
+      this.markers = {};
+      this.infoWindow = new google.maps.InfoWindow({map: this.map});
       this.map.addListener('idle', this._handleIdleEvent);
       HarvstStore.addChangeListener(this._adjustMarkers);
       HarvstStore.addChangeListener(this._bounceMarker);
       this.map.addListener('click', this.props.handleMapClick);
-      LocationStore.addChangeListener(this._centerMap);
     },
 
 
     componentWillUnmount: function() {
       HarvstStore.removeChangeListener(this._adjustMarkers);
       HarvstStore.removeChangeListener(this._bounceMarker);
-      LocationStore.removeChangeListener(this._centerMap);
       root.removeEventListener('resize', this.handleResize);
     },
 
@@ -56,27 +61,19 @@
       }
     },
 
-    _centerMap: function() {
-      var coords = LocationStore.getCoords();
-      var pos = {
-        lat: coords.lat,
-        lng: coords.lng
-      };
-      this.map.setCenter(pos);
-    },
-
     _handleGeolocation: function() {
       var that = this;
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
+          root.position = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
 
-          LocationActions.receiveCoords(pos.lat, pos.lng, "");
-        }, function() {
+          this.map.setCenter(root.position);
+
+        }.bind(this), function() {
           that.handleLocationError(true, infoWindow, map.getCenter()).bind(that);
         });
       } else {
