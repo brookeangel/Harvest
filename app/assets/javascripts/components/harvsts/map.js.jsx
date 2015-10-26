@@ -38,6 +38,7 @@
       HarvstStore.addChangeListener(this._adjustMarkers);
       HarvstStore.addChangeListener(this._bounceMarker);
       this.map.addListener('click', this.props.handleMapClick);
+      LocationStore.addChangeListener(this._centerMap);
     },
 
 
@@ -45,6 +46,12 @@
       HarvstStore.removeChangeListener(this._adjustMarkers);
       HarvstStore.removeChangeListener(this._bounceMarker);
       root.removeEventListener('resize', this.handleResize);
+      LocationStore.removeChangeListener(this._centerMap);
+    },
+
+    _centerMap: function() {
+      var coords = LocationStore.getCoords();
+      this.map.setCenter(coords);
     },
 
 

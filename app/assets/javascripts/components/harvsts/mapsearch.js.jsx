@@ -9,7 +9,7 @@
       this.setState({address: e.target.value});
     },
 
-    _handleSubmit: function(e) {
+    _handleSearch: function(e) {
       e.preventDefault();
       LocationUtil.fetchCoords(this.state.address, function() {});
       e.target.value = '';
@@ -18,12 +18,7 @@
     _handleAddClick: function() {
       var coords, location;
       if (this.state.address.length === 0) {
-        coords = LocationStore.getCoords();
-        location = {
-          lat: coords.lat,
-          lng: coords.lng
-        };
-        this.props.history.pushState(null, "/harvsts/new", location);
+        this.props.history.pushState(null, "/harvsts/new", root.position);
       } else {
         LocationUtil.fetchCoords(this.state.address, function() {
           coords = LocationStore.getCoords();
@@ -48,7 +43,7 @@
           <span
             className="input-group-addon"
             id="search-addon"
-            onClick={this._handleSubmit} >
+            onClick={this._handleSearch} >
             <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
           </span>
           <span
