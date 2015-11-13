@@ -12,15 +12,13 @@
 
 
     componentDidMount: function() {
-      root.addEventListener('resize', this.handleResize);
       var mapNode = React.findDOMNode(this.refs.map);
       var center;
-
+      var geolocation = this._handleGeolocation();
       if (typeof root.position !== 'undefined') {
         center = {lat: root.position.lat, lng: root.position.lng};
       } else {
         center = {lat: 37.7758, lng: -122.435};
-        this._handleGeolocation();
       }
 
       var mapOptions = {
@@ -30,14 +28,21 @@
 
       this.map = new google.maps.Map(mapNode, mapOptions);
 
-
       HarvstActions.receiveOne(null);
       this.markers = {};
-      this.infoWindow = new google.maps.InfoWindow({map: this.map});
+      this.infoWindow = new google.maps.InfoWindow({map: this.map, position: center});
+      this.infoWindow.close(); // docs say it's hidden by default, but it hasn't been.
+      if (geolocation) {
+        this.handleLocationError(true);
+      }
+
+      // map listeners may need to be on some sort of callback once the map loads,
+      // because they're breaking for me.
       this.map.addListener('idle', this._handleIdleEvent);
+      this.map.addListener('click', this.props.handleMapClick);
       HarvstStore.addChangeListener(this._adjustMarkers);
       HarvstStore.addChangeListener(this._bounceMarker);
-      this.map.addListener('click', this.props.handleMapClick);
+      root.addEventListener('resize', this.handleResize);
       LocationStore.addChangeListener(this._centerMap);
     },
 
@@ -69,34 +74,41 @@
     },
 
     _handleGeolocation: function() {
-      var that = this;
-
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-          root.position = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-
-          this.map.setCenter(root.position);
-
-        }.bind(this), function() {
-          that.handleLocationError(true, infoWindow, map.getCenter()).bind(that);
-        });
+            // is there a reason the position is being saved globally?
+            // if you need it somewhere else, doesn't it make more sense to put it
+            // in LocationStore?
+            root.position = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            // if the map is loaded, we want to recenter it here.
+            // so, root.map is a thing... that points to the DOM node.
+            // why?  It's not defined that way anywhere.
+            if (this.map) {
+              this.map.setCenter(root.position);
+            }
+          }.bind(this),
+          this.handleLocationError.bind(null, false)
+        )
       } else {
-        that.handleLocationError(false, infoWindow, map.getCenter()).bind(that);
+        return true;
       }
     },
 
-    handleLocationError: function(browserHasGeolocation, infoWindow, pos) {
-      this.infoWindow.setPosition(pos);
+    handleLocationError: function(browserHasGeolocation) {
+      this.infoWindow.setPosition(this.map.getCenter());
+      this.infoWindow.open(this.map)
       this.infoWindow.setContent(browserHasGeolocation ?
-                            'Error: The Geolocation service failed.' :
-                            'Error: Your browser doesn\'t support geolocation.');
+                    'Error: Your browser doesn\'t support geolocation.':
+                    'Error: The Geolocation service failed.' );
     },
 
 
     _handleIdleEvent: function() {
+      // this seems to work fine with a debugger, and break without...
+      // is it possible this needs to wait until the map loads to initialize?
       var bounds = this.map.getBounds();
       var northEast = bounds.getNorthEast();
       var southWest = bounds.getSouthWest();
@@ -122,6 +134,7 @@
             title: harvst.title,
           });
           marker.addListener('click', that._handleMarkerClick.bind(that, harvst.id));
+          // can bind null as well, but largely irrelevant.
           that.markers[harvst.id] = marker;
         }
       });
@@ -131,7 +144,7 @@
       Object.keys(this.markers).map(function(markerHarvstId) {
         if (harvstids.indexOf(markerHarvstId) === -1) {
           that.markers[markerHarvstId].setMap(null);
-          delete that.markers[markerHarvstId];
+          delete that.markers[markerHarvstId]; // what.
         }
       });
     },
