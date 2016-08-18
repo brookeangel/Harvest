@@ -9,8 +9,6 @@
 Harvst is a web application inspired by WWOOF USA and Falling Fruit built using Ruby on Rails
 and React.js. Harvst allows users to:
 
-<!-- This is a Markdown checklist. Use it to keep track of your progress! -->
-
 - [ ] Create an account
 - [ ] Log in / Log out
 - [ ] Create a profile

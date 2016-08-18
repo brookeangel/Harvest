@@ -4,8 +4,12 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+/node_modules/
+
 # Ignore bundler config.
 /.bundle
+**/bundle.js
+**/bundle.map.js
 
 # Ignore all logfiles and tempfiles.
 /log/*

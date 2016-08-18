@@ -2,31 +2,11 @@
 <html>
 <head>
   <title>Harvst</title>
-  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <%= favicon_link_tag(source='favicon.ico') %>
-  <script src="https://widget.cloudinary.com/global/all.js" type="text/javascript"></script>
-  <script src="https://js.pusher.com/3.0/pusher.min.js"></script>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
-  <% if current_user %>
-    <script>
-      window.CURRENT_USER=<%= current_user.id %>;
-      window.CURRENT_USER_USERNAME="<%= current_user.username %>";
-      window.pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>');
-    </script>
-  <% end %>
-
-  <% if Rails.env.production? %>
-    <% api_key = "key=AIzaSyCRKF0B68vlxCNdrokKKlUQWcB2XPGUdvg" %>
-  <% else %>
-    <% api_key = "key=AIzaSyDUpcTC4LuU7miLmrkawx2t-WhJtfi7dvw" %>
-  <% end %>
-
-  <script
-      src="https://maps.googleapis.com/maps/api/js?<%= api_key %>">
-  </script>
 </head>
 <body>
 

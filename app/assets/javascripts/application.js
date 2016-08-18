@@ -12,12 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require react
-//= require react_ujs
-//= require bootstrap
-//= require flux
-//= require eventemitter
-//= require ReactRouter.min
-//= require moment
-//= require components
 //= require_tree .
