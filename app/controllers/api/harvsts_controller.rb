@@ -1,7 +1,6 @@
 class Api::HarvstsController < ApplicationController
   before_action :assure_logged_in
   before_action :assure_correct_user, only: [:update, :destroy]
-  before_action :restrict_private_harvsts, only: [:show]
 
   def create
     @harvst = Harvst.new(harvst_params)
@@ -20,24 +19,22 @@ class Api::HarvstsController < ApplicationController
       @harvst.destroy
     end
 
-    render :index
+    render :show
   end
 
   def index
+
     if params[:bounds]
       @harvsts = Harvst.in_bounds(params[:bounds])
                        .includes(:user)
-    elsif params[:sharedId]
-      @harvsts = Share.includes(:harvst)
-                      .where(user_id: params[:sharedId])
-                      .map { |share| share.harvst }
     else
-      @harvsts = User.find(params[:user_id]).harvst_settings(params[:privacy])
+      @harvsts = Harvst.all
     end
+
   end
 
   def show
-    @harvst = Harvst.includes(:user).includes(:comments).find(params[:id])
+    @harvst = Harvst.includes(:user).find(params[:id])
   end
 
   def update
@@ -53,22 +50,11 @@ class Api::HarvstsController < ApplicationController
   private
 
   def harvst_params
-    params.require(:harvst).permit(:title, :description, :lat, :lng, :privacy,
-      :end_date, :image_url, :contact, :address)
+    params.require(:harvst).permit(:title, :lat, :lng, :image_url)
   end
 
   def assure_correct_user
-    unless Harvst.find(params[:id]).user_id == current_user.id
-      render json: {error: "You do not have access."}, status: 404
-    end
-  end
-
-  def restrict_private_harvsts
-    harvst = Harvst.includes(:shares).find(params[:id])
-    not_owner = harvst.user_id != current_user.id
-    not_shared = harvst.shares.none? { |share| share.user_id == current_user.id }
-
-    if harvst.private? && not_owner && not_shared
+    unless Harvst.find(params[:id]).user == current_user
       render json: {error: "You do not have access."}, status: 404
     end
   end

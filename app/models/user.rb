@@ -21,18 +21,11 @@ class User < ActiveRecord::Base
     presence: true, uniqueness: true
   validates :password, confirmation: true, length: {minimum: 6, allow_nil: true}
   validates :username, length: {minimum: 6, maximum: 20}
-  validates :password_confirmation, presence: true, allow_nil: true
   validates :affiliation, inclusion: { in: ["individual", "organization"]}
 
-  before_save :default_image_url
-
-  attr_reader :password, :password_confirmation
+  attr_reader :password
 
   has_many :harvsts, dependent: :destroy
-  has_many :shares, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :notifications, dependent: :destroy
-  has_many :shared_harvsts, through: :shares, source: :harvst
 
   def reset_session_token!
     self.session_token = User.generate_session_token
@@ -44,10 +37,6 @@ class User < ActiveRecord::Base
     self.password_digest = BCrypt::Password.create(password)
   end
 
-  def password_confirmation=(password_confirmation)
-    @password_confirmation = password_confirmation
-  end
-
   def is_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end
@@ -55,14 +44,6 @@ class User < ActiveRecord::Base
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     return user if user && user.is_password?(password)
-  end
-
-  def harvst_settings(settings)
-    if settings == 'all'
-      return self.harvsts.order(end_date: :asc)
-    end
-
-    self.harvsts.order(end_date: :asc).where(privacy: settings)
   end
 
   private
@@ -73,12 +54,6 @@ class User < ActiveRecord::Base
 
   def ensure_session_token
     self.session_token ||= User.generate_session_token
-  end
-
-  def default_image_url
-    if !self.profile_img_url || self.profile_img_url == ""
-      self.profile_img_url = "http://res.cloudinary.com/harvst/image/upload/c_fill,h_500,w_500/v1445028940/treesilhouette_bnbyvx.png"
-    end
   end
 
 end

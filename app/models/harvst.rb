@@ -18,16 +18,13 @@
 #
 
 class Harvst < ActiveRecord::Base
-  validates :address, :title, :lat, :lng, :description, :privacy, null: false
+  validates :address, :title, :lat, :lng, null: false
   validates :title, length: {minimum: 1, maximum: 30}
   validates :address, length: {maximum: 255}
-  validates :privacy, inclusion: { in: ["public", "private"] }
 
   before_save :default_image_url
 
   belongs_to :user
-  has_many :shares, dependent: :destroy
-  has_many :comments, dependent: :destroy
 
   def self.in_bounds(bounds, privacy = "public")
     sql_bounds = {
@@ -43,10 +40,6 @@ class Harvst < ActiveRecord::Base
       (harvsts.lat BETWEEN :swlat AND :nelat) AND
       (harvsts.privacy = :privacy)
     SQL
-  end
-
-  def private?
-    self.privacy == 'private'
   end
 
   private

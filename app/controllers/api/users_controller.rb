@@ -17,13 +17,13 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(:harvsts).includes(:shared_harvsts).find(params[:id])
-    @harvsts = @user.harvsts.where(privacy: 'public')
+    @user = User.includes(:harvsts).find(params[:id])
+    @harvsts = @user.harvsts
   end
 
   def update
     @user = User.find(params[:id])
-    @harvsts = @user.harvsts.where(privacy: 'public')
+    @harvsts = @user.harvsts
 
     if @user.update(user_params)
       render :show
@@ -37,11 +37,6 @@ class Api::UsersController < ApplicationController
   def signup_params
     params.require(:user)
           .permit(:username, :password, :affiliation)
-  end
-
-  def user_params
-    params.require(:user)
-          .permit(:email, :website_url, :description, :profile_img_url)
   end
 
   def assure_correct_user

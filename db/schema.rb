@@ -11,75 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160821005140) do
+ActiveRecord::Schema.define(version: 20151013173133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "comments", force: :cascade do |t|
+  create_table "harvsts", force: :cascade do |t|
     t.integer  "user_id",    null: false
-    t.integer  "harvst_id",  null: false
-    t.text     "body",       null: false
+    t.string   "title",      null: false
+    t.string   "address",    null: false
+    t.float    "lat",        null: false
+    t.float    "lng",        null: false
+    t.string   "image_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  add_index "comments", ["harvst_id"], name: "index_comments_on_harvst_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
-
-  create_table "harvsts", force: :cascade do |t|
-    t.integer  "user_id",     null: false
-    t.string   "title",       null: false
-    t.text     "description", null: false
-    t.string   "privacy",     null: false
-    t.date     "end_date"
-    t.string   "image_url"
-    t.string   "contact"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.float    "lat"
-    t.float    "lng"
-    t.string   "address",     null: false
   end
 
   add_index "harvsts", ["user_id"], name: "index_harvsts_on_user_id", using: :btree
 
-  create_table "notifications", force: :cascade do |t|
-    t.integer  "notifyable_id"
-    t.string   "notifyable_type"
-    t.integer  "user_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "viewed",          default: false
-  end
-
-  add_index "notifications", ["notifyable_id"], name: "index_notifications_on_notifyable_id", using: :btree
-  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
-
-  create_table "shares", force: :cascade do |t|
-    t.integer  "harvst_id",  null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "shares", ["harvst_id", "user_id"], name: "index_shares_on_harvst_id_and_user_id", unique: true, using: :btree
-  add_index "shares", ["user_id"], name: "index_shares_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
-    t.string   "email"
     t.string   "password_digest", null: false
     t.string   "session_token",   null: false
     t.string   "affiliation",     null: false
-    t.string   "website_url"
-    t.string   "profile_img_url"
-    t.text     "description"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
