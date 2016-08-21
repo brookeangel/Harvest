@@ -1,10 +1,4 @@
-class SessionsController < ApplicationController
-  before_action :assure_logged_in, only: [:destroy]
-  before_action :assure_not_logged_in, only: [:new]
-
-  def new
-    @user = User.new
-  end
+class Api::SessionsController < ApplicationController
 
   def create
     @user = User.find_by_credentials(
@@ -14,14 +8,14 @@ class SessionsController < ApplicationController
 
     if @user
       login!(@user)
+      render :show
     else
-      flash.now[:errors] = ["Invalid username/password."]
-      render :new
+      render json: ["Invalid username/password."], status: 422
     end
   end
 
   def destroy
-    logout!(current_user) if logged_in?
+    logout!(current_user)
     render json: {}
   end
 end

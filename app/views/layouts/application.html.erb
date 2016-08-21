@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Harvst</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <%= favicon_link_tag(source='favicon.ico') %>
   <%= stylesheet_link_tag    'application' %>
@@ -10,6 +11,12 @@
 </head>
 <body>
 
+<script id="bootstrap-current-user" type="text/javascript">
+  <% if logged_in? %>
+  	window.currentUser = <%= render("api/users/user.json.jbuilder",
+  		user: current_user).html_safe %>
+  <% end %>
+</script>
 
 <%= yield %>
 

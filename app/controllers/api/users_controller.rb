@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  before_action :assure_logged_in
+  before_action :assure_logged_in, only: [:index, :show]
   before_action :assure_correct_user, only: [:update]
 
   def index
@@ -7,24 +7,23 @@ class Api::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(signup_params)
     if @user.save
       session[:session_token] = @user.session_token
-      redirect_to root_url
+      render :show
     else
-      flash.now[:errors] = @user.errors.full_messages
-      render :new
+      render json: @user.errors.full_messages, status: 422
     end
   end
 
   def show
     @user = User.includes(:harvsts).includes(:shared_harvsts).find(params[:id])
-    @harvsts = Harvst.where(user_id: params[:id]).where(privacy: 'public')
+    @harvsts = @user.harvsts.where(privacy: 'public')
   end
 
   def update
     @user = User.find(params[:id])
-    @harvsts = Harvst.where(user_id: params[:id]).where(privacy: 'public')
+    @harvsts = @user.harvsts.where(privacy: 'public')
 
     if @user.update(user_params)
       render :show
@@ -35,13 +34,19 @@ class Api::UsersController < ApplicationController
 
   private
 
+  def signup_params
+    params.require(:user)
+          .permit(:username, :password, :affiliation)
+  end
+
   def user_params
-    params.require(:user).permit(:email, :website_url, :description, :profile_img_url)
+    params.require(:user)
+          .permit(:email, :website_url, :description, :profile_img_url)
   end
 
   def assure_correct_user
-    unless params[:id].to_i == current_user.id
-      render json: "You do not have access.", status: 404
+    unless params[:id] == current_user.id
+      render json: ["You do not have access."], status: 401
     end
   end
 end

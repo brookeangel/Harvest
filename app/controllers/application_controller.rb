@@ -4,16 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user, :logged_in?
 
-  def assure_not_logged_in
-    if logged_in?
-      redirect_to root_url
-    end
-  end
-
   def assure_logged_in
     unless logged_in?
-      flash[:errors] = ["Please log in to enjoy our site."]
-      redirect_to root_url
+      render json: "Please log in.", status: 401
     end
   end
 
@@ -21,7 +14,6 @@ class ApplicationController < ActionController::Base
   def login!(user)
     user.reset_session_token!
     session[:session_token] = user.session_token
-    redirect_to root_url
   end
 
   def current_user

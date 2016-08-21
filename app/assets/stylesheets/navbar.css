@@ -1,0 +1,87 @@
+.top-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 25px;
+}
+
+.top-nav a {
+  margin: 10px;
+}
+
+.nav-logo {
+  background-image: url('http://res.cloudinary.com/harvst/image/upload/v1445560320/harvst-logo_fe3zpl.png');
+  height: 70px;
+  width: 150px;
+  background-size: contain;
+}
+
+.modal-styles {
+  padding: 0px;
+  border-radius: 0px;
+  border: 1px solid black;
+  background-image: url('/assets/carrots.jpeg');
+  background-size: cover;
+  position: absolute;
+  width: 500px;
+  top: 40px;
+  left: calc(50vw - 250px);
+  right: calc(50vw - 250px);
+  overflow: auto;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  transition: top 0.5s ease;
+}
+
+.modal-styles.modal-opening {
+  top: -1000px;
+}
+
+.internal-modal {
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.modal-carrots {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-carrots p {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-carrots a {
+  color: white;
+}
+
+.modal-text {
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-top: 1px solid black;
+  padding: 50px 20px;
+}
+
+.modal-text p {
+  margin: 20px;
+}

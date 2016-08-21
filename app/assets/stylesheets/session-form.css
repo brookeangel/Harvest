@@ -1,0 +1,25 @@
+.session-form {
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.errors {
+  height: 50px;
+  list-style: none;
+  line-height: 30px;
+}
+
+.errors li {
+  text-align: center;
+}
+
+.session-form-harvst-logo {
+  background-image: url('http://res.cloudinary.com/harvst/image/upload/v1445569887/forage_ekruy5.png');
+  width: 400px;
+  height: 169px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
