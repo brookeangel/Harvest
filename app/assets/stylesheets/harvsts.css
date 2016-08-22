@@ -91,5 +91,16 @@
 
 .harvst-modal-overlay.form {
   justify-content: space-around;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgb(255,255,255);
+}
+
+.dropzone {
+  font-weight: bold;
+  width: 275px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed black;
+  background-size: cover;
 }

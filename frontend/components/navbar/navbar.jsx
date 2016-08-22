@@ -44,7 +44,7 @@ class Navbar extends React.Component {
   }
 
   closeModal() {
-    this.props.clearErrors();
+    this.props.resetForm();
     this.setState({modalStyles: 'modal-styles modal-opening'});
     setTimeout(() => this.setState({modalOpen: false}), 500);
   }

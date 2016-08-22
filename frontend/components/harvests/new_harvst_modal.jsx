@@ -1,18 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createHarvst } from '../../actions/harvst_actions';
+import {
+  createHarvst,
+  uploadImage } from '../../actions/harvst_actions';
 import LocationManager from '../../util/location_manager';
+import Dropzone from 'react-dropzone';
 
 class NewHarvstModal extends React.Component {
   constructor(props) {
     super(props);
+    this.onDrop = this.onDrop.bind(this);
     this.handleLocationUpdate = this.handleLocationUpdate.bind(this);
     this.state = {
       title: '',
       address: '',
-      image_url: '',
       lat: '',
-      lng: ''
+      lng: '',
+      isUploading: false
     };
   }
 
@@ -26,8 +30,22 @@ class NewHarvstModal extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.success) {
-      this.props.closeModal();
+      setTimeout(() => {
+        this.props.closeModal();
+      }, 1700);
     }
+
+    if(nextProps.image_url !== this.props.image_url) {
+      this.setState({isUploading: false});
+    }
+  }
+
+  onDrop(files) {
+    this.setState({
+      isUploading: true
+    });
+
+    this.props.uploadImage(files[0]);
   }
 
   handleLocationUpdate(place) {
@@ -40,11 +58,37 @@ class NewHarvstModal extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createHarvst(this.state);
+    const harvst = {
+      title: this.state.title,
+      lat: this.state.lat,
+      lng: this.state.lng,
+      address: this.state.address,
+      image_url: this.props.image_url
+    };
+
+    this.props.createHarvst(harvst);
   }
 
   update(field) {
     return (e) => this.setState({[field]: e.target.value});
+  }
+
+  getStyle() {
+    let color = this.state.isUploading ? 'grey' : 'white';
+    return {
+      backgroundImage: `url('${this.props.image_url}')`,
+      backgroundColor: color
+    };
+  }
+
+  dropzoneText() {
+    if (this.state.isUploading) {
+      return 'uploading...';
+    } else if (this.props.image_url.length === 0) {
+      return 'Upload harvest image!';
+    } else {
+      return '';
+    }
   }
 
   render() {
@@ -56,6 +100,9 @@ class NewHarvstModal extends React.Component {
               <li key={`error-${i}`}>{error}</li>
             ))
           }
+          {
+            this.props.success ? <li>Successful Upload!</li> : ''
+          }
         </ul>
         <form onSubmit={(e) => this.handleSubmit(e)}>
           <p>
@@ -66,12 +113,19 @@ class NewHarvstModal extends React.Component {
             <input id="autocomplete" placeholder="address"
                onFocus={this.locationManager.geolocate()} type="text"></input>
           </p>
+          <Dropzone className='dropzone'
+            multiple={false}
+            accept="image/*"
+            style={this.getStyle()}
+            onDrop={this.onDrop}>
+            <div>
+              { this.dropzoneText() }
+            </div>
+          </Dropzone>
           <p>
-            <input onChange={this.update('image_url')} placeholder="image_url"
-            value={this.state.image_url} type="text" />
-          </p>
-          <p>
-            <input type="submit" value="Create Harvest" />
+            <input type="submit"
+              disabled={this.props.isUploading ? true : false}
+              value="Create Harvest" />
           </p>
         </form>
       </div>
@@ -81,11 +135,13 @@ class NewHarvstModal extends React.Component {
 
 const mapStateToProps = state => ({
   errors: state.creationSuccess.errors,
-  success: state.creationSuccess.success
+  success: state.creationSuccess.success,
+  image_url: state.creationSuccess.image_url
 });
 
 const mapDispatchToProps = dispatch => ({
-  createHarvst: data => dispatch(createHarvst(data))
+  createHarvst: data => dispatch(createHarvst(data)),
+  uploadImage: image => dispatch(uploadImage(image))
 });
 
 export default connect(

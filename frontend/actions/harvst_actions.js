@@ -4,6 +4,9 @@ export const SET_ACTIVE_HARVST = 'SET_ACTIVE_HARVST';
 export const CREATE_HARVST = 'CREATE_HARVST';
 export const RECEIVE_HARVST = 'RECEIVE_HARVST';
 export const RECEIVE_HARVST_ERRORS = 'RECEIVE_HARVST_ERRORS';
+export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
+export const RECEIVE_IMAGE = 'RECEIVE_IMAGE';
+export const RESET_FORM = 'RESET_FORM';
 
 export const requestHarvsts = params => ({
   type: REQUEST_HARVSTS,
@@ -33,4 +36,18 @@ export const setActiveHarvst = harvst => ({
 export const receiveHarvstErrors = errors => ({
   type: RECEIVE_HARVST_ERRORS,
   errors
+});
+
+export const uploadImage = image => ({
+  type: UPLOAD_IMAGE,
+  image
+});
+
+export const receiveImage = image => ({
+  type: RECEIVE_IMAGE,
+  image
+});
+
+export const resetForm = () => ({
+  type: RESET_FORM
 });

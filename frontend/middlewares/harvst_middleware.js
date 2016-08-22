@@ -3,12 +3,16 @@ import {
   createHarvst
 } from '../util/harvst_api_util';
 
+import { uploadImage } from '../util/cloudinary_api_util';
+
 import {
   REQUEST_HARVSTS,
   CREATE_HARVST,
+  UPLOAD_IMAGE,
   receiveHarvst,
   receiveHarvsts,
-  receiveHarvstErrors
+  receiveHarvstErrors,
+  receiveImage
 } from '../actions/harvst_actions';
 
 const HarvstMiddleware = ({getState, dispatch}) => next => action => {
@@ -24,6 +28,10 @@ const HarvstMiddleware = ({getState, dispatch}) => next => action => {
     case CREATE_HARVST:
       success = harvst => dispatch(receiveHarvst(harvst));
       createHarvst(action.harvst, success, error);
+      return next(action);
+    case UPLOAD_IMAGE:
+      success = image => dispatch(receiveImage(image));
+      uploadImage(action.image, success);
       return next(action);
     default:
       return next(action);
