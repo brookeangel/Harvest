@@ -1,4 +1,5 @@
 import { logout } from '../../actions/session_actions';
+import { receiveHarvstErrors } from '../../actions/harvst_actions';
 import { connect } from 'react-redux';
 import Navbar from './navbar';
 
@@ -8,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  clearErrors: () => dispatch(receiveHarvstErrors([]))
 });
 
 export default connect(

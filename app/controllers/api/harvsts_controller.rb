@@ -5,6 +5,7 @@ class Api::HarvstsController < ApplicationController
   def create
     @harvst = Harvst.new(harvst_params)
     @harvst.user_id = current_user.id
+
     if @harvst.save
       render :show
     else
@@ -23,7 +24,6 @@ class Api::HarvstsController < ApplicationController
   end
 
   def index
-
     if params[:bounds]
       @harvsts = Harvst.in_bounds(params[:bounds])
                        .includes(:user)
@@ -50,7 +50,7 @@ class Api::HarvstsController < ApplicationController
   private
 
   def harvst_params
-    params.require(:harvst).permit(:title, :lat, :lng, :image_url)
+    params.require(:harvst).permit(:title, :lat, :lng, :image_url, :address)
   end
 
   def assure_correct_user

@@ -16,7 +16,7 @@ harvst1 = user1.harvsts.create!({
   lat: 37.780875,
   lng: -122.41135480000001,
   address: "1061 Market St, San Francisco, CA 94103, USA",
-  image_url: "http://res.cloudinary.com/harvst/image/upload/v1445534383/beat56s7vgzkidbfujrt.png"
+  image_url: "http://res.cloudinary.com/harvst/image/upload/v1445559668/k8c2yfbeqzerpjnfajpw.png"
 })
 
 harvst2 = user1.harvsts.create!({

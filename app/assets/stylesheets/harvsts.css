@@ -1,0 +1,94 @@
+.container {
+  position: relative;
+}
+
+.harvsts-index {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: calc(100vh - 70px);
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  padding: 20px;
+  overflow: scroll;
+}
+
+.harvst-index-item {
+  border-bottom: 1px solid grey;
+  padding: 15px 0;
+  height: 100px;
+  display: flex;
+  cursor: pointer;
+}
+
+.harvst-logo {
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+}
+
+.index-item-info {
+  padding-left: 15px;
+  width: calc(100% - 15px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.index-item-info h2 {
+  font-weight: 700;
+}
+
+.index-item-info > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.harvst-modal {
+  width: 500px;
+  height: 500px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.harvst-modal-star {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.harvst-modal-overlay {
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  background-color: rgba(255,255,255,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.harvst-modal-overlay > div:first-child {
+  margin-top: 150px;
+}
+
+.harvst-modal-overlay > div:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+  width: 450px;
+  font-weight: 700;
+  align-self: flex-end;
+}
+
+.new-harvst-errors {
+  height: 30px;
+  list-style: none;
+  line-height: 30px;
+  text-align: center;
+}
+
+.harvst-modal-overlay.form {
+  justify-content: space-around;
+}

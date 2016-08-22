@@ -18,12 +18,10 @@
 #
 
 class Harvst < ActiveRecord::Base
-  validates :address, :title, :lat, :lng, null: false
-  validates :title, length: {minimum: 1, maximum: 30}
-  validates :address, length: {maximum: 255}
+  validates :address, :title, :lat, :lng, presence: true
+  validates :title, length: {maximum: 20}
 
   before_save :default_image_url
-
   belongs_to :user
 
   def self.in_bounds(bounds, privacy = "public")

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ModalContent = ({ onRequestClose }) => (
+const AboutModal = () => (
   <div className="internal-modal">
     <div className="modal-carrots">
       <p>
@@ -26,4 +26,4 @@ const ModalContent = ({ onRequestClose }) => (
   </div>
 );
 
-export default ModalContent;
+export default AboutModal;

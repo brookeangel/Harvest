@@ -1,15 +1,17 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import ModalContent from './modal_content';
+import AboutModal from './about_modal';
+import NewHarvstModal from '../harvests/new_harvst_modal';
 import { hashHistory, Link } from 'react-router';
-
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
+    this.closeModal = this.closeModal.bind(this);
     this.state = {
       modalOpen: false,
-      modalStyles: 'modal-styles modal-opening'
+      modalStyles: 'modal-styles modal-opening',
+      modalContent: null
     };
   }
 
@@ -25,16 +27,24 @@ class Navbar extends React.Component {
 
   logoutButton() {
     return(
-      <button onClick={e => this.logout()}>Logout</button>
+      <div>
+        <a onClick={e => this.openModal('newHarvst')}>
+          <i className="fa fa-plus fa-3x" aria-hidden="true"></i>
+        </a>
+        <a onClick={e => this.logout()}>
+          <i className="fa fa-sign-out fa-3x" aria-hidden="true"></i>
+        </a>
+      </div>
     );
   }
 
-  openModal() {
-    this.setState({modalOpen: true});
+  openModal(content) {
+    this.setState({modalOpen: true, modalContent: content});
     setTimeout(() => this.setState({modalStyles: 'modal-styles'}), 0);
   }
 
   closeModal() {
+    this.props.clearErrors();
     this.setState({modalStyles: 'modal-styles modal-opening'});
     setTimeout(() => this.setState({modalOpen: false}), 500);
   }
@@ -42,11 +52,19 @@ class Navbar extends React.Component {
   loginLinks() {
     return(
       <div>
-        <a onClick={() => this.openModal()}>About</a>
+        <a onClick={() => this.openModal('about')}>About</a>
         <Link to="/login">Log In</Link>
         <Link to="/signup">Sign Up</Link>
       </div>
     );
+  }
+
+  renderModalContent() {
+    if (this.state.modalContent === 'about') {
+      return <AboutModal />;
+    } else {
+      return <NewHarvstModal closeModal={this.closeModal}/>;
+    }
   }
 
   render() {
@@ -54,10 +72,11 @@ class Navbar extends React.Component {
     return(
       <nav className="top-nav">
         <ReactModal
+          style={{overlay: {zIndex: 100}}}
           className={this.state.modalStyles}
           isOpen={this.state.modalOpen}
-          onRequestClose={() => this.closeModal()}>
-          <ModalContent onRequestClose={() => this.closeModal()} />
+          onRequestClose={this.closeModal}>
+          {this.renderModalContent()}
         </ReactModal>
         <Link to="/"><div className="nav-logo" /></Link>
         { isLoggedIn ? this.logoutButton() : this.loginLinks() }
