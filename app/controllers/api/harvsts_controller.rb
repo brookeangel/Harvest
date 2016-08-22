@@ -28,13 +28,13 @@ class Api::HarvstsController < ApplicationController
       @harvsts = Harvst.in_bounds(params[:bounds])
                        .includes(:user)
     else
-      @harvsts = Harvst.all
+      @harvsts = Harvst.includes(:user, :stars)
     end
 
   end
 
   def show
-    @harvst = Harvst.includes(:user).find(params[:id])
+    @harvst = Harvst.includes(:user, :stars).find(params[:id])
   end
 
   def update

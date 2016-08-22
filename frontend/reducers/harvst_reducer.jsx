@@ -16,8 +16,8 @@ const harvstReducer = (oldState = [], action) => {
       const harvstIdx = oldState.indexOf(updatedHarvst);
       return [
         ...oldState.slice(0, harvstIdx),
-        ...oldState.slice(harvstIdx),
-        action.harvst
+        action.harvst,
+        ...oldState.slice(harvstIdx + 1)
       ];
     default:
       return oldState;

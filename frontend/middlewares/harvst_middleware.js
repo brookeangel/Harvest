@@ -1,6 +1,7 @@
 import {
   fetchHarvsts,
-  createHarvst
+  createHarvst,
+  toggleStar
 } from '../util/harvst_api_util';
 
 import { uploadImage } from '../util/cloudinary_api_util';
@@ -9,6 +10,7 @@ import {
   REQUEST_HARVSTS,
   CREATE_HARVST,
   UPLOAD_IMAGE,
+  TOGGLE_STAR,
   receiveHarvst,
   receiveHarvsts,
   receiveHarvstErrors,
@@ -32,6 +34,10 @@ const HarvstMiddleware = ({getState, dispatch}) => next => action => {
     case UPLOAD_IMAGE:
       success = image => dispatch(receiveImage(image));
       uploadImage(action.image, success);
+      return next(action);
+    case TOGGLE_STAR:
+      success = harvst => dispatch(receiveHarvst(harvst));
+      toggleStar(action.harvst, success);
       return next(action);
     default:
       return next(action);

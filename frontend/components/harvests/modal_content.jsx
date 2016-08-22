@@ -1,12 +1,13 @@
 import React from 'react';
 
-const ModalContent = ({ harvst }) => (
+const ModalContent = ({ harvst, onStar }) => (
   <div className='harvst-modal'
     style={{backgroundImage: `url('${harvst.image_url}')`}}>
 
-    <div className="harvst-modal-star">
-      <i className="fa fa-star-o fa-3x" aria-hidden="true"></i>
-    </div>
+    <a className="harvst-modal-star" onClick={onStar}>
+      <i className={`fa ${harvst.star_id ? 'fa-star' : 'fa-star-o'} fa-3x`}
+        aria-hidden="true"></i>
+    </a>
 
     <div className='harvst-modal-overlay'>
       <div>

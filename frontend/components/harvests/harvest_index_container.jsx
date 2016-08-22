@@ -5,7 +5,11 @@ import HarvstMap from './harvst_map';
 import HarvstIndexItem from './harvst_index_item';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
-import { requestHarvsts, setActiveHarvst } from '../../actions/harvst_actions';
+import {
+  toggleStar,
+  requestHarvsts,
+  setActiveHarvst
+} from '../../actions/harvst_actions';
 
 class HarvestIndex extends React.Component {
   constructor(props) {
@@ -50,6 +54,11 @@ class HarvestIndex extends React.Component {
     this.setState({hoveredHarvst: null});
   }
 
+  star(e, harvst) {
+    e.stopPropagation();
+    this.props.toggleStar(harvst);
+  }
+
   render() {
     return(
       <div className='container'>
@@ -58,7 +67,9 @@ class HarvestIndex extends React.Component {
           className={this.state.modalStyles}
           isOpen={this.state.modalOpen}
           onRequestClose={() => this.props.setActiveHarvst(null)}>
-          <ModalContent harvst={this.state.activeHarvst} />
+          <ModalContent
+            onStar={(e) => this.star(e, this.state.activeHarvst)}
+            harvst={this.state.activeHarvst} />
         </ReactModal>
         <HarvstMap harvsts={this.props.harvsts}
           hoveredHarvst={this.state.hoveredHarvst}
@@ -67,6 +78,7 @@ class HarvestIndex extends React.Component {
           {this.props.harvsts.map(harvst => (
             <HarvstIndexItem key={harvst.id}
               harvst={harvst}
+              toggleStar={(e) => this.star(e, harvst)}
               mouseEnter={() => this.indexItemMouseEnter(harvst)}
               mouseLeave={() => this.indexItemMouseLeave(harvst)}
               openModal={() => this.props.setActiveHarvst(harvst)} />
@@ -85,7 +97,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   requestHarvsts: () => dispatch(requestHarvsts()),
-  setActiveHarvst: harvst => dispatch(setActiveHarvst(harvst))
+  setActiveHarvst: harvst => dispatch(setActiveHarvst(harvst)),
+  toggleStar: harvst => dispatch(toggleStar(harvst))
 });
 
 export default connect(

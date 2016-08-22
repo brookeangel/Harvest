@@ -4,7 +4,8 @@ const HarvstIndexItem = ({
   harvst,
   openModal,
   mouseEnter,
-  mouseLeave
+  mouseLeave,
+  toggleStar
 }) => (
   <div className="harvst-index-item"
     onMouseEnter={mouseEnter}
@@ -16,7 +17,10 @@ const HarvstIndexItem = ({
     <div className="index-item-info">
       <div>
         <h2>{harvst.title}</h2>
-        <i className="fa fa-star-o" aria-hidden="true"></i>
+        <a onClick={toggleStar}>
+          <i className={harvst.star_id ? "fa fa-star" : "fa fa-star-o"}
+            aria-hidden="true"></i>
+        </a>
       </div>
       <div>
         <p>

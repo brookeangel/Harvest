@@ -2,19 +2,15 @@
 #
 # Table name: harvsts
 #
-#  id          :integer          not null, primary key
-#  user_id     :integer          not null
-#  title       :string           not null
-#  description :text             not null
-#  privacy     :string           not null
-#  end_date    :date
-#  image_url   :string
-#  contact     :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  lat         :float
-#  lng         :float
-#  address     :string           not null
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  title      :string           not null
+#  address    :string           not null
+#  lat        :float            not null
+#  lng        :float            not null
+#  image_url  :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Harvst < ActiveRecord::Base
@@ -23,6 +19,7 @@ class Harvst < ActiveRecord::Base
 
   before_save :default_image_url
   belongs_to :user
+  has_many :stars, dependent: :destroy
 
   def self.in_bounds(bounds, privacy = "public")
     sql_bounds = {
@@ -38,6 +35,10 @@ class Harvst < ActiveRecord::Base
       (harvsts.lat BETWEEN :swlat AND :nelat) AND
       (harvsts.privacy = :privacy)
     SQL
+  end
+
+  def is_starred?(user)
+    stars.exists?(user: user)
   end
 
   private

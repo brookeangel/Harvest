@@ -7,6 +7,7 @@ export const RECEIVE_HARVST_ERRORS = 'RECEIVE_HARVST_ERRORS';
 export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 export const RECEIVE_IMAGE = 'RECEIVE_IMAGE';
 export const RESET_FORM = 'RESET_FORM';
+export const TOGGLE_STAR = 'TOGGLE_STAR';
 
 export const requestHarvsts = params => ({
   type: REQUEST_HARVSTS,
@@ -50,4 +51,9 @@ export const receiveImage = image => ({
 
 export const resetForm = () => ({
   type: RESET_FORM
+});
+
+export const toggleStar = harvst => ({
+  type: TOGGLE_STAR,
+  harvst
 });

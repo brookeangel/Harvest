@@ -59,3 +59,8 @@ harvst6 = user2.harvsts.create!({
   address: "160 Spear Street, San Francisco, CA 94177, USA",
   image_url: "http://res.cloudinary.com/harvst/image/upload/v1471809162/lettuce_ss7gwl.jpg"
 })
+
+Star.create!(user: user1, harvst: harvst6)
+Star.create!(user: user1, harvst: harvst4)
+Star.create!(user: user2, harvst: harvst1)
+Star.create!(user: user2, harvst: harvst2)

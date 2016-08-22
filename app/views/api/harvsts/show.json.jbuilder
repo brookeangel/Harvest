@@ -1,1 +1,1 @@
-json.partial! 'harvst', harvst: @harvst 
+json.partial! '/api/harvsts/harvst', harvst: @harvst 
