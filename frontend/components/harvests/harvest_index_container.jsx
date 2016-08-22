@@ -5,6 +5,7 @@ import HarvstMap from './harvst_map';
 import HarvstIndexItem from './harvst_index_item';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
+import activeHarvstSelector from '../../reducers/active_harvst_selector';
 import {
   toggleStar,
   requestHarvsts,
@@ -36,8 +37,8 @@ class HarvestIndex extends React.Component {
     }
   }
 
-  openModal(harvst) {
-    this.setState({modalOpen: true, activeHarvst: harvst});
+  openModal(harvstId) {
+    this.setState({modalOpen: true, activeHarvst: harvstId});
     setTimeout(() => this.setState({modalStyles: 'modal-styles'}), 0);
   }
 
@@ -60,6 +61,11 @@ class HarvestIndex extends React.Component {
   }
 
   render() {
+    let activeHarvst = activeHarvstSelector(
+      this.props.harvsts,
+      this.state.activeHarvst
+    );
+
     return(
       <div className='container'>
         <ReactModal
@@ -68,8 +74,8 @@ class HarvestIndex extends React.Component {
           isOpen={this.state.modalOpen}
           onRequestClose={() => this.props.setActiveHarvst(null)}>
           <ModalContent
-            onStar={(e) => this.star(e, this.state.activeHarvst)}
-            harvst={this.state.activeHarvst} />
+            onStar={(e) => this.star(e, activeHarvst)}
+            harvst={activeHarvst} />
         </ReactModal>
         <HarvstMap harvsts={this.props.harvsts}
           hoveredHarvst={this.state.hoveredHarvst}
@@ -81,7 +87,7 @@ class HarvestIndex extends React.Component {
               toggleStar={(e) => this.star(e, harvst)}
               mouseEnter={() => this.indexItemMouseEnter(harvst)}
               mouseLeave={() => this.indexItemMouseLeave(harvst)}
-              openModal={() => this.props.setActiveHarvst(harvst)} />
+              openModal={() => this.props.setActiveHarvst(harvst.id)} />
           ))}
         </div>
       </div>
@@ -97,7 +103,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   requestHarvsts: () => dispatch(requestHarvsts()),
-  setActiveHarvst: harvst => dispatch(setActiveHarvst(harvst)),
+  setActiveHarvst: harvstId => dispatch(setActiveHarvst(harvstId)),
   toggleStar: harvst => dispatch(toggleStar(harvst))
 });
 

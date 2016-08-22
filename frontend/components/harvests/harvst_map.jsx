@@ -25,7 +25,7 @@ class HarvstMap extends React.Component {
   }
 
   _handleMarkerClick(harvst) {
-    this.props.setActiveHarvst(harvst);
+    this.props.setActiveHarvst(harvst.id);
   }
 
   render() {

@@ -29,9 +29,9 @@ export const receiveHarvst = harvst => ({
   harvst
 });
 
-export const setActiveHarvst = harvst => ({
+export const setActiveHarvst = harvstId => ({
   type: SET_ACTIVE_HARVST,
-  harvst
+  harvstId
 });
 
 export const receiveHarvstErrors = errors => ({
