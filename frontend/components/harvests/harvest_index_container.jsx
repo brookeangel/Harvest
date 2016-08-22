@@ -6,6 +6,7 @@ import HarvstIndexItem from './harvst_index_item';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import activeHarvstSelector from '../../reducers/active_harvst_selector';
+import harvstsSelector from '../../reducers/harvsts_selector';
 import {
   toggleStar,
   requestHarvsts,
@@ -97,7 +98,7 @@ class HarvestIndex extends React.Component {
 
 const mapStateToProps = state => ({
   isLoggedIn: Boolean(state.session.currentUser),
-  harvsts: state.harvsts,
+  harvsts: harvstsSelector(state.harvsts),
   activeHarvst: state.activeHarvst
 });
 

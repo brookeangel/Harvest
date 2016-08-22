@@ -29,6 +29,9 @@ class Navbar extends React.Component {
     return(
       <div>
         <a onClick={e => this.openModal('newHarvst')}>
+          <i className="fa fa-star fa-3x" aria-hidden="true"></i>
+        </a>
+        <a onClick={e => this.openModal('newHarvst')}>
           <i className="fa fa-plus fa-3x" aria-hidden="true"></i>
         </a>
         <a onClick={e => this.logout()}>

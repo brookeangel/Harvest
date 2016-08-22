@@ -4,21 +4,18 @@ import {
   RECEIVE_HARVST
 } from '../actions/harvst_actions';
 
-const harvstReducer = (oldState = [], action) => {
+const harvstReducer = (oldState = {}, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_HARVSTS:
-      return merge([], action.harvsts);
-    case RECEIVE_HARVST:
-      const updatedHarvst = oldState.find(harvst => {
-        return harvst.id === action.harvst.id;
+      newState = {};
+      action.harvsts.forEach(harvst => {
+        newState[harvst.id] = harvst;
       });
-      const harvstIdx = oldState.indexOf(updatedHarvst);
-      return [
-        ...oldState.slice(0, harvstIdx),
-        action.harvst,
-        ...oldState.slice(harvstIdx + 1)
-      ];
+      return newState;
+    case RECEIVE_HARVST:
+      newState = merge({}, oldState);
+      return Object.assign(newState, {[action.harvst.id]: action.harvst});
     default:
       return oldState;
   }
