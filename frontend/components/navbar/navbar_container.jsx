@@ -1,5 +1,9 @@
 import { logout } from '../../actions/session_actions';
-import { receiveHarvstErrors, resetForm } from '../../actions/harvst_actions';
+import {
+  receiveHarvstErrors,
+  resetForm,
+  toggleDrawer
+} from '../../actions/harvst_actions';
 import { connect } from 'react-redux';
 import Navbar from './navbar';
 
@@ -10,7 +14,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
-  resetForm: () => dispatch(resetForm())
+  resetForm: () => dispatch(resetForm()),
+  toggleDrawer: () => dispatch(toggleDrawer())
 });
 
 export default connect(

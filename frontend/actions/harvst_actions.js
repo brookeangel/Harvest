@@ -9,6 +9,7 @@ export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
 export const RECEIVE_IMAGE = 'RECEIVE_IMAGE';
 export const RESET_FORM = 'RESET_FORM';
 export const TOGGLE_STAR = 'TOGGLE_STAR';
+export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
 
 export const requestHarvsts = params => ({
   type: REQUEST_HARVSTS,
@@ -62,4 +63,8 @@ export const resetForm = () => ({
 export const toggleStar = harvst => ({
   type: TOGGLE_STAR,
   harvst
+});
+
+export const toggleDrawer = () => ({
+  type: TOGGLE_DRAWER
 });

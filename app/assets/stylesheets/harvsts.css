@@ -104,3 +104,20 @@
   border: 1px dashed black;
   background-size: cover;
 }
+
+.harvst-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: calc(100vh - 70px);
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 1;
+  padding: 20px;
+  overflow: scroll;
+  transition: right 0.5s ease;
+}
+
+.harvst-drawer.hidden-drawer {
+  right: -400px;
+}

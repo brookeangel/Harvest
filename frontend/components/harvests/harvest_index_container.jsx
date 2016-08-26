@@ -8,6 +8,7 @@ const HarvstIndexContainer = () => (
     <ModalContent />
     <HarvstMap />
     <HarvstIndex />
+    <StarredHarvestDrawer />
   </div>
 );
 

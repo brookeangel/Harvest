@@ -28,7 +28,7 @@ class Navbar extends React.Component {
   logoutButton() {
     return(
       <div>
-        <a onClick={e => this.openModal('newHarvst')}>
+        <a onClick={this.props.toggleDrawer}>
           <i className="fa fa-star fa-3x" aria-hidden="true"></i>
         </a>
         <a onClick={e => this.openModal('newHarvst')}>
