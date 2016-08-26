@@ -6,6 +6,7 @@ import {
   setActiveHarvst,
   setHoveredHarvst
 } from '../../actions/harvst_actions';
+import { requestHarvsts } from '../../actions/harvst_actions';
 
 function initMap() {
   return new google.maps.Map(document.getElementById('map'), {
@@ -17,11 +18,36 @@ function initMap() {
 class HarvstMap extends React.Component {
   componentDidMount() {
     this.map = initMap();
+    this.mapListener = this.map.addListener(
+      'idle',
+      this.onMapIdle.bind(this)
+    );
+
     this.MarkerManager = new MarkerManager(
       this.map,
       this._handleMarkerClick.bind(this)
     );
     this.MarkerManager.updateMarkers(this.props.harvsts);
+  }
+
+  componentWillUnmount() {
+    google.maps.event.removeListener(this.mapListener );
+  }
+
+  onMapIdle() {
+    let bounds = this.map.getBounds();
+    this.props.requestHarvsts({
+      bounds: {
+        southWest: {
+          lat: bounds.getSouthWest().lat(),
+          lng: bounds.getSouthWest().lng()
+        },
+        northEast: {
+          lat: bounds.getNorthEast().lat(),
+          lng: bounds.getNorthEast().lng()
+        }
+      }
+    });
   }
 
   componentDidUpdate() {
@@ -45,6 +71,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
+  requestHarvsts: bounds => dispatch(requestHarvsts(bounds)),
   setActive: harvstId => dispatch(setActiveHarvst(harvstId)),
   setHoveredHarvst: harvstId => dispatch(setHoveredHarvst(harvstId))
 });

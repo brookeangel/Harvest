@@ -24,12 +24,8 @@ class Api::HarvstsController < ApplicationController
   end
 
   def index
-    if params[:bounds]
-      @harvsts = Harvst.in_bounds(params[:bounds])
-                       .includes(:user)
-    else
-      @harvsts = Harvst.includes(:user, :stars)
-    end
+    @harvsts = Harvst.in_bounds(params[:bounds])
+                     .includes(:user, :stars)
 
   end
 

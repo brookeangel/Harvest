@@ -26,14 +26,12 @@ class Harvst < ActiveRecord::Base
       swlat: bounds["southWest"]["lat"].to_f,
       swlng: bounds["southWest"]["lng"].to_f,
       nelat: bounds["northEast"]["lat"].to_f,
-      nelng: bounds["northEast"]["lng"].to_f,
-      privacy: privacy
+      nelng: bounds["northEast"]["lng"].to_f
     }
 
     Harvst.where(<<-SQL, sql_bounds)
       (harvsts.lng BETWEEN :swlng AND :nelng) AND
-      (harvsts.lat BETWEEN :swlat AND :nelat) AND
-      (harvsts.privacy = :privacy)
+      (harvsts.lat BETWEEN :swlat AND :nelat)
     SQL
   end
 
