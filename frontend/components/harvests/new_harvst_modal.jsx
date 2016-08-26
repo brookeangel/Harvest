@@ -21,7 +21,10 @@ class NewHarvstModal extends React.Component {
   }
 
   componentWillMount() {
-    this.locationManager = new LocationManager(this.handleLocationUpdate);
+    this.locationManager = new LocationManager(
+      this.handleLocationUpdate,
+      'autocomplete'
+    );
   }
 
   componentDidMount() {

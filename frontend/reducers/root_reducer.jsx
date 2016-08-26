@@ -3,10 +3,12 @@ import sessionReducer from './session_reducer';
 import harvstReducer from './harvst_reducer';
 import activeHarvstReducer from './active_harvst_reducer';
 import harvstSuccessReducer from './harvst_success_reducer';
+import mapReducer from './map_reducer';
 
 export default combineReducers({
   session: sessionReducer,
   harvsts: harvstReducer,
   activeHarvst: activeHarvstReducer,
-  creationSuccess: harvstSuccessReducer
+  creationSuccess: harvstSuccessReducer,
+  mapCenter: mapReducer
 });

@@ -1,18 +1,43 @@
+/* globals google */
 import React from 'react';
 import ReactModal from 'react-modal';
 import AboutModal from './about_modal';
 import NewHarvstModal from '../harvests/new_harvst_modal';
+import LocationManager from '../../util/location_manager';
 import { hashHistory, Link } from 'react-router';
 
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.closeModal = this.closeModal.bind(this);
+    this.handleLocationUpdate = this.handleLocationUpdate.bind(this);
     this.state = {
       modalOpen: false,
       modalStyles: 'modal-styles modal-opening',
       modalContent: null
     };
+  }
+
+  componentWillMount() {
+    this.locationManager = new LocationManager(
+      this.handleLocationUpdate,
+      'nav-autocomplete'
+    );
+  }
+
+  componentDidMount() {
+    this.locationManager.initAutocomplete();
+  }
+
+  handleLocationUpdate(place) {
+    this.props.setCenter({
+      lat: place.geometry.location.lat(),
+      lng: place.geometry.location.lng()
+    });
+
+    setTimeout(() => {
+      document.getElementById('nav-autocomplete').value = "";
+    }, 500);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -70,6 +95,19 @@ class Navbar extends React.Component {
     }
   }
 
+  searchBar() {
+    return(
+      <p>
+        <i className="fa fa-search fa-lg" aria-hidden="true"></i>
+        <input id="nav-autocomplete"
+          className="nav-search"
+          placeholder="Search locations..."
+          onFocus={this.locationManager.geolocate()}
+          type="text"></input>
+      </p>
+    );
+  }
+
   render() {
     const { isLoggedIn, currentUser } = this.props;
     return(
@@ -82,6 +120,7 @@ class Navbar extends React.Component {
           {this.renderModalContent()}
         </ReactModal>
         <Link to="/"><div className="nav-logo" /></Link>
+        { isLoggedIn ? this.searchBar() : '' }
         { isLoggedIn ? this.logoutButton() : this.loginLinks() }
       </nav>
     );

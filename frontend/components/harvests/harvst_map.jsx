@@ -54,6 +54,7 @@ class HarvstMap extends React.Component {
   componentDidUpdate() {
     this.MarkerManager.updateMarkers(this.props.harvsts);
     this.MarkerManager.hover(this.props.hoveredHarvst);
+    this.map.setCenter(this.props.mapCenter);
   }
 
   _handleMarkerClick(harvst) {
@@ -69,7 +70,8 @@ class HarvstMap extends React.Component {
 
 const mapStateToProps = state => ({
   hoveredHarvst: state.activeHarvst.hoveredHarvst,
-  harvsts: harvstsSelector(state.harvsts.inBoundsHarvsts)
+  harvsts: harvstsSelector(state.harvsts.inBoundsHarvsts),
+  mapCenter: state.mapCenter
 });
 
 const mapDispatchToProps = dispatch => ({

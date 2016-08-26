@@ -1,12 +1,13 @@
 /* global google */
 class LocationManager {
-  constructor(autocompleteCb) {
+  constructor(autocompleteCb, elementId) {
     this.autocompleteCallback = autocompleteCb;
+    this.elementId = elementId;
   }
 
   initAutocomplete() {
     this.autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById('autocomplete'),
+      document.getElementById(this.elementId),
       {types: ['geocode']}
     );
     this.autocomplete.addListener('place_changed',
