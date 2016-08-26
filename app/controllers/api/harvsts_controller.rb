@@ -24,9 +24,14 @@ class Api::HarvstsController < ApplicationController
   end
 
   def index
-    @harvsts = Harvst.in_bounds(params[:bounds])
-                     .includes(:user, :stars)
-
+    if params[:bounds]
+      @harvsts = Harvst.in_bounds(params[:bounds])
+                       .includes(:user, :stars)
+    else
+      @harvsts = Harvst.all
+    end
+    
+    @starred_harvsts = current_user.starred_harvsts
   end
 
   def show

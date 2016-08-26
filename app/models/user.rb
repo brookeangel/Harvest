@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
 
   has_many :harvsts, dependent: :destroy
   has_many :stars, dependent: :destroy
+  has_many :starred_harvsts, through: :stars, source: :harvst 
 
   def reset_session_token!
     self.session_token = User.generate_session_token

@@ -4,18 +4,25 @@ import {
   RECEIVE_HARVST
 } from '../actions/harvst_actions';
 
+const defaultState = Object.freeze({
+  inBoundsHarvsts: {},
+  starredHarvsts: {}
+});
 const harvstReducer = (oldState = {}, action) => {
   let newState;
   switch (action.type) {
     case RECEIVE_HARVSTS:
-      newState = {};
-      action.harvsts.forEach(harvst => {
-        newState[harvst.id] = harvst;
-      });
-      return newState;
+      return merge({}, action.harvsts);
     case RECEIVE_HARVST:
       newState = merge({}, oldState);
-      return Object.assign(newState, {[action.harvst.id]: action.harvst});
+      newState.inBoundsHarvsts[action.harvst.id] = action.harvst;
+      if (action.harvst.star_id) {
+        newState.starredHarvsts[action.harvst.id] = action.harvst;
+      } else {
+        delete newState.starredHarvsts[action.harvst.id];
+      }
+
+      return newState;
     default:
       return oldState;
   }

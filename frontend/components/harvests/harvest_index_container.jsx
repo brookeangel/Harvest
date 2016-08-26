@@ -28,7 +28,7 @@ class HarvestIndex extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  harvsts: harvstsSelector(state.harvsts)
+  harvsts: harvstsSelector(state.harvsts.inBoundsHarvsts)
 });
 
 const mapDispatchToProps = dispatch => ({});

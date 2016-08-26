@@ -2,8 +2,6 @@ import { connect } from 'react-redux';
 import React from 'react';
 import ReactModal from 'react-modal';
 import { toggleStar, setActiveHarvst } from '../../actions/harvst_actions';
-import activeHarvstSelector from '../../reducers/active_harvst_selector';
-
 
 class ModalContent extends React.Component {
 
@@ -81,7 +79,7 @@ class ModalContent extends React.Component {
 
 const mapStateToProps = state => ({
   harvstId: state.activeHarvst.activeHarvst,
-  harvsts: state.harvsts
+  harvsts: state.harvsts.inBoundsHarvsts
 });
 
 const mapDispatchToProps = dispatch => ({
