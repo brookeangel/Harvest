@@ -1,6 +1,7 @@
 export const REQUEST_HARVSTS = 'REQUEST_HARVSTS';
 export const RECEIVE_HARVSTS = 'RECEIVE_HARVSTS';
 export const SET_ACTIVE_HARVST = 'SET_ACTIVE_HARVST';
+export const SET_HOVERED_HARVST = 'SET_HOVERED_HARVST';
 export const CREATE_HARVST = 'CREATE_HARVST';
 export const RECEIVE_HARVST = 'RECEIVE_HARVST';
 export const RECEIVE_HARVST_ERRORS = 'RECEIVE_HARVST_ERRORS';
@@ -31,6 +32,11 @@ export const receiveHarvst = harvst => ({
 
 export const setActiveHarvst = harvstId => ({
   type: SET_ACTIVE_HARVST,
+  harvstId
+});
+
+export const setHoveredHarvst = harvstId => ({
+  type: SET_HOVERED_HARVST,
   harvstId
 });
 

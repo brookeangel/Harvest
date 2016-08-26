@@ -1,6 +1,11 @@
 /* globals google */
 import MarkerManager from '../../util/marker_manager';
 import React from 'react';
+import { connect } from 'react-redux';
+import {
+  setActiveHarvst,
+  setHoveredHarvst
+} from '../../actions/harvst_actions';
 
 function initMap() {
   return new google.maps.Map(document.getElementById('map'), {
@@ -25,7 +30,7 @@ class HarvstMap extends React.Component {
   }
 
   _handleMarkerClick(harvst) {
-    this.props.setActiveHarvst(harvst.id);
+    this.props.setActive(harvst.id);
   }
 
   render() {
@@ -35,5 +40,17 @@ class HarvstMap extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  hoveredHarvst: state.activeHarvst.hoveredHarvst
+});
 
-export default HarvstMap;
+const mapDispatchToProps = dispatch => ({
+  setActive: harvstId => dispatch(setActiveHarvst(harvstId)),
+  setHoveredHarvst: harvstId => dispatch(setHoveredHarvst(harvstId))
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HarvstMap);

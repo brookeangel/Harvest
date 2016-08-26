@@ -53,7 +53,7 @@ export default class MarkerManager {
 
   hover(hoveredHarvst) {
     this.markers.forEach(marker => {
-      if(hoveredHarvst && hoveredHarvst.id === marker.harvstId) {
+      if(hoveredHarvst && hoveredHarvst === marker.harvstId) {
         marker.setAnimation(google.maps.Animation.BOUNCE);
       } else {
         marker.setAnimation(null);
