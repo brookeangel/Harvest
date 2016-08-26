@@ -51,10 +51,15 @@ class HarvstMap extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.mapCenter !== nextProps.mapCenter) {
+      this.map.setCenter(nextProps.mapCenter);
+    }
+  }
+
   componentDidUpdate() {
     this.MarkerManager.updateMarkers(this.props.harvsts);
     this.MarkerManager.hover(this.props.hoveredHarvst);
-    this.map.setCenter(this.props.mapCenter);
   }
 
   _handleMarkerClick(harvst) {

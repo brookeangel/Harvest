@@ -79,7 +79,9 @@ class ModalContent extends React.Component {
 
 const mapStateToProps = state => ({
   harvstId: state.activeHarvst.activeHarvst,
-  harvsts: state.harvsts.inBoundsHarvsts
+  harvsts: Object.assign({},
+    state.harvsts.inBoundsHarvsts,
+    state.harvsts.starredHarvsts)
 });
 
 const mapDispatchToProps = dispatch => ({
