@@ -7,6 +7,7 @@ import {
   setHoveredHarvst
 } from '../../actions/harvst_actions';
 import { requestHarvsts } from '../../actions/harvst_actions';
+import harvstsSelector from '../../reducers/harvsts_selector';
 
 function initMap() {
   return new google.maps.Map(document.getElementById('map'), {
@@ -67,7 +68,8 @@ class HarvstMap extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  hoveredHarvst: state.activeHarvst.hoveredHarvst
+  hoveredHarvst: state.activeHarvst.hoveredHarvst,
+  harvsts: harvstsSelector(state.harvsts.inBoundsHarvsts)
 });
 
 const mapDispatchToProps = dispatch => ({
