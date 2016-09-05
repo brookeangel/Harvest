@@ -95,9 +95,9 @@ class Navbar extends React.Component {
     }
   }
 
-  searchBar() {
+  searchBar(isLoggedIn) {
     return(
-      <p>
+      <p className={isLoggedIn ? "" : "hidden"}>
         <i className="fa fa-search fa-lg" aria-hidden="true"></i>
         <input id="nav-autocomplete"
           className="nav-search"
@@ -120,7 +120,7 @@ class Navbar extends React.Component {
           {this.renderModalContent()}
         </ReactModal>
         <Link to="/"><div className="nav-logo" /></Link>
-        { isLoggedIn ? this.searchBar() : '' }
+        { this.searchBar(isLoggedIn) }
         { isLoggedIn ? this.logoutButton() : this.loginLinks() }
       </nav>
     );
