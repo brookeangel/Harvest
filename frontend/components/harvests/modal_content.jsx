@@ -66,6 +66,7 @@ class ModalContent extends React.Component {
 
     return(
       <ReactModal
+        contentLabel="Create Harvest"
         style={{overlay: {zIndex: 100}}}
         className={this.state.modalStyles}
         isOpen={this.state.modalOpen}

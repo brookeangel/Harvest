@@ -116,6 +116,7 @@ class Navbar extends React.Component {
           style={{overlay: {zIndex: 100}}}
           className={this.state.modalStyles}
           isOpen={this.state.modalOpen}
+          contentLabel="Create Harvest"
           onRequestClose={this.closeModal}>
           {this.renderModalContent()}
         </ReactModal>
