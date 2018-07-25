@@ -15,7 +15,7 @@
 }
 
 .nav-logo {
-  background-image: url('http://res.cloudinary.com/harvst/image/upload/v1445560320/harvst-logo_fe3zpl.png');
+  background-image: url("http://res.cloudinary.com/harvst/image/upload/v1445560320/harvst-logo_fe3zpl.png");
   height: 70px;
   width: 150px;
   background-size: contain;
@@ -26,7 +26,7 @@
   padding: 0px;
   border-radius: 0px;
   border: 1px solid black;
-  background-image: asset-url('carrots.jpeg');
+  background-image: asset-url("carrots.jpeg");
   background-size: cover;
   position: absolute;
   width: 500px;
@@ -88,6 +88,7 @@
   margin: 20px;
 }
 
-.nav-search {
+input[type=text].nav-search {
   font-size: 16px;
+  width: 350px;
 }

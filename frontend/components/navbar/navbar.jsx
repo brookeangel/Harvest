@@ -101,8 +101,9 @@ class Navbar extends React.Component {
         <i className="fa fa-search fa-lg" aria-hidden="true"></i>
         <input id="nav-autocomplete"
           className="nav-search"
-          placeholder="Search locations..."
+          placeholder="Oops, location search isn't working right now!"
           onFocus={this.locationManager.geolocate()}
+          disabled="true"
           type="text"></input>
       </p>
     );
