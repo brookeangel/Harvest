@@ -37,6 +37,10 @@
   font-family: 'Raleway', sans-serif;
  }
 
+ body {
+  overflow-x: hidden;
+ }
+
  a {
    text-decoration: none;
    cursor: pointer;
