@@ -15,6 +15,8 @@ and React.js / Redux. Harvst allows users to:
 
 ## Local Development
 
+### Basic install
+
 Harvest locally using:
 
 ```
@@ -35,5 +37,23 @@ Harvest locally using:
 ```
 
 Check it out at `localhost:3000`!
+
+### Working with maps
+
+You'll also need a Google Maps API key if you want to view the map.
+
+Get it here: https://developers.google.com/maps/documentation/javascript/get-api-key
+
+Then add it to your environment:
+```
+> bundle exec figaro install
+```
+
+And in application.yml:
+```
+GOOGLE_MAPS_KEY: secret_key_here
+```
+
+Don't forget to restart your server!
 
 Problems? Let Brooke know!
