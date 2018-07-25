@@ -6,17 +6,19 @@ class LocationManager {
   }
 
   initAutocomplete() {
-    this.autocomplete = new google.maps.places.Autocomplete(
-      document.getElementById(this.elementId),
-      {types: ['geocode']}
-    );
-    this.autocomplete.addListener('place_changed',
-      this.fillInAddress.bind(this));
+    // TODO: the google API for autocomplete has changed.
+    //       This should be re-implemented using the new API
+    // this.autocomplete = new google.maps.places.Autocomplete(
+    //   document.getElementById(this.elementId),
+    //   {types: ['geocode']}
+    // );
+    // this.autocomplete.addListener('place_changed',
+    //   this.fillInAddress.bind(this));
   }
 
   fillInAddress() {
-    const place = this.autocomplete.getPlace();
-    this.autocompleteCallback(place);
+    // const place = this.autocomplete.getPlace();
+    // this.autocompleteCallback(place);
   }
 
   geolocate() {
