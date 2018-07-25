@@ -54,13 +54,13 @@ class Navbar extends React.Component {
     return(
       <div>
         <a onClick={this.props.toggleDrawer}>
-          <i className="fa fa-star fa-3x" aria-hidden="true"></i>
+          <i className="fa fa-star fa-3x" title="Starred harvests" aria-hidden="true"></i>
         </a>
         <a onClick={e => this.openModal('newHarvst')}>
-          <i className="fa fa-plus fa-3x" aria-hidden="true"></i>
+          <i className="fa fa-plus fa-3x" title="Add new harvest" aria-hidden="true"></i>
         </a>
         <a onClick={e => this.logout()}>
-          <i className="fa fa-sign-out fa-3x" aria-hidden="true"></i>
+          <i className="fa fa-sign-out fa-3x" title="Sign out" aria-hidden="true"></i>
         </a>
       </div>
     );
